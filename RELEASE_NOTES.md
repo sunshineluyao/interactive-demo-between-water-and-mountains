@@ -1,3 +1,23 @@
+# Release 4.0 · full bilingual interface, guided 3D story and Colab studio
+
+## Added
+
+- Added persistent English, 中文 and side-by-side bilingual reading modes across the complete learning interface, including navigation, evidence boundaries, controls, validation prompts and export guidance. APA citations, code, dataset identifiers and user-authored notes remain in their source language.
+- Added a five-step guided 3D orientation story, direct drag/zoom/reset controls, place-marker ripples, atmospheric depth, moving source glyphs and a multi-point schematic question arc. Reduced-motion mode stops autoplay while preserving every control.
+- Rebuilt the Colab companion as a nineteen-cell bilingual studio using Plotly, pydeck, Altair, ipywidgets and versioned teaching snapshots.
+- Added eight in-app notebook previews with styled result miniatures for globe orientation, spatial inspection, CP selection, temporal change, linked brushing, design decisions, evidence-card authorship and four-level validation.
+- Added a reproducible `npm run notebook:build` command and strengthened notebook-content validation.
+
+## Changed
+
+- Reorganized the orientation controls around “locate → inspect source → read boundary → return to question.”
+- Improved compact desktop and mobile layouts for the language switcher, globe console and notebook package/result views.
+- Expanded the focused test suite to seventeen checks, including all three language modes, five guided-tour steps and the eight-cell embedded notebook route.
+
+## Verification target
+
+Run `npm run check`, `npm audit --omit=dev`, and `npm run preview:standalone`; then complete English/中文/bilingual desktop and mobile acceptance on the Git-linked Vercel deployment.
+
 # Release 3.0 · global orientation, question-first design and CP literacy
 
 ## Added
