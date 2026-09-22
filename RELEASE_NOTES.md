@@ -1,3 +1,25 @@
+# Release 3.0 · global orientation, question-first design and CP literacy
+
+## Added
+
+- Added an interactive 3D globe that locates Kunshan and the wider Mandara study region, supports three place views, and introduces three source layers with explicit evidence boundaries.
+- Added bilingual place labels and a Chinese–pinyin–English presentation of *Analects* 6.23 with a direct source URL and a warning that the quotation is a question-making lens, not evidence.
+- Moved Movement, Continuity and Missing voices to the top of the journey and persisted the selected lens through the tutorial, comparison chapter and exported team claim.
+- Added a four-layer designer decision tree with no more than three choices per layer and a live recommendation, evidence boundary and validation test.
+- Rebuilt the research-example gallery as a large replayable animation theatre with reduced-motion stills.
+- Added an embedded notebook tutorial and an executable Google Colab companion covering globe orientation, selection, parameter change, overview + detail, brushing/linking, filtering, aggregation and design validation.
+- Added a six-page culture-period explainer, twelve-term archaeology/model glossary, and interactive CP1–CP14 identifier guide before the Mandara matrix.
+
+## Changed
+
+- Reframed “Every control should change what you can learn” as an operational test: each control must support noticing, comparing, testing, explaining, or exposing an evidence limit.
+- Clarified that CP labels are latent decoration-distribution identifiers, not peoples, named cultures, chapters, ranks, dates, or an ordered timeline.
+- Expanded source, notebook, navigation, decision-tree and CP-explainer tests and added notebook JSON/content validation to the release check.
+
+## Verification target
+
+Run `npm run check`, `npm audit --omit=dev`, and `npm run preview:standalone`; then complete desktop/mobile/WebGL acceptance on the Git-linked Vercel deployment.
+
 # Release 2.1 · interaction tutorial and complete citation surface
 
 ## Added

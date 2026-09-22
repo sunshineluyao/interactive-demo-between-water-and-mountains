@@ -1,7 +1,7 @@
 {
   "name": "between-water-and-mountains-atlas",
   "private": true,
-  "version": "2.1.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "predev": "node scripts/materialize-assets.mjs",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/d3": "^7.4.3",
     "@types/geojson": "^7946.0.16",
+    "@types/node": "^24.13.6",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/three": "^0.183.1",

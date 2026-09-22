@@ -20,7 +20,7 @@ Existing React/TypeScript/Vite application. Must remain deployable to Vercel by 
 
 ## Capabilities and Constraints
 
-Preserve all six chapter anchors, source inspection, OSM channel selection, NASA monthly timeline, Mandara qualitative teaching matrix, local XLSX import, four validation levels and the Ed Discussion team-claim export. Keep supplied open data and its rights separate from the application license. Do not publish a site or fabricate a deployed URL. A preview must be the running application or a clearly identified artifact, never a manually drawn board described as a screenshot.
+Preserve all nine chapter anchors, global orientation, question-lens continuity, source inspection, OSM channel selection, NASA monthly timeline, Mandara qualitative teaching matrix, local XLSX import, four validation levels and the Ed Discussion team-claim export. Keep supplied open data and its rights separate from the application license. Do not publish a site or fabricate a deployed URL. A preview must be the running application or a clearly identified artifact, never a manually drawn board described as a screenshot.
 
 ## Brand Commitments
 

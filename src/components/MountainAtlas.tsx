@@ -1,6 +1,7 @@
 import { ArrowDownToLine, ArrowUpRight, FileSpreadsheet, Layers3, MountainSnow, ShieldCheck } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import type { MandaraData } from '../types'
+import { CulturePeriodBook } from './CulturePeriodBook'
 import { StatusTag } from './StatusTag'
 import { readData } from '../lib/data'
 
@@ -133,6 +134,7 @@ export function MountainAtlas() {
 
       <figure className="mountain-panorama"><img src="/images/rhumsiki.webp" alt="A panorama of Rhumsiki peak and the surrounding Mandara landscape." width="1800" height="475" loading="lazy" /><figcaption>Rhumsiki, Cameroon. A view of the wider region, not an excavated site. <a href="#photo-credits">Photo credit</a></figcaption></figure>
       {loadError && <div className="load-error" role="alert"><p>{loadError}</p><button onClick={() => setRetry((value) => value + 1)}>Try loading again</button></div>}
+      <CulturePeriodBook data={data} />
 
       <div className="mountain-stage">
         <div className="culture-panel">
@@ -141,7 +143,7 @@ export function MountainAtlas() {
               <StatusTag status={matrix?.mode === 'uploaded' ? 'derived' : 'interpretive'}>
                 {matrix?.mode === 'uploaded' ? 'Derived from your local file' : 'Paper-derived teaching layer'}
               </StatusTag>
-              <p>{matrix?.mode === 'uploaded' ? 'Share of imported records within each site. Up to 13 decorations and 11 sites, ranked by count.' : 'A qualitative summary of reported culture-period signatures. These colors are not sherd counts or probabilities.'}</p>
+              <p>{matrix?.mode === 'uploaded' ? 'Share of imported records within each site. Up to 13 decorations and 11 sites, ranked by count.' : 'A qualitative summary of reported latent pattern signatures. CP labels are identifiers; these colors are not sherd counts or probabilities.'}</p>
             </div>
             <button type="button" className="reset-matrix" onClick={resetTeachingView} disabled={matrix?.mode !== 'uploaded'}>
               Reset teaching view
@@ -157,7 +159,7 @@ export function MountainAtlas() {
                   </linearGradient>
                 </defs>
                 {matrix.columns.map((column, index) => (
-                  <text key={column} x={178 + index * cellWidth + cellWidth / 2} y="42" textAnchor="middle" className="matrix-column"><title>{column}</title>{matrix.mode === 'uploaded' ? `D${index + 1}` : column}</text>
+                  <text key={column} x={178 + index * cellWidth + cellWidth / 2} y="42" textAnchor="middle" className="matrix-column"><title>{matrix.mode === 'uploaded' ? column : `Culture-period model pattern ${column}; identifier, not chronology`}</title>{matrix.mode === 'uploaded' ? `D${index + 1}` : column}</text>
                 ))}
                 {matrix.rows.map((row, rowIndex) => (
                   <g key={row.label} transform={`translate(0, ${62 + rowIndex * 54})`}>
@@ -177,7 +179,7 @@ export function MountainAtlas() {
                           fill={value === 0 ? '#e0e8e9' : colors[colorIndex]}
                           tabIndex={0}
                           role="button"
-                          aria-label={`${row.label}, ${column}: ${matrix.mode === 'uploaded' ? `${(value * 100).toFixed(1)} percent of imported site records` : value === 1 ? 'dominant reported' : value > 0 ? 'smaller reported' : 'not asserted in this summary'}`}
+                          aria-label={`${row.label}, ${matrix.mode === 'uploaded' ? column : `culture-period model pattern ${column}`}: ${matrix.mode === 'uploaded' ? `${(value * 100).toFixed(1)} percent of imported site records` : value === 1 ? 'dominant reported' : value > 0 ? 'smaller reported' : 'not asserted in this summary'}`}
                           onClick={() => setSelectedCell({ row: row.label, column, value })}
                           onKeyDown={(event) => {
                             if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setSelectedCell({ row: row.label, column, value }) }
@@ -196,7 +198,7 @@ export function MountainAtlas() {
           <div className="matrix-reading">
             <Layers3 aria-hidden="true" />
             {selectedCell ? (
-              <p><strong>{selectedCell.row} · {selectedCell.column}</strong><br />{matrix?.mode === 'uploaded' ? `${(selectedCell.value * 100).toFixed(1)}% of this site's usable imported rows. This is a frequency, not a model probability.` : selectedCell.value === 1 ? 'Reported as dominant in the paper-derived summary.' : selectedCell.value > 0 ? 'Reported as a smaller signature in the paper-derived summary.' : 'This teaching summary makes no positive assertion here. It does not establish absence.'}</p>
+              <p><strong>{selectedCell.row} · {selectedCell.column}</strong><br />{matrix?.mode === 'uploaded' ? `${(selectedCell.value * 100).toFixed(1)}% of this site's usable imported rows. This is a frequency, not a model probability.` : `${selectedCell.column} is an inferred decoration-pattern identifier—not a people, date, rank, or chapter. ${selectedCell.value === 1 ? 'It is reported as dominant in the paper-derived summary.' : selectedCell.value > 0 ? 'It is reported as a smaller signature in the paper-derived summary.' : 'This teaching summary makes no positive assertion here. It does not establish absence.'}`}</p>
             ) : (
               <p><strong>Select a cell.</strong><br />The matrix will explain what the color is—and what it is not.</p>
             )}

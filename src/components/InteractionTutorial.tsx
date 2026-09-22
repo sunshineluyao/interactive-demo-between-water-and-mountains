@@ -8,9 +8,13 @@ import {
   Layers3,
   MousePointer2,
   PauseCircle,
+  RotateCcw,
   SlidersHorizontal,
 } from 'lucide-react'
 import { useEffect, useId, useState, type CSSProperties } from 'react'
+import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
+import { ColabCompanion } from './ColabCompanion'
+import { DesignerDecisionTree } from './DesignerDecisionTree'
 
 type PatternKind = 'select' | 'time' | 'navigate' | 'coordinate' | 'reduce' | 'author'
 
@@ -354,14 +358,18 @@ function BeforeAfterComparison({ pattern }: { pattern: Pattern }) {
   )
 }
 
-function PatternMedia({ item, motionEnabled }: { item: (typeof researchExamples)[number]; motionEnabled: boolean }) {
+function PatternMedia({ item, motionEnabled, replay }: { item: (typeof researchExamples)[number]; motionEnabled: boolean; replay: number }) {
   const src = !motionEnabled && item.still ? item.still : item.image
-  return <img src={src} alt={item.alt} width="800" height="450" loading="lazy" />
+  return <img key={`${src}-${replay}`} src={src} alt={item.alt} width="1200" height="675" loading="lazy" />
 }
 
-export function InteractionTutorial({ motionEnabled }: { motionEnabled: boolean }) {
+export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabled: boolean; activeLens: QuestionLensId }) {
   const [active, setActive] = useState(0)
+  const [activeResearch, setActiveResearch] = useState(0)
+  const [replay, setReplay] = useState(0)
   const pattern = patterns[active]
+  const lens = getQuestionLens(activeLens)
+  const researchExample = researchExamples[activeResearch]
 
   return (
     <section id="tutorial" className="chapter tutorial-chapter" data-chapter aria-labelledby="tutorial-title">
@@ -369,13 +377,15 @@ export function InteractionTutorial({ motionEnabled }: { motionEnabled: boolean 
         <div className="tutorial-heading">
           <div>
             <span className="tutorial-kicker">Interaction tutorial · learn it inside the project</span>
-            <h2 id="tutorial-title">Every control should<br />change what you can learn.</h2>
+            <h2 id="tutorial-title">Interaction is a way<br />of thinking with evidence.</h2>
           </div>
           <div>
-            <p>Choose a pattern, drag its before/after comparison, then open the live chapter. Name the intent, action, response, evidence, and reset—not only the widget.</p>
+            <p>A control earns its place when it helps someone notice a pattern, compare evidence, test an interpretation, or expose what the data cannot answer. Name the intent, action, response, evidence, and reset—not only the widget.</p>
             <a href="#tutorial-studio">Start the guided studio <ArrowRight aria-hidden="true" /></a>
           </div>
         </div>
+
+        <aside className="lens-recommendation"><span>Your selected community lens · {lens.name} / {lens.nameZh}</span><p>{lens.purpose}</p><strong>Start with: {lens.recommendedPatterns.join(' + ')}</strong><a href="#questions">Change the question lens</a></aside>
 
         <div className="interaction-taxonomy" aria-label="Munzner interaction vocabulary used in the atlas">
           <div><span>Manipulate</span><strong>Change · Select · Navigate</strong></div>
@@ -383,6 +393,8 @@ export function InteractionTutorial({ motionEnabled }: { motionEnabled: boolean 
           <div><span>Reduce</span><strong>Filter · Aggregate</strong></div>
           <a href="https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf" target="_blank" rel="noreferrer">Open Munzner’s Ch. 11–12 slides <ExternalLink aria-hidden="true" /></a>
         </div>
+
+        <DesignerDecisionTree />
 
         <div id="tutorial-studio" className="tutorial-studio">
           <nav className="pattern-index" aria-label="Interaction tutorial steps">
@@ -425,17 +437,18 @@ export function InteractionTutorial({ motionEnabled }: { motionEnabled: boolean 
 
         <section className="research-gallery" aria-labelledby="research-patterns-title">
           <div className="tutorial-section-heading"><div><SlidersHorizontal aria-hidden="true" /><span>Research pattern gallery</span></div><h3 id="research-patterns-title">Separate what is applied from what is an extension.</h3><p>Use these systems as precedents for interaction quality. The labels below say whether the pattern is already present, a reference, or an explicit next step—so the atlas never overstates its functionality.</p></div>
-          <div className="research-grid">
-            {researchExamples.map((example) => (
-              <article key={example.title}>
-                <div className="research-media"><PatternMedia item={example} motionEnabled={motionEnabled} /></div>
-                <div className="research-copy"><span>{example.role}</span><h4>{example.title}</h4><p>{example.application}</p><small>{example.citation}</small></div>
-              </article>
-            ))}
+          <div className="research-theatre">
+            <nav aria-label="Choose a research interaction example">{researchExamples.map((example, index) => <button type="button" key={example.title} aria-pressed={activeResearch === index} onClick={() => { setActiveResearch(index); setReplay((value) => value + 1) }}><span>{String(index + 1).padStart(2, '0')}</span><strong>{example.title}</strong><small>{example.role}</small></button>)}</nav>
+            <article key={researchExample.title}>
+              <div className="research-media"><PatternMedia item={researchExample} motionEnabled={motionEnabled} replay={replay} /><div className="research-media-label"><span>{researchExample.role}</span>{researchExample.still && motionEnabled ? <button type="button" onClick={() => setReplay((value) => value + 1)}><RotateCcw aria-hidden="true" /> Replay animation</button> : null}</div></div>
+              <div className="research-copy"><span>Interaction precedent {String(activeResearch + 1).padStart(2, '0')}</span><h4>{researchExample.title}</h4><p>{researchExample.application}</p><small>{researchExample.citation}</small></div>
+            </article>
           </div>
           {!motionEnabled ? <p className="motion-note"><PauseCircle aria-hidden="true" /> Motion is paused, so animated examples show a representative frame. Enable motion in the header to play them.</p> : null}
           <a className="full-references-link" href="#references">Open every full APA-style source and data credit <ArrowRight aria-hidden="true" /></a>
         </section>
+
+        <ColabCompanion />
 
         <div className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p></div></div>
       </div>

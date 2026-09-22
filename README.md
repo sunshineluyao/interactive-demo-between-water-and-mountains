@@ -1,6 +1,6 @@
 # 水山之间 · Between Water & Mountains
 
-A photographic, interactive evidence atlas for INFOSCI 301. It connects Kunshan's waterways and rainfall records with questions raised by Mandara archaeological evidence. Students inspect sources, compare representations and bring a question back to their own community.
+A bilingual, interactive evidence atlas for INFOSCI 301. It orients Kunshan and the Mandara Mountains on a 3D globe, connects each place to its evidence, and asks students to carry a community question through source inspection, visualization design and validation.
 
 ## Generate an offline application preview
 
@@ -8,13 +8,15 @@ Run `npm run preview:standalone`, then open `preview/Between_Water_and_Mountains
 
 ## The journey
 
-1. **Learn the interactions:** study six patterns through action/response scripts and accessible before-and-after sliders; compare applied patterns with credited textbook and research examples.
-2. **Meet the evidence:** inspect one real source record and mark it inspected yourself.
-3. **Follow the water:** select a channel, explore 300 months of NASA POWER precipitation, or play the timeline. The channel geometry stays fixed.
-4. **Read the mountain:** inspect the qualitative teaching matrix or load a tDAR spreadsheet locally.
-5. **Build the bridge:** choose Movement, Continuity or Missing voices; write an observation, interpretation and question.
-6. **Validate the claim:** record Domain, Data/Task, Idiom and Algorithm checks.
-7. **Return the question:** bring the field note into the team claim, preview it and export to Ed Discussion.
+1. **Orient the journey:** rotate a 3D globe, focus Kunshan or the Mandara region, and switch among mapped, climate and material-history source layers.
+2. **Choose a community question:** select Movement, Continuity or Missing voices before choosing a visualization control.
+3. **Learn the interactions:** follow a max-three-choice-per-layer design tree, study six patterns, explore enlarged research animations, and open the executable Google Colab companion.
+4. **Meet the evidence:** inspect one real source record and mark it inspected yourself.
+5. **Follow the water:** select a channel, explore 300 months of NASA POWER precipitation, or play the timeline. The channel geometry stays fixed.
+6. **Read the mountain:** turn six explanatory pages, open a twelve-term glossary, inspect CP1–CP14 as model identifiers, explore the qualitative matrix, or load a tDAR spreadsheet locally.
+7. **Build the bridge:** revisit the selected question after seeing both evidence families; write an observation, interpretation and question.
+8. **Validate the claim:** record Domain/Community, Data/Task, Idiom and Algorithm checks.
+9. **Return the question:** carry the selected lens and field note into the team claim, preview it and export to Ed Discussion.
 
 Notes save in this browser when local storage is available. Imported spreadsheets stay in memory and are not uploaded. No community testimony or local impact is invented.
 
@@ -33,7 +35,9 @@ npm audit --omit=dev
 npm run preview:standalone
 ```
 
-The check compiles TypeScript, builds the production bundle, validates all three teaching snapshots, checks release assets and runs focused DOM and transformation tests. DOM tests do not render CSS and are not a visual audit. The standalone preview builder packages the same application into one HTML file.
+The check compiles TypeScript, builds the production bundle, validates all three teaching snapshots and the Colab notebook, checks release assets and runs focused DOM and transformation tests. DOM tests do not render CSS and are not a visual audit. The standalone preview builder packages the same application into one HTML file.
+
+The versioned notebook lives at `notebooks/INFOSCI301_Interaction_Design_Companion.ipynb`. The app embeds a direct notebook download and links to its Colab runtime; no account or API key is required to read the embedded tutorial preview.
 
 Versioned binary media lives as chunked Base64 source in `assets-base64/`. The `predev` and `prebuild` scripts reconstruct the exact ignored files before Vite runs; no network download is required during a Vercel build.
 
@@ -43,7 +47,7 @@ Follow [DEPLOYMENT.md](DEPLOYMENT.md). Import this folder as a repository, keep 
 
 ## Design and provenance
 
-The redesign applies the original Frontend Design, UI/UX Pro Max, Taste Skill and Impeccable instructions. [DESIGN_APPLICATION.md](DESIGN_APPLICATION.md) records sources, choices and verification limits; DESIGN.md records the implemented tokens. Photography leads the exhibition. Self-hosted Bodoni Moda and Source Sans 3 accompany Chinese serif typography. The single light system uses mineral paper, lake blue and readable controls.
+The redesign applies the original Frontend Design, UI/UX Pro Max, Taste Skill and Impeccable instructions. [DESIGN_APPLICATION.md](DESIGN_APPLICATION.md) records sources, choices and verification limits; [DESIGN_BLUEPRINT_V3.md](DESIGN_BLUEPRINT_V3.md) records the visual sequence, recommendation ranking, evidence/reader-task map and release gate; DESIGN.md records the implemented tokens. The new story begins with geographic orientation and community questions, then shifts into evidence and design. Self-hosted Bodoni Moda and Source Sans 3 accompany Chinese serif typography; dark globe/tutorial stages and mineral-paper evidence chapters share one semantic palette.
 
 The app’s on-page reference library lists every author for the books, papers and systems in APA style, alongside full data and media credits. Photographs and tutorial excerpts are also documented in [public/images/CREDITS.md](public/images/CREDITS.md). They provide geographic or teaching context, not documentation of the excavations or course fieldwork.
 

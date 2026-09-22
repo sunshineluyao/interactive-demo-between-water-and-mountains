@@ -8,6 +8,7 @@ const required = [
   'dist/data/kunshan-precipitation.json',
   'dist/images/tutorial/munzner-taxonomy.jpg',
   'dist/images/tutorial/vega-brush-link.gif',
+  'dist/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb',
 ]
 
 for (const path of required) {
@@ -20,7 +21,7 @@ for (const token of ['Between Water', 'favicon.svg', 'assets/']) {
 }
 
 const source = readFileSync(resolve('src/App.tsx'), 'utf8')
-for (const chapter of ['tutorial', 'evidence', 'water', 'mountain', 'bridge', 'validate', 'return']) {
+for (const chapter of ['orientation', 'questions', 'tutorial', 'evidence', 'water', 'mountain', 'bridge', 'validate', 'return']) {
   if (!source.includes(`id: '${chapter}'`)) throw new Error(`Missing sequential chapter: ${chapter}`)
 }
 

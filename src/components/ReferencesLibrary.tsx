@@ -60,8 +60,8 @@ const dataReferences: Reference[] = [
   },
   {
     key: 'analects',
-    citation: <>Confucius. (n.d.). The Analects, Book 6 (Yong Ye), passage 6.23 [Classical Chinese text]. <cite>Chinese Wikisource</cite>. Retrieved September 22, 2026, from <a href="https://zh.wikisource.org/wiki/%E8%AB%96%E8%AA%9E/%E9%9B%8D%E4%B9%9F%E7%AC%AC%E5%85%AD" target="_blank" rel="noreferrer">https://zh.wikisource.org/</a></>,
-    note: 'Used as an instructor-created question-making lens, not as an empirical variable or a cultural label for either place.',
+    citation: <>Confucius. (n.d.). The Analects, Book 6 (Yong Ye), commonly numbered passage 6.23 [Classical Chinese text]. <cite>Chinese Wikisource</cite>. Retrieved September 22, 2026, from <a href="https://zh.wikisource.org/wiki/%E8%AB%96%E8%AA%9E/%E9%9B%8D%E4%B9%9F%E7%AC%AC%E5%85%AD" target="_blank" rel="noreferrer">https://zh.wikisource.org/</a></>,
+    note: 'The linked Wikisource edition labels the saying 六之二一; numbering varies across editions. Used as an instructor-created question-making lens, not as an empirical variable or a cultural label for either place.',
   },
 ]
 

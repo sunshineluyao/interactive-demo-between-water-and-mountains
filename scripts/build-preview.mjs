@@ -30,6 +30,9 @@ for (const name of ['bodoni-moda-500.ttf', 'source-sans-400.ttf', 'source-sans-6
   const data = `data:font/ttf;base64,${readFileSync(resolve(root, 'public/fonts', name)).toString('base64')}`
   css = css.replaceAll(`/fonts/${name}`, data)
 }
+const notebookName = 'INFOSCI301_Interaction_Design_Companion.ipynb'
+const notebookData = `data:application/x-ipynb+json;charset=utf-8,${encodeURIComponent(readFileSync(resolve(root, 'notebooks', notebookName), 'utf8'))}`
+js = js.replaceAll(`/notebooks/${notebookName}`, notebookData)
 const snapshots = Object.fromEntries(['kunshan-waterways.geojson', 'kunshan-precipitation.json', 'mandara-teaching.json'].map((name) => [`/data/${name}`, JSON.parse(readFileSync(resolve(root, 'public/data', name), 'utf8'))]))
 const safe = (text) => text.replaceAll('</script', '<\\/script')
 const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Between Water & Mountains · Interactive preview</title><style>${css}</style></head><body><div id="root"></div><script>window.__ATLAS_SNAPSHOTS__=${safe(JSON.stringify(snapshots))};</script><script>${safe(js)}</script></body></html>`

@@ -51,6 +51,12 @@ Attribution shown in the app: **© OpenStreetMap contributors**.
 
 It also transcribes the five qualitative Site 642 sequence descriptions stated in the paper. The app labels this layer **Interpretive** and links directly to the paper and official record.
 
+### Meaning of CP1–CP14
+
+The paper defines a **culture period (CP)** as a consistent distribution of pottery-decoration types inferred as a latent component in a Dirichlet-process mixture model. CP1 through CP14 are the fourteen primary component identifiers reported by the paper. The numerals are not chapter numbers, names of cultures or peoples, ranks, dates, or a simple chronological order. The paper aggregates additional components as CP15; the teaching matrix intentionally displays only the fourteen primary labels represented in its qualitative transcription.
+
+The page-turning explainer and glossary distinguish sherd, exterior decoration, site, excavation unit, recording unit, unit-level, culture period, Dirichlet-process mixture, posterior, culture painting, taphonomy and radiocarbon date. These explanations paraphrase the paper; they do not rename or extend its inferred components.
+
 ### Local import
 
 The official translated `.xlsx` can be loaded into the app. Parsing happens in the browser; there is no upload route. The app identifies site and exterior-decoration columns, counts usable records, and displays up to 13 decorations and 11 sites, ranked by count. Each cell divides the number of matching site/decoration rows by **all usable imported rows for that site**. Omitted decoration categories can make displayed rows sum to less than 100%. The color scale is fixed from 0% to 100%. Column codes D1, D2, etc. link to full labels in the adjacent key. This is a frequency view, not the paper’s Bayesian mixture model.
@@ -59,6 +65,8 @@ The official translated `.xlsx` can be loaded into the app. Parsing happens in t
 
 - **Source passage:** https://zh.wikisource.org/wiki/%E8%AB%96%E8%AA%9E/%E9%9B%8D%E4%B9%9F%E7%AC%AC%E5%85%AD
 - **Text used:** 知者樂水，仁者樂山。
+- **Reading shown:** Zhì zhě yào shuǐ, rén zhě yào shān. Here 樂 is read *yào* (“to delight in / love”).
+- **Numbering note:** the saying is commonly cited as 6.23; the linked Wikisource edition labels it 六之二一. The app names the book section (Yong Ye) and states the variation.
 - **Role:** instructor-created interpretive prompt about movement and persistence.
 - **Boundary:** the phrase is not an empirical feature, a causal hypothesis or a label assigned to either Kunshan or Mandara communities.
 
@@ -68,4 +76,12 @@ The app can help students propose a relationship with a Kunshan-area community, 
 
 ## 6. Citation display
 
-The deployed application includes a dedicated reference library after the seven learning chapters. It gives complete APA-style entries—with every author listed—for the interaction textbook, lecture slides, visualization research systems, Mandara paper and dataset, Kunshan data, primary text, photographs and teaching excerpts. DOI and inspection links remain visible beside the relevant entries. This ledger documents transformations and evidence boundaries; the website is the public-facing citation surface.
+The deployed application includes a dedicated reference library after the nine learning chapters. It gives complete APA-style entries—with every author listed—for the interaction textbook, lecture slides, visualization research systems, Mandara paper and dataset, Kunshan data, primary text, photographs and teaching excerpts. DOI and inspection links remain visible beside the relevant entries. This ledger documents transformations and evidence boundaries; the website is the public-facing citation surface.
+
+## 7. Executable teaching notebook
+
+- **File:** `notebooks/INFOSCI301_Interaction_Design_Companion.ipynb`
+- **Runtime:** Google Colab or any compatible Python/Jupyter environment.
+- **Inputs:** the same versioned OpenStreetMap, NASA POWER and Mandara JSON/GeoJSON snapshots used by the app, loaded from this repository.
+- **Interactions:** globe orientation, selection/highlighting, parameter change, overview + detail, interval brushing, linked filtering, aggregation and a bounded designer decision helper.
+- **Boundary:** notebook globe arcs and teaching symbols are schematic. Every quantitative example displays its source, unit or denominator; no notebook cell recreates the paper's Bayesian posterior from the qualitative teaching layer.

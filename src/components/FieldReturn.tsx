@@ -1,6 +1,7 @@
 import { ArrowUpRight, CheckCircle2, Clipboard, Download, Globe2, HeartHandshake, Send } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { downloadText, useDraft } from '../lib/drafts'
+import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
 
 type Claim = {
   title: string
@@ -24,9 +25,10 @@ const initialClaim: Claim = {
   permission: '', nextCheck: '',
 }
 
-export function FieldReturn() {
+export function FieldReturn({ activeLens }: { activeLens: QuestionLensId }) {
   const [claim, setClaim, saved] = useDraft('atlas-team-claim-v2', initialClaim)
   const [status, setStatus] = useState('')
+  const lens = getQuestionLens(activeLens)
 
   const post = useMemo(() => `# ${claim.title || '[Project title]'}
 
@@ -39,6 +41,10 @@ export function FieldReturn() {
 - **Open-science contribution:** ${claim.openScience || '[data / code / documentation / accessibility commitment]'}
 
 ## Evidence boundary
+- **Question lens:** ${lens.name} / ${lens.nameZh}
+- **Kunshan question:** ${lens.water}
+- **Mandara question:** ${lens.mountain}
+- **Comparison boundary:** ${lens.limit}
 - **Observed:** ${claim.observation || '[what the source or field encounter actually shows]'}
 - **Interpreted:** ${claim.inference || '[your provisional interpretation]'}
 - **Data sources:** ${claim.sources}
@@ -49,7 +55,7 @@ ${claim.idioms}
 
 ## Next validation
 ${claim.nextCheck || '[one test, one person or group, and what could change]'}
-`, [claim])
+`, [claim, lens])
 
   const update = (key: keyof Claim, value: string) => setClaim((current) => ({ ...current, [key]: value }))
   const copy = async () => {

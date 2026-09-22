@@ -4,6 +4,7 @@ const read = (path) => JSON.parse(readFileSync(path, 'utf8'))
 const waterways = read('public/data/kunshan-waterways.geojson')
 const precipitation = read('public/data/kunshan-precipitation.json')
 const mandara = read('public/data/mandara-teaching.json')
+const notebook = read('notebooks/INFOSCI301_Interaction_Design_Companion.ipynb')
 
 if (waterways.metadata.license !== 'Open Data Commons Open Database License (ODbL) 1.0') {
   throw new Error('Waterway snapshot lost its ODbL license statement.')
@@ -30,4 +31,12 @@ if (!mandara.metadata.license_statement.includes('exact CC variant is not specif
   throw new Error('Mandara license precision note is missing.')
 }
 
-console.log('Data validation passed: 420 waterways, 300 months, and labeled Mandara teaching layer.')
+if (notebook.nbformat !== 4 || notebook.cells.length < 10) {
+  throw new Error('The Colab companion is not a valid, complete notebook.')
+}
+const notebookText = notebook.cells.flatMap((cell) => cell.source ?? []).join('\n')
+for (const concept of ['selection', 'overview + detail', 'brushing', 'author + annotate', 'CP1', 'design_path']) {
+  if (!notebookText.toLowerCase().includes(concept.toLowerCase())) throw new Error(`The Colab companion is missing: ${concept}`)
+}
+
+console.log('Data validation passed: 420 waterways, 300 months, labeled Mandara teaching layer, and executable Colab companion.')

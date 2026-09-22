@@ -18,7 +18,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 ## Scope and decisions
 
-Experience leads the entrance and comparison. Operate governs map, timeline, matrix and forms; Read governs source details. A single light exhibition ground suits students inspecting graphics on classroom laptops in ordinary room light. The fixed sidebar, bottom dock, decorative statistics, background grid and ornamental rain are removed. Timeline playback is intentional and stops at December 2025, the end of the bundled record. Motion never implies measured channel flow.
+Experience leads the entrance and comparison. Operate governs globe, decision tree, map, timeline, matrix and forms; Read governs source details and the page-turning CP explainer. A dark orientation/tutorial stage distinguishes framing and design instruction from the light evidence chapters used on classroom laptops. The fixed sidebar, bottom dock, decorative statistics, background grid and ornamental rain are removed. Timeline playback is intentional and stops at December 2025, the end of the bundled record. Globe symbols and motion are explicitly schematic; motion never implies measured channel flow, migration or causality.
 
 Frontend Design: subject-specific photography and a deliberate hierarchy. Taste: variance 7, motion 5, density 3 for exhibition surfaces only; data tools retain familiar affordances. UI/UX Pro Max: ran two design-system searches and React rules. Kept sequential storytelling/accessibility guidance; rejected generic Swiss dashboard and purple editor palettes because they did not fit this place-based brief. Impeccable: product context, craft floor, direction contract, local detector and independent final review.
 

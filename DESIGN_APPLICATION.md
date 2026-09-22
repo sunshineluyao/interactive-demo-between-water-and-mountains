@@ -29,6 +29,19 @@ The user's explicit “please apply” and existing cultural-exhibition directio
 5. Decorative labels above headings were removed.
 6. Arbitrary imported decoration labels use short column codes with a full readable key; long site names remain available in the key and cell labels.
 
+## Version 3.0 application
+
+The same four instruction sets were applied to the global/interdisciplinary revision:
+
+| Skill | Version 3.0 decision |
+| --- | --- |
+| Frontend Design | Replaced the place-ambiguous entrance with one semantic 3D hero: a globe, two bilingual place identities, an intentionally non-causal question arc and a cited bilingual primary-text passage. |
+| UI/UX Pro Max | Put community questions before interaction vocabulary; limited every designer-tree layer to three choices; carried the chosen lens through later chapters; supplied keyboard, reduced-motion, fallback and recovery states. |
+| Taste Skill | Reordered the story to orient → question → design → evidence → revisit → validate; enlarged GIF precedents into a single focused theatre; avoided a dense dashboard of simultaneous miniatures. |
+| Impeccable | Added explicit evidence-status language, source URLs, CP terminology, model/people boundaries, notebook validation and DOM tests for every new control family. |
+
+Each new control changes either location, source interpretation, community question, design recommendation, tutorial step, research precedent, CP explanation or evidence selection. Controls that only decorated the page were not added.
+
 ## Honest limits
 
 Impeccable's online concept service failed on the initial request and retry. No online challenger catalogue or quality boards were obtained. Its local craft rules and review process still informed the work.

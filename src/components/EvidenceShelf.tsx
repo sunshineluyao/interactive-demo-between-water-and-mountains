@@ -55,7 +55,7 @@ const sources = [
     source: 'Read the original passage',
     href: 'https://zh.wikisource.org/wiki/%E8%AB%96%E8%AA%9E/%E9%9B%8D%E4%B9%9F%E7%AC%AC%E5%85%AD',
     license: 'Interpretive prompt · not an empirical variable',
-    sample: '知者樂水，仁者樂山 · Analects 6.23',
+    sample: '知者樂水，仁者樂山 · Yong Ye · commonly 6.23; linked edition 六之二一',
     boundary: 'A question-making lens only. It is not a label, measurement or causal explanation for either place.',
     task: 'Read the passage, then write one question it opens without turning the metaphor into evidence.',
     status: 'interpretive' as const,

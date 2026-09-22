@@ -132,11 +132,11 @@ components:
 
 Cool mineral paper, lake-blue controls and credited place photography form a humane cultural exhibition. Generous unboxed compositions introduce the places; familiar controls support source inspection, comparison and a field notebook.
 
-Bodoni Moda gives English headings their editorial voice. Source Sans 3 carries reading and operation; real Chinese text uses the dedicated Chinese serif stack. The single light ground, quiet dividers and restrained state changes keep photographs and evidence legible.
+Bodoni Moda gives English headings their editorial voice. Source Sans 3 carries reading and operation; real Chinese text uses the dedicated Chinese serif stack. Dark orientation/tutorial stages frame geography and design learning; a light mineral ground keeps photographs and evidence legible.
 
 **Key Characteristics:**
 
-- One light mineral-paper ground with lake-blue actions.
+- Dark geographic/tutorial stages followed by a light mineral-paper evidence ground, using the same semantic lake-blue actions.
 - Local display and reading fonts; a distinct Chinese serif stack.
 - Credited place photography, open layouts and inspectable evidence.
 - Visible focus, native controls and meaningful static states.
@@ -165,43 +165,42 @@ Sidecar tonal strips for individual swatches are synthesized preview metadata, n
 
 Local files load Bodoni Moda (500) and Source Sans 3 (400/600), all with `font-display: swap`; `font-synthesis: none` is active. Chinese glyphs use the documented system fallback stacks. The root size is 18px, becoming 17px at 480px and below; frontmatter rem values follow that root.
 
-Display and headline roles belong to the hero and chapter headings. Title is the base h3 role; individual reading stages use 1.8–2.3rem. Body paragraphs normally stop at 70ch; chapter introductions at 48ch. Labels use reading type, not all-caps display lettering. Numerical tables and rainfall/metric readings use tabular figures.
+Display and headline roles belong to the orientation and chapter headings. Title is the base h3 role; individual reading stages use 1.8–2.3rem. Body paragraphs normally stop at 70ch; chapter introductions at 48ch. Labels use reading type, not all-caps display lettering. Numerical tables and rainfall/metric readings use tabular figures.
 
 **The Two Reading Voices Rule.** Use the display face for English headings and Source Sans 3 for reading and controls; use the Chinese serif stack for Chinese display text.
 
 ## Layout
 
-Main chapters and the hero have a 1376px outer maximum, normally with 48px horizontal padding (1280px inner width). Chapters have 112px vertical padding; water, mountain and return begin at 72px. The comparison chapter spans the viewport on mist with a 1280px inner alignment and 96px vertical padding. Major paired headings use equal columns and a 72px gap. Source inspection uses .8fr/1.4fr columns; the map uses 1.6fr/1fr; the matrix pairs a flexible plot with a 320px console. The six main chapter anchors stay available from Explore.
+Main chapters have a 1376px outer maximum, normally with 48px horizontal padding (1280px inner width). The full-width orientation, tutorial and comparison chapters align their contents to the same 1280px measure. The globe pairs a flexible WebGL stage with a source console; the designer tree pairs four bounded choice layers with one live recommendation; the CP explainer pairs a page book with a fourteen-label guide. Source inspection uses .8fr/1.4fr columns; the water map uses 1.6fr/1fr; the matrix pairs a flexible plot with a 320px console. All nine chapter anchors stay available from Explore.
 
 | Query | Actual changes |
 | --- | --- |
-| min-width: 1600px | Hero copy top padding 88px; photographic rows 400/64/148/40px. |
-| max-width: 1100px | Main gutters 32px and chapter padding 80px; major gaps tighten to 40px; matrix console 270px. Hero title becomes `clamp(2.8rem, 5.5vw, 4rem)`. |
-| max-width: 800px | Header becomes 76px; main gutters 24px and chapters 72px. Hero, headings, evidence, water, notebook, validation and return stack; source and validation choices remain two columns. Matrix console uses two columns. Hero title is `clamp(3.1rem, 8vw, 4.8rem)`; h2 is `clamp(2.6rem, 6.8vw, 3.5rem)`. |
-| max-width: 480px | Main gutters 20px and chapters 64px; header gutters 18px. Landscape pair, paired decisions and form fields stack; matrix console becomes a block. Hero title is `clamp(2.8rem, 11vw, 3.5rem)`; chapter h2 is 2.6rem. |
+| max-width: 1100px | Main gutters become 32px; the globe and console tighten; decision recommendation moves below its four layers; matrix console becomes 270px. |
+| max-width: 800px | Header becomes 76px and main gutters 24px. Orientation heading, globe console, place cards, bilingual quote, CP book, evidence, water, notebook, validation and return stack. Globe controls retain three choices in a row. |
+| max-width: 480px | Main gutters become 20px and chapters 64px. Globe controls and question lenses become single columns; question photographs, decision choices, glossary and forms stack; notebook navigation scrolls horizontally; the matrix console becomes a block. |
 
-The sticky header is normally 88px; in-page scrolling uses 112px padding/margins. The matrix preserves its readable intrinsic width inside a focusable horizontal scroller. The body minimum width is 320px. Print removes navigation, forward links and hero photography; major operating layouts become blocks.
+The sticky header is normally 88px; in-page scrolling uses 112px padding/margins. The matrix preserves its readable intrinsic width inside a focusable horizontal scroller. The body minimum width is 320px. Print removes navigation and operating controls, replaces dark stages with white, and turns major layouts into blocks.
 
 ## Elevation & Depth
 
-Surfaces are flat and separated by whitespace, fine rules and tonal changes. The floating contents menu alone uses `0 16px 48px #20343b26`. Photographic overlap is created by composition and a paper border, not shadows.
+Surfaces are flat and separated by whitespace, fine rules and tonal changes. The floating contents menu uses `0 16px 48px #20343b26`; the page-turning CP sheet uses a lighter depth cue so it reads as a page rather than a dashboard card.
 
 **The Quiet Ground Rule.** Keep content flat; reserve the existing soft shadow for the floating contents menu.
 
 ## Shapes
 
-Buttons and fields use the control radius; photographic frames and major panels remain square. Matrix cells use their smaller radius and evidence-status dots are circular. Dividers and field outlines are normally 1px; selected validation levels use a 2px bottom border. Outline SVG icons are normally 20px with 1.6 stroke width. The hero's lower photo has an 8px paper border on its top, right and bottom edges.
+Buttons and fields use the control radius; photographic frames and major panels remain square. Globe/CP orbit markers and page selectors are circular. Matrix cells use their smaller radius and evidence-status dots are circular. Dividers and field outlines are normally 1px; selected validation levels use a 2px bottom border. Outline SVG icons are normally 20px with 1.6 stroke width.
 
 ## Components
 
-- **Actions:** outline buttons have a 44px minimum height, mist hover and line active fill. Pressed choices use lake/surface; source-index and validation choices instead use mist/ink. Disabled buttons use .48 opacity. The primary entrance link is 52px minimum height and darkens on hover. Generic button state transitions are 180ms.
+- **Actions:** outline buttons have a 44px minimum height, mist hover and line active fill. Pressed choices use lake/surface; dark-stage controls reverse to a light pressed state. Disabled buttons use .48 opacity. Generic button state transitions are 180ms.
 - **Fields:** native input/select fields are at least 48px high; textareas at least 80px with vertical resize. Ranges have a 44px interaction height and lake accent. Focus is a 3px lake outline offset 4px; matrix cells use 2px/2px. File-control wrappers expose the same focus treatment through `:focus-within`.
-- **Navigation:** Explore opens the sole raised panel with all six chapter links and photo credits. The current link is underlined; Escape closes the panel and returns focus to its trigger. At 800px the English wordmark and motion-control text hide, while accessible labels remain. Chapter-forward links are flat ruled rows.
+- **Navigation:** Explore opens the sole raised panel with all nine chapter links and the reference library. The current link is underlined; Escape closes the panel and returns focus to its trigger. At 800px the English wordmark and motion-control text hide, while accessible labels remain. Chapter-forward links are flat ruled rows.
 - **Source containers and status:** source records, selected-cell explanations and export panels use mist and space rather than generic card chrome. Provenance tags use a small dot plus explicit wording; they are functional evidence labels.
 - **Data controls:** a native channel selector mirrors map selection; the monthly plot has a values table and fixed vertical scale. Matrix cells expose labels and Enter/Space activation; full imported decoration/site labels remain available in a disclosure. Color meaning is stated beside the matrix.
-- **Photography:** Zhouzhuang and Rhumsiki images use authored crops with alt text and reachable credits. The opening pair overlaps; later comparison frames sit alongside their own questions. Credits identify ngader / CC BY 2.0 and krishna naudin / CC BY-SA 2.0, including resizing, WebP conversion and layout cropping.
-- **Motion:** photo reveal uses 1.1s/1.25s and the extracted ease-out curve; source content reveals in 250ms, question lenses in 300ms. Reveals move only 5px; photos move 14px with a small clip inset. Map highlight transitions take 150ms. Validation opacity changes use a 240ms Framer Motion default. Timeline playback is manually started, advances one month every 1000ms, pauses advancement outside the viewport or in a hidden page, and stops at December 2025. Seeking stops playback.
-- **Reduced motion:** OS preference initially disables motion; a later reduced-motion preference change also disables it. The header control sets `data-motion="off"`; CSS animations/transitions and smooth scrolling then stop, and Framer Motion duration becomes zero. The OS media query independently removes CSS motion. Timeline playback is disabled while motion is off; sliders and static readings remain usable.
+- **Photography:** Zhouzhuang and Rhumsiki images use authored crops with alt text and reachable credits. They sit under the selected community questions; the Rhumsiki label states that it is wider regional context, not an excavation site. Credits identify ngader / CC BY 2.0 and krishna naudin / CC BY-SA 2.0, including resizing, WebP conversion and layout cropping.
+- **Motion:** the globe interpolates only between labeled views, pulses source symbols and moves one explicitly schematic question marker. CP pages turn in 380ms; content and question changes reveal in 250–300ms. GIFs play in one large theatre and can be replayed. Map highlight transitions take 150ms. Validation opacity changes use a 240ms Framer Motion default. Timeline playback is manually started, advances one month every 1000ms, pauses outside the viewport or in a hidden page, and stops at December 2025. Seeking stops playback.
+- **Reduced motion:** OS preference initially disables motion; a later reduced-motion preference change also disables it. The header control sets `data-motion="off"`; CSS animations/transitions and smooth scrolling stop, Three.js source marks become static, and Framer Motion duration becomes zero. Animated research examples swap to representative stills. Timeline playback is disabled while motion is off; all buttons, sliders and static readings remain usable.
 
 ## Do's and Don'ts
 

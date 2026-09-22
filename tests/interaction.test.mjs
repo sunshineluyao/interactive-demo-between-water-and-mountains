@@ -43,7 +43,7 @@ const fill = async (element, value) => {
 test('source inspection is intentional, and chapter navigation closes with Escape', async () => {
   await mount()
   await click(textButton('Explore'))
-  assert.equal(document.querySelectorAll('#chapter-contents a').length, 8)
+  assert.equal(document.querySelectorAll('#chapter-contents a').length, 10)
   await act(async () => document.querySelector('#chapter-contents').dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
   assert.equal(document.querySelector('#chapter-contents'), null)
   assert.equal(document.activeElement.textContent.trim(), 'Explore')
@@ -54,6 +54,27 @@ test('source inspection is intentional, and chapter navigation closes with Escap
   assert.deepEqual(JSON.parse(localStorage.getItem('atlas-inspected-v2')), [0])
   await click(textButton('Archaeological ceramics', document.querySelector('.source-index')))
   assert.equal(document.querySelector('#source-detail a').href, 'https://core.tdar.org/dataset/400758/ceramic-dataset')
+})
+
+test('the opening orients both places, translates the quote, and makes source layers learnable', async () => {
+  const orientation = document.querySelector('#orientation')
+  const questions = document.querySelector('#questions')
+  const tutorial = document.querySelector('#tutorial')
+  assert.ok(orientation && questions && tutorial)
+  assert.equal(orientation.compareDocumentPosition(questions) & window.Node.DOCUMENT_POSITION_FOLLOWING, window.Node.DOCUMENT_POSITION_FOLLOWING)
+  assert.equal(questions.compareDocumentPosition(tutorial) & window.Node.DOCUMENT_POSITION_FOLLOWING, window.Node.DOCUMENT_POSITION_FOLLOWING)
+  assert.match(orientation.textContent, /Kunshan.*昆山/s)
+  assert.match(orientation.textContent, /Mandara Mountains.*曼达拉山脉/s)
+  assert.match(orientation.textContent, /Zhì zhě yào shuǐ/)
+  assert.match(orientation.textContent, /commonly numbered 6\.23.*六之二一/s)
+  assert.match(orientation.textContent, /The wise delight in water/)
+  assert.equal(orientation.querySelector('.bilingual-quote a').href, 'https://zh.wikisource.org/wiki/%E8%AB%96%E8%AA%9E/%E9%9B%8D%E4%B9%9F%E7%AC%AC%E5%85%AD')
+  assert.equal(orientation.querySelectorAll('[aria-label="Choose a place view"] button').length, 3)
+  assert.equal(orientation.querySelectorAll('[aria-label="Choose a data source layer"] button').length, 3)
+  await click(textButton('Climate', orientation))
+  assert.match(orientation.querySelector('.source-layer-reading').textContent, /300 monthly means/)
+  await click(textButton('Material history', orientation))
+  assert.match(orientation.querySelector('.source-layer-reading').textContent, /239,629 sherds.*14 primary inferred patterns/s)
 })
 
 test('tutorial names each interaction and exposes an accessible before-and-after slider', async () => {
@@ -69,7 +90,34 @@ test('tutorial names each interaction and exposes an accessible before-and-after
   assert.match(tutorial.querySelector('.pattern-stage h3').textContent, /Change parameters without losing context/)
   assert.match(tutorial.querySelector('.comparison-captions').textContent, /A chosen month links the control, reading, and chart/)
   assert.equal(document.querySelectorAll('.textbook-rail figure').length, 5)
-  assert.equal(document.querySelectorAll('.research-grid article').length, 6)
+  assert.equal(document.querySelectorAll('.research-theatre>nav button').length, 6)
+  await click(textButton('Data Formulator', document.querySelector('.research-theatre>nav')))
+  assert.match(document.querySelector('.research-theatre>article').textContent, /mixed-initiative precedent/i)
+})
+
+test('the designer tree limits each layer to three choices and changes its recommendation', async () => {
+  const tree = document.querySelector('.decision-tree')
+  assert.ok(tree)
+  assert.equal(tree.querySelectorAll('fieldset').length, 4)
+  for (const layer of tree.querySelectorAll('fieldset')) assert.equal(layer.querySelectorAll('button').length, 3)
+  await click(textButton('Filter + change', tree))
+  assert.match(tree.querySelector('.decision-output h4').textContent, /Parameter change/)
+  assert.match(tree.querySelector('.next-test').textContent, /what changed.*what stayed fixed/i)
+  await click(textButton('Community + qualitative', tree))
+  assert.match(tree.querySelector('.decision-output').textContent, /whose account is present/i)
+})
+
+test('the embedded Colab guide links to an executable, versioned notebook', async () => {
+  const guide = document.querySelector('.colab-companion')
+  assert.ok(guide)
+  assert.equal(guide.querySelectorAll('.notebook-embed>nav button').length, 6)
+  await click(textButton('Coordinate', guide))
+  assert.match(guide.querySelector('.notebook-embed>article').textContent, /Brush an overview/)
+  const colab = [...guide.querySelectorAll('a')].find((link) => link.textContent.includes('Open executable'))
+  assert.match(colab.href, /colab\.research\.google\.com\/github\/sunshineluyao\/interactive-demo-between-water-and-mountains/)
+  const download = [...guide.querySelectorAll('a')].find((link) => link.textContent.includes('Download .ipynb'))
+  assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb')
+  assert.equal(download.download, 'INFOSCI301_Interaction_Design_Companion.ipynb')
 })
 
 test('the website carries complete APA-style references and data credits', async () => {
@@ -106,6 +154,21 @@ test('qualitative matrix describes missing assertions without inventing zero cou
   await click(cell)
   assert.match(document.querySelector('.matrix-reading').textContent, /does not establish absence/)
   assert.match(document.querySelector('.culture-toolbar').textContent, /not sherd counts or probabilities/)
+})
+
+test('the culture-period book explains CP labels before the matrix and supports page turning', async () => {
+  const explainer = document.querySelector('.cp-explainer')
+  assert.ok(explainer)
+  assert.match(explainer.textContent, /CP is a model pattern.*not a people/s)
+  assert.equal(explainer.querySelectorAll('.cp-book-controls>div button').length, 6)
+  assert.equal(explainer.querySelectorAll('.cp-picker>div button').length, 14)
+  await click(textButton('Next page', explainer))
+  assert.match(explainer.querySelector('.cp-page h4').textContent, /What does the model do/)
+  await click(textButton('CP14', explainer))
+  assert.match(explainer.querySelector('.cp-picker>article').textContent, /Neolithic sites 618 and 756/)
+  await click(explainer.querySelector('.cp-glossary summary'))
+  assert.equal(explainer.querySelectorAll('.cp-glossary dt').length, 12)
+  assert.match(explainer.querySelector('.cp-glossary').textContent, /Taphonomy/)
 })
 
 test('comparison lenses and field notes carry into the team post', async () => {
