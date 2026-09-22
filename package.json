@@ -1,13 +1,14 @@
 {
   "name": "between-water-and-mountains-atlas",
   "private": true,
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
   "scripts": {
     "predev": "node scripts/materialize-assets.mjs",
     "dev": "vite",
     "prebuild": "node scripts/materialize-assets.mjs",
     "build": "tsc -b && vite build",
+    "notebook:build": "node scripts/build-notebook.mjs",
     "preview": "vite preview",
     "data:refresh": "python3 scripts/fetch_open_data.py",
     "check": "npm run build && node scripts/validate-data.mjs && node scripts/check-build.mjs && npm test",
