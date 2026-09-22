@@ -2,9 +2,9 @@
 
 A photographic, interactive evidence atlas for INFOSCI 301. It connects Kunshan's waterways and rainfall records with questions raised by Mandara archaeological evidence. Students inspect sources, compare representations and bring a question back to their own community.
 
-## Open the actual application preview
+## Generate an offline application preview
 
-Open `preview/Between_Water_and_Mountains_Interactive.html` in a browser. This is the compiled React application with its photographs, tutorial excerpts, fonts and teaching snapshots embedded. It is not a drawing or a screenshot, and the core lesson does not require a network connection. Source links still require internet access. If clipboard access is unavailable, the export buttons save files instead.
+Run `npm run preview:standalone`, then open `preview/Between_Water_and_Mountains_Interactive.html` in a browser. The generated file embeds the React application, photographs, tutorial excerpts, fonts and teaching snapshots. It is excluded from Git because it can be reproduced from the reviewed source. The core lesson does not require a network connection; source links still do. If clipboard access is unavailable, the export buttons save files instead.
 
 ## The journey
 
@@ -34,6 +34,8 @@ npm run preview:standalone
 ```
 
 The check compiles TypeScript, builds the production bundle, validates all three teaching snapshots, checks release assets and runs focused DOM and transformation tests. DOM tests do not render CSS and are not a visual audit. The standalone preview builder packages the same application into one HTML file.
+
+Versioned binary media lives as chunked Base64 source in `assets-base64/`. The `predev` and `prebuild` scripts reconstruct the exact ignored files before Vite runs; no network download is required during a Vercel build.
 
 ## Deploy through Vercel Git import
 

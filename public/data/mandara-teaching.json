@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "title": "Mandara pottery: paper-derived qualitative teaching layer",
+    "status": "Derived from statements in the paper; not a substitute for the official row-level dataset",
+    "paper_title": "Mixture model of pottery distributions from Lake Chad Basin archaeological sites reveals ancient segregation patterns",
+    "authors": "John D. O’Brien, Kathryn Lin, Scott MacEachern",
+    "paper_url": "https://arxiv.org/abs/1511.05185",
+    "dataset_url": "https://core.tdar.org/dataset/400758/ceramic-dataset",
+    "dataset_doi": "https://doi.org/10.6067/XCV83F4R7D",
+    "download_xlsx": "https://core.tdar.org/filestore/download/400758/500728",
+    "code_url": "https://core.tdar.org/document/400759/analysis-files-for-mixture-model-of-pottery-distributions-from-lake-chad-basin-archaeological-sites-reveals-ancient-segregation-patterns",
+    "access": "Public",
+    "license_statement": "The paper states that scripts and cleaned data are freely available under a Creative Commons license. The exact CC variant is not specified in the current DataCite record.",
+    "coverage": "Mandara region south of Lake Chad on the Cameroon–Nigeria border",
+    "limitations": "The matrix below encodes dominant/smaller cultural-period memberships reported in the paper text. It is qualitative (0, 0.35, 1), not raw counts or posterior probabilities. Upload the official XLS/XLSX in the app for row-level exploration."
+  },
+  "reported_scale": {
+    "complete_observations": 312070,
+    "cleaned_potsherds": 239629,
+    "sites": 11,
+    "excavation_units": 36,
+    "levels": 34,
+    "decoration_types": 13,
+    "depth_increment_cm": 10
+  },
+  "culture_periods": ["CP1", "CP2", "CP3", "CP4", "CP5", "CP6", "CP7", "CP8", "CP9", "CP10", "CP11", "CP12", "CP13", "CP14"],
+  "signatures": [
+    {
+      "group": "Western sites",
+      "sites": "602, 618, 744, 755, 756",
+      "values": [1, 0.35, 0.35, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0.35]
+    },
+    {
+      "group": "Eastern sites",
+      "sites": "631, 635, 636, 675, 678",
+      "values": [1, 0, 1, 1, 0, 1, 1, 1, 0.35, 1, 1, 1, 0, 1]
+    },
+    {
+      "group": "Neolithic signal",
+      "sites": "618 and 756",
+      "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+    }
+  ],
+  "site_642_sequences": [
+    {"units": "EU 1 / 1B / 1C", "sequence": ["CP4 + CP9 near surface", "CP3 + CP8 deeper"]},
+    {"units": "EU 2", "sequence": ["Repeated CP1 ↔ CP2 shifts", "CP10 at 2.2 m"]},
+    {"units": "EU 3 / 4", "sequence": ["CP11 to about 1.4 m", "then largely CP8"]},
+    {"units": "EU 5", "sequence": ["CP8", "CP9", "CP1"]},
+    {"units": "EU 6–14", "sequence": ["CP3 + CP11", "CP8 introgressions", "high posterior uncertainty where counts are low"]}
+  ]
+}

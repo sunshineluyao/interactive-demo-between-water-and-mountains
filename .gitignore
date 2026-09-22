@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.vercel/
+coverage/
+.preview-build/
+preview/*.html
+public/fonts/*.ttf
+public/images/*.webp
+public/images/tutorial/*.gif
+public/images/tutorial/*.jpg
+public/images/tutorial/*.png
