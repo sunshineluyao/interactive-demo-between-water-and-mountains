@@ -35,7 +35,7 @@ if (notebook.nbformat !== 4 || notebook.cells.length < 10) {
   throw new Error('The Colab companion is not a valid, complete notebook.')
 }
 const notebookText = notebook.cells.flatMap((cell) => cell.source ?? []).join('\n')
-for (const concept of ['selection', 'overview + detail', 'brushing', 'author + annotate', 'CP1', 'design_path']) {
+for (const concept of ['selection', 'overview + detail', 'brushing', 'CP1', 'plotly', 'pydeck', 'altair', 'ipywidgets', '证据边界', 'Build evidence card']) {
   if (!notebookText.toLowerCase().includes(concept.toLowerCase())) throw new Error(`The Colab companion is missing: ${concept}`)
 }
 

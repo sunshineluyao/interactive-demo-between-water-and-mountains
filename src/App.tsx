@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight, BookOpen, ChevronDown, CirclePause, CirclePlay, X } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, BookOpen, ChevronDown, CirclePause, CirclePlay, Languages, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import { BridgeLab } from './components/BridgeLab'
@@ -13,6 +13,7 @@ import { ReferencesLibrary } from './components/ReferencesLibrary'
 import { ValidationLab } from './components/ValidationLab'
 import { WaterAtlas } from './components/WaterAtlas'
 import { communityQuestionLenses, type QuestionLensId } from './lib/communityQuestions'
+import { usePageTranslation, type LanguageMode } from './lib/i18n'
 
 const chapters = [
   { id: 'orientation', label: 'Orient the journey', note: 'Locate both places and their sources' },
@@ -27,8 +28,15 @@ const chapters = [
 ]
 
 export default function App() {
+  const appRoot = useRef<HTMLDivElement>(null)
   const [activeChapter, setActiveChapter] = useState('orientation')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [language, setLanguage] = useState<LanguageMode>(() => {
+    try {
+      const stored = localStorage.getItem('atlas-language-v1') as LanguageMode | null
+      return stored === 'en' || stored === 'zh' || stored === 'bilingual' ? stored : 'bilingual'
+    } catch { return 'bilingual' }
+  })
   const [motionEnabled, setMotionEnabled] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const [activeLens, setActiveLens] = useState<QuestionLensId>(() => {
     try {
@@ -38,7 +46,9 @@ export default function App() {
   })
   const contentsButton = useRef<HTMLButtonElement>(null)
 
+  usePageTranslation(appRoot, language)
   useEffect(() => { document.documentElement.dataset.motion = motionEnabled ? 'on' : 'off' }, [motionEnabled])
+  useEffect(() => { try { localStorage.setItem('atlas-language-v1', language) } catch { /* storage is optional */ } }, [language])
   useEffect(() => { try { localStorage.setItem('atlas-question-lens-v1', activeLens) } catch { /* storage is optional */ } }, [activeLens])
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -56,13 +66,19 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion={motionEnabled ? 'user' : 'always'} transition={{ duration: motionEnabled ? 0.24 : 0 }}>
-      <div className="app-shell">
+      <div ref={appRoot} key={language} className={`app-shell language-${language}`}>
         <a className="skip-link" href="#questions">Skip to community questions</a>
         <header className="site-header">
           <a className="site-mark" href="#orientation" aria-label="Between Water and Mountains home">
             <strong lang="zh-CN">水山之间</strong><span>Between Water &amp; Mountains</span>
           </a>
           <div className="header-actions">
+            <div className="language-control" role="group" aria-label="Language / 语言" data-no-translate>
+              <Languages aria-hidden="true" />
+              <button type="button" aria-pressed={language === 'en'} onClick={() => setLanguage('en')}>EN</button>
+              <button type="button" aria-pressed={language === 'bilingual'} onClick={() => setLanguage('bilingual')}>双语</button>
+              <button type="button" aria-pressed={language === 'zh'} onClick={() => setLanguage('zh')}>中文</button>
+            </div>
             <a className="tutorial-shortcut" href="#tutorial">Tutorial</a>
             <button className="motion-control" type="button" aria-label={motionEnabled ? 'Pause motion' : 'Enable motion'} onClick={() => setMotionEnabled((value) => !value)} aria-pressed={!motionEnabled}>
               {motionEnabled ? <CirclePause aria-hidden="true" /> : <CirclePlay aria-hidden="true" />}
