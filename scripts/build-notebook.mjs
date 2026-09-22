@@ -140,8 +140,19 @@ globe.update_layout(
             dict(label="Kunshan / 昆山", method="relayout", args=[{"geo.projection.type":"orthographic", "geo.projection.rotation.lon":121, "geo.projection.rotation.lat":31}]),
             dict(label="Mandara / 曼达拉", method="relayout", args=[{"geo.projection.type":"orthographic", "geo.projection.rotation.lon":14, "geo.projection.rotation.lat":11}]),
         ]
+    ), dict(
+        type="buttons", x=.02, y=.84, direction="left", showactive=False,
+        bgcolor="#fbfcfa", font=dict(color=PALETTE["ink"]),
+        buttons=[
+            dict(label="▶ Orbit / 环游", method="animate", args=[None, {"frame":{"duration":90,"redraw":True},"transition":{"duration":70},"fromcurrent":True}]),
+            dict(label="■ Pause / 暂停", method="animate", args=[[None], {"frame":{"duration":0,"redraw":False},"mode":"immediate"}]),
+        ]
     )]
 )
+globe.frames = [go.Frame(
+    name=f"orbit-{lon}",
+    layout=go.Layout(geo=dict(projection=dict(type="orthographic", rotation=dict(lon=lon, lat=20))))
+) for lon in range(0, 361, 6)]
 globe.show(config={"displaylogo": False, "scrollZoom": True, "responsive": True})
   `),
   markdown(String.raw`

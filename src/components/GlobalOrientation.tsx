@@ -200,6 +200,7 @@ function SourceGlyph({ layer, motionEnabled }: { layer: SourceLayerId; motionEna
   const anchor = isMaterial ? mandaraPosition : kunshanPosition
   const orientation = useMemo(() => new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), anchor.clone().normalize()), [anchor])
   const count = layer === 'material' ? 14 : layer === 'climate' ? 12 : 3
+  const color = isMaterial ? '#ff9a69' : layer === 'climate' ? '#89e8ff' : '#69d9df'
   useFrame((state) => {
     if (!group.current || !motionEnabled) return
     group.current.rotation.z = state.clock.getElapsedTime() * (layer === 'mapped' ? 0.18 : 0.34)
@@ -219,8 +220,17 @@ function SourceGlyph({ layer, motionEnabled }: { layer: SourceLayerId; motionEna
       )) : <group ref={particles}>{Array.from({ length: count }, (_, index) => {
         const angle = (index / count) * Math.PI * 2
         const radius = isMaterial ? 0.42 : 0.36
-        return <mesh key={index} position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0.04]}><sphereGeometry args={[isMaterial ? 0.035 : 0.03, 12, 12]} /><meshBasicMaterial color={isMaterial ? '#ff9a69' : '#69d9df'} /></mesh>
+        return <mesh key={index} position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0.04]} rotation={[0, 0, angle]}>
+          {isMaterial ? <octahedronGeometry args={[0.046, 0]} /> : <sphereGeometry args={[0.03 + (index % 3) * 0.006, 12, 12]} />}
+          <meshBasicMaterial color={color} transparent opacity={0.82} />
+        </mesh>
       })}</group>}
+      {layer === 'climate' && Array.from({ length: 7 }, (_, index) => (
+        <mesh key={`rain-${index}`} position={[-0.27 + index * 0.09, 0.24 - (index % 2) * 0.08, 0.03]} rotation={[0, 0, -0.18]}>
+          <capsuleGeometry args={[0.009, 0.1, 4, 8]} /><meshBasicMaterial color="#bdf4ff" transparent opacity={0.55 + (index % 3) * 0.12} />
+        </mesh>
+      ))}
+      {layer === 'material' && <mesh position={[0, 0, -0.01]}><ringGeometry args={[0.18, 0.46, 14]} /><meshBasicMaterial color="#ff9a69" transparent opacity={0.12} side={THREE.DoubleSide} /></mesh>}
     </group>
   )
 }
@@ -388,6 +398,10 @@ export function GlobalOrientation({ motionEnabled }: { motionEnabled: boolean })
       <div className="globe-explorer">
         <div className="globe-stage" onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onWheel={wheelZoom}>
           <GlobeCanvas place={activePlace} layer={activeLayer} motionEnabled={motionEnabled} orbit={orbit} zoom={zoom} />
+          <div className={`globe-learning-cue cue-${activeLayer}`} aria-live="polite">
+            <span>{activeLayer === 'mapped' ? 'Mapped water / 已绘制水系' : activeLayer === 'climate' ? 'Seasonal climate / 季节气候' : 'Material patterns / 物质模式'}</span>
+            <strong>{activeLayer === 'mapped' ? 'Rings locate a spatial source—not flow.' : activeLayer === 'climate' ? '12 orbiting marks = 12 months—not storms.' : '14 facets = inferred CP labels—not peoples.'}</strong>
+          </div>
           <div className="globe-key" aria-hidden="true"><span><i className="key-kunshan" />Kunshan</span><span><i className="key-mandara" />Mandara region</span><span><i className="key-arc" />question bridge</span></div>
           <div className="globe-direct-controls" data-no-translate onPointerDown={(event) => event.stopPropagation()} onWheel={(event) => event.stopPropagation()}>
             <span><MousePointer2 aria-hidden="true" /> Drag / 拖动</span>

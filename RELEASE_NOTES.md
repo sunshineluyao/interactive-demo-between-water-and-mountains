@@ -80,3 +80,8 @@ TypeScript build, bundled data validation, release integrity and 10 focused DOM/
 Impeccable's local context and detector ran. The detector's sole warning was a false positive for SVG stroke-width as CSS layout width. Its online concept catalogue was unavailable on both attempts. An independent source review found six material issues; their code and documentation fixes are recorded in DESIGN_APPLICATION.md.
 
 The formal visual-review disposition remains **recapture**: valid desktop/mobile screenshots were unavailable under the managed browser policy. This is a source-verified release candidate, not a visually certified release. Nothing has been published.
+# 4.1 · Bilingual motion studio
+
+- Strengthens the complete English, Chinese, and bilingual reading modes.
+- Gives mapped water, seasonal climate, and inferred material patterns distinct 3D visual grammars and evidence-boundary cues.
+- Adds an animated, pausable globe orbit to the Colab studio and clarifies its high-quality interactive package stack.

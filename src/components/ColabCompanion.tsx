@@ -133,7 +133,7 @@ export function ColabCompanion() {
   return (
     <section className="colab-companion" aria-labelledby="colab-title">
       <div className="tutorial-section-heading"><div><BookOpenCheck aria-hidden="true" /><span>Embedded Colab companion</span></div><h3 id="colab-title">Rebuild every pattern with the real teaching snapshots.</h3><p>The redesigned notebook is a bilingual interactive studio—not a static code appendix. Its four complementary libraries make location, selection, change, coordination, authorship, and validation directly testable.</p></div>
-      <div className="notebook-stack" aria-label="Interactive notebook package stack"><span><b>Plotly</b> 3D globe + time</span><span><b>pydeck</b> spatial layers</span><span><b>Altair</b> linked selections</span><span><b>ipywidgets</b> decisions + authoring</span></div>
+      <div className="notebook-stack" aria-label="Interactive notebook package stack"><span><b>Plotly</b> animated globe + time</span><span><b>pydeck</b> GPU spatial layers</span><span><b>Altair</b> linked selections</span><span><b>ipywidgets</b> decisions + authoring</span></div>
       <div className="notebook-embed">
         <nav aria-label="Notebook tutorial steps">{notebookSteps.map((item, index) => <button key={item.number} type="button" aria-pressed={active === index} onClick={() => setActive(index)}><span>{item.number}</span><strong>{item.label}</strong></button>)}</nav>
         <article key={step.number}>
