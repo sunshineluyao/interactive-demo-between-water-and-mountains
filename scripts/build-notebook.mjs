@@ -100,6 +100,39 @@ display(HTML("""
 Rotate, zoom, hover, and switch projections. The dotted arc is explicitly labelled as a **course question**, never a route.  
 旋转、缩放、悬停并切换投影。虚线弧明确标为**课程问题**，绝不表示路线。
   `),
+  markdown(String.raw`
+## Textbook interaction idiom field guide / 教材交互视觉表达指南
+
+An **idiom** is a reusable way to encode data and support a task. An **interaction idiom** specifies what a person does, what changes in the view, and what analytical question that change helps answer. In Munzner's framework, the control is not the goal: the goal is a defensible task–data–idiom fit.
+**视觉表达（idiom）**是一种可重用的数据编码与任务支持方式。**交互视觉表达**说明人做什么、视图如何变化，以及这种变化帮助回答什么分析问题。在 Munzner 的框架中，控件不是目标；目标是可辩护的“任务–数据–视觉表达”匹配。
+
+| Idiom / 视觉表达 | What the user does / 用户操作 | What changes / 视图变化 | Best question / 适合的问题 | This notebook / 本笔记本 |
+|---|---|---|---|---|
+| **Navigate / 导航** | pan, zoom, rotate / 平移、缩放、旋转 | viewpoint and visible region / 视点与可见区域 | Where am I; what surrounds this place? / 我在哪里；周边是什么？ | 3D globe and pydeck map / 3D 地球仪与 pydeck 地图 |
+| **Select + highlight / 选择与高亮** | click or brush marks / 单击或框选标记 | chosen items become visually distinct / 所选项更显著 | Which record or subset needs attention? / 哪条记录或哪个子集值得关注？ | CP matrix / CP 矩阵 |
+| **Details on demand / 按需查看详情** | hover or select / 悬停或选择 | labels and provenance appear without replacing the overview / 在保留概览时显示标签与出处 | What exactly is this mark? / 这个标记究竟是什么？ | map tooltips and CP status / 地图提示与 CP 状态 |
+| **Change parameters / 改变参数** | move a slider or choose a value / 拖动滑块或选值 | one parameter changes while units and context stay stable / 在单位与语境稳定时改变一个参数 | How does the result respond? / 结果如何响应？ | month and palette controls / 月份与色板控件 |
+| **Filter / 筛选** | include or exclude values / 包含或排除数值 | nonmatching records are hidden or deemphasized / 不匹配的记录被隐藏或弱化 | What remains under this condition? / 在这个条件下还剩什么？ | brushed time window / 框选的时间窗口 |
+| **Aggregate / 聚合** | choose a level of detail or grouping / 选择细节或分组层级 | many records become a documented summary / 多条记录变为有说明的摘要 | Is the larger pattern legible and honest? / 整体模式是否清晰且诚实？ | monthly rainfall summaries / 月度降水摘要 |
+| **Overview + detail / 概览与详情** | brush the overview / 在概览中框选 | a detailed view updates while global context remains / 详情视图更新，全局语境保留 | What happened here, relative to the whole? / 相对于整体，这里发生了什么？ | linked rainfall views / 联动降水视图 |
+| **Coordinate multiple views / 协调多视图** | select in one view / 在一个视图中选择 | the same data identity is highlighted elsewhere / 同一数据对象在其他视图中高亮 | How do two representations describe the same evidence? / 两种表示如何描述同一证据？ | matrix + detail, overview + detail / 矩阵+详情、概览+详情 |
+| **Annotate + author / 注释与创作** | write, label, or save an interpretation / 书写、标注或保存解释 | reasoning becomes inspectable and portable / 推理变得可检查、可携带 | Can another person trace the claim to evidence? / 他人能否将主张追溯到证据？ | evidence card / 证据卡 |
+
+### Five textbook figures / 五幅教材图例
+
+| Taxonomy / 分类框架 | Parameter change / 参数改变 | Highlight / 高亮 |
+|---|---|---|
+| [![Munzner interaction taxonomy](https://raw.githubusercontent.com/sunshineluyao/interactive-demo-between-water-and-mountains/main/public/images/tutorial/munzner-taxonomy.jpg)](https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf) | [![Munzner parameter example](https://raw.githubusercontent.com/sunshineluyao/interactive-demo-between-water-and-mountains/main/public/images/tutorial/munzner-parameters.jpg)](https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf) | [![Munzner highlighting example](https://raw.githubusercontent.com/sunshineluyao/interactive-demo-between-water-and-mountains/main/public/images/tutorial/munzner-highlight.jpg)](https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf) |
+| Start with the task, then choose the interaction family. / 先确定任务，再选交互类型。 | Change one thing while preserving comparison context. / 只改变一项，同时保留比较语境。 | Selection needs a visible, recoverable state. / 选择需要清晰且可恢复的状态。 |
+
+| Linked views / 联动视图 | Details on demand / 按需详情 |
+|---|---|
+| [![Munzner linked views example](https://raw.githubusercontent.com/sunshineluyao/interactive-demo-between-water-and-mountains/main/public/images/tutorial/munzner-linked-views.jpg)](https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf) | [![Munzner details-on-demand example](https://raw.githubusercontent.com/sunshineluyao/interactive-demo-between-water-and-mountains/main/public/images/tutorial/munzner-detail-on-demand.jpg)](https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf) |
+| Shared selection reduces mental matching across views. / 共享选择减少跨视图的心理匹配负担。 | Reveal exact values and provenance without discarding the overview. / 在不丢失概览的情况下显示精确值与出处。 |
+
+**Source for all five excerpts / 五幅图的来源：** Munzner, T. (n.d.). *Visualization analysis & design: Interactive views (Chapters 11–12)* [Lecture slides]. Department of Computer Science, University of British Columbia. https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf
+The excerpts are linked to the public source and used here at reduced resolution for classroom study. / 图例直接链接到公开来源，并以低分辨率用于课堂学习。
+  `),
   code(String.raw`
 # INTERACTION / 交互: navigate + select + change projection
 places = pd.DataFrame([
@@ -363,7 +396,78 @@ make_card.on_click(render_card)
 display(widgets.VBox([observed, interpreted, boundary, next_check, make_card, card_output], layout=widgets.Layout(gap="10px")))
   `),
   markdown(String.raw`
-## 9 · Four-level validation / 四层验证
+## 9 · Before/after palette design guide / 色板设计前后对比指南
+
+Color is an encoding choice, not decoration. First choose the **data relationship**, then choose a palette family. Use the task menu to compare several design choices; drag the reveal slider to move from an unsuitable palette to a task-matched, color-vision-safer alternative.
+颜色是编码选择，不是装饰。先确定**数据关系**，再选择色板类型。使用任务菜单比较多种设计，拖动显示滑块，从不合适的色板过渡到与任务匹配、对色觉差异更友好的方案。
+
+| Data relationship / 数据关系 | Prefer / 优先选择 | Avoid / 避免 | Check / 检验 |
+|---|---|---|---|
+| ordered magnitude / 有序大小 | sequential lightness / 单向亮度 | unordered rainbow / 无序彩虹 | Does darker consistently mean more? / 更深是否始终表示更多？ |
+| departure from a midpoint / 偏离中点 | diverging with a neutral center / 中性中点的发散色板 | sequential palette that hides direction / 隐藏方向的顺序色板 | Is the meaningful midpoint explicit? / 有意义的中点是否明确？ |
+| named categories / 命名类别 | limited qualitative hues / 有限定性色相 | tiny hue differences or false order / 过小色差或虚假顺序 | Can labels, shape, or position also carry identity? / 标签、形状或位置能否也表示身份？ |
+  `),
+  code(String.raw`
+# INTERACTION / 交互: choose a task + drag one before/after reveal slider
+palette_cases = {
+    "Ordered rainfall / 有序降水": {
+        "before": ["#6e40aa","#417de0","#1ac7c2","#7ce35b","#fde725"],
+        "after":  ["#e8f3f4","#b9dde1","#79bec7","#3d8b9d","#153f51"],
+        "before_note": "Rainbow changes hue unevenly and can imply false boundaries. / 彩虹色的色相变化不均匀，可能暗示虚假边界。",
+        "after_note": "Sequential lightness makes low→high ordering explicit. / 单向亮度明确表达从低到高。",
+    },
+    "Change from normal / 偏离常态": {
+        "before": ["#fff3c4","#f6d98a","#dfae58","#bd7836","#7a3b24"],
+        "after":  ["#245c70","#8abac3","#f2f0e8","#f2ad88","#b94f3c"],
+        "before_note": "A one-way scale hides whether values fall above or below normal. / 单向色阶隐藏数值高于还是低于常态。",
+        "after_note": "A neutral midpoint separates two meaningful directions. / 中性中点区分两个有意义的方向。",
+    },
+    "Named CP categories / CP 命名类别": {
+        "before": ["#245c70","#2e6c7f","#397d8e","#448e9c","#509faa"],
+        "after":  ["#245c70","#e07a5f","#d6a84b","#6f8f72","#7b6ca8"],
+        "before_note": "A sequential scale falsely suggests rank among categories. / 顺序色阶会虚假暗示类别之间的等级。",
+        "after_note": "Distinct hues show difference; labels must still carry identity. / 不同色相表示差异，但仍需用标签表明身份。",
+    },
+}
+
+palette_task = widgets.Dropdown(options=list(palette_cases), description="Task / 任务", style={"description_width":"90px"}, layout=widgets.Layout(width="96%"))
+palette_reveal = widgets.IntSlider(value=50, min=0, max=100, step=1, description="Reveal / 显示", continuous_update=True, readout_format="d", style={"description_width":"90px"}, layout=widgets.Layout(width="96%"))
+palette_output = widgets.Output()
+
+def palette_svg(colors, title):
+    bars = "".join('<rect x="{}" y="72" width="112" height="100" rx="4" fill="{}"/>'.format(28+i*116, color) for i,color in enumerate(colors))
+    labels = "".join('<text x="{}" y="196" text-anchor="middle" font-size="13" fill="#20343b">{}</text>'.format(84+i*116, label) for i,label in enumerate(["low / 低","","middle / 中","","high / 高"]))
+    return '<svg viewBox="0 0 640 220" role="img" aria-label="{}" style="width:100%;height:auto;background:#fbfcfa"><text x="28" y="42" font-size="18" font-weight="700" fill="#20343b">{}</text>{}{}</svg>'.format(title,title,bars,labels)
+
+def render_palette(change=None):
+    case = palette_cases[palette_task.value]
+    reveal = palette_reveal.value
+    before = palette_svg(case["before"], "BEFORE / 修改前")
+    after = palette_svg(case["after"], "AFTER / 修改后")
+    with palette_output:
+        clear_output(wait=True)
+        display(HTML('''
+        <div class="atlas-card">
+          <div style="position:relative;overflow:hidden;border-radius:12px;border:1px solid #b8c8cc">
+            <div>{before}</div>
+            <div style="position:absolute;inset:0;clip-path:inset(0 {hidden}% 0 0);background:#fbfcfa">{after}</div>
+            <div style="position:absolute;top:0;bottom:0;left:{reveal}%;width:3px;background:#ff8a5c;box-shadow:0 0 0 1px white"></div>
+          </div>
+          <div class="atlas-grid" style="margin-bottom:0">
+            <div class="atlas-note atlas-boundary"><b>Before / 修改前</b><br>{before_note}</div>
+            <div class="atlas-note"><b>After / 修改后</b><br>{after_note}</div>
+          </div>
+          <p style="font-size:13px;color:#50636b;margin-bottom:0"><b>Accessibility check / 可访问性检验：</b> Do not rely on hue alone; retain text labels, stable order, sufficient contrast, and a grayscale-readable structure. / 不要仅依赖色相；保留文字标签、稳定顺序、充足对比度和灰度下仍可读的结构。</p>
+        </div>
+        '''.format(before=before, after=after, hidden=100-reveal, reveal=reveal, before_note=case["before_note"], after_note=case["after_note"])))
+
+palette_task.observe(render_palette, names="value")
+palette_reveal.observe(render_palette, names="value")
+render_palette()
+display(widgets.VBox([palette_task, palette_reveal, palette_output], layout=widgets.Layout(gap="8px")))
+  `),
+  markdown(String.raw`
+## 10 · Four-level validation / 四层验证
 
 | Level / 层级 | Question / 核心问题 | Quick test / 快速检验 |
 |---|---|---|
