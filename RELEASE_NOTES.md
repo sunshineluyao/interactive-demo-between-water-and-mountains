@@ -1,3 +1,12 @@
+# Release 4.3 · coherent 3D tutorial route
+
+- Replaced the fragile three-column community-lens summary with a responsive bilingual card that keeps the selected question, purpose, recommended interactions, and change action readable at every supported width.
+- Reorganized the tutorial into eight visibly numbered stages: vocabulary, design path, guided practice, textbook comparison, research comparison, Colab reconstruction, color/3D testing, and explanation.
+- Added an interactive four-stage 3D learning route that connects community question, evidence boundary, interaction choice, and validation; it includes manual controls, optional autoplay, a static fallback, and reduced-motion behavior.
+- Expanded the globe’s source-specific 3D motion with flowing mapped-water particles, falling climate marks, and rotating material-pattern facets while preserving the stated evidence boundaries.
+- Restyled the global-standards crosswalk as a higher-contrast editorial table with clearer row grouping and scan paths.
+- Extended bilingual copy and interaction tests to cover the rebuilt lens card and the new logic navigator.
+
 # Release 4.2 · accessible color palette studio
 
 - Added a twenty-cell bilingual Google Colab notebook that distinguishes the three major color representations—sRGB, CMYK with ICC profiles, and CIELAB/OKLCH—from qualitative, sequential, and diverging data encodings.

@@ -16,6 +16,7 @@ import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
 import { ColabCompanion } from './ColabCompanion'
 import { ColorPaletteStudio } from './ColorPaletteStudio'
 import { DesignerDecisionTree } from './DesignerDecisionTree'
+import { TutorialLogicScene } from './TutorialLogicScene'
 
 type PatternKind = 'select' | 'time' | 'navigate' | 'coordinate' | 'reduce' | 'author'
 
@@ -386,9 +387,16 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
           </div>
         </div>
 
-        <aside className="lens-recommendation"><span>Your selected community lens · {lens.name} / {lens.nameZh}</span><p>{lens.purpose}</p><strong>Start with: {lens.recommendedPatterns.join(' + ')}</strong><a href="#questions">Change the question lens</a></aside>
+        <aside className="lens-recommendation" aria-label="Selected community question and suggested interactions">
+          <div className="lens-recommendation-title"><span>Your selected community lens</span><strong>{lens.name}</strong></div>
+          <p>{lens.purpose}</p>
+          <div className="lens-recommendation-footer"><span>Start with:</span><div>{lens.recommendedPatterns.map((item) => <strong key={item}>{item}</strong>)}</div><a href="#questions">Change the question lens <ArrowRight aria-hidden="true" /></a></div>
+        </aside>
 
-        <div className="interaction-taxonomy" aria-label="Munzner interaction vocabulary used in the atlas">
+        <TutorialLogicScene motionEnabled={motionEnabled} lensName={lens.name} />
+
+        <div className="tutorial-module-intro"><span>01 · Name the vocabulary</span><strong>Begin with the analytical intent—not the visual effect.</strong><p>Munzner’s terms give the class a shared language. The same word should describe the same relationship in the app, the notebook, and the final presentation.</p></div>
+        <div id="interaction-vocabulary" className="interaction-taxonomy" aria-label="Munzner interaction vocabulary used in the atlas">
           <div><span>Manipulate</span><strong>Change · Select · Navigate</strong></div>
           <div><span>Facet</span><strong>Juxtapose · Coordinate</strong></div>
           <div><span>Reduce</span><strong>Filter · Aggregate</strong></div>
@@ -397,6 +405,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
         <DesignerDecisionTree />
 
+        <div className="tutorial-section-heading studio-heading"><div><MousePointer2 aria-hidden="true" /><span>03 · Practice the interaction</span></div><h3>Move one control, then explain what changed.</h3><p>Each studio step follows the same logic: intent → action → response → evidence → reset. The before/after slider makes the consequence visible before students try the live chapter.</p></div>
         <div id="tutorial-studio" className="tutorial-studio">
           <nav className="pattern-index" aria-label="Interaction tutorial steps">
             <div><span>Studio route</span><strong>{String(active + 1).padStart(2, '0')} / {String(patterns.length).padStart(2, '0')}</strong></div>
@@ -423,8 +432,8 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
           </article>
         </div>
 
-        <section className="textbook-gallery" aria-labelledby="textbook-title">
-          <div className="tutorial-section-heading"><div><BookOpen aria-hidden="true" /><span>Textbook screenshots</span></div><h3 id="textbook-title">See the vocabulary in Munzner’s own examples.</h3><p>These small teaching excerpts come from the author’s publicly accessible interaction slides. Each is paired with the place where the same design question appears in this atlas.</p></div>
+        <section id="textbook-examples" className="textbook-gallery" aria-labelledby="textbook-title">
+          <div className="tutorial-section-heading"><div><BookOpen aria-hidden="true" /><span>04 · Compare with the textbook</span></div><h3 id="textbook-title">See the vocabulary in Munzner’s own examples.</h3><p>These small teaching excerpts come from the author’s publicly accessible interaction slides. Each is paired with the place where the same design question appears in this atlas.</p></div>
           <div className="textbook-rail">
             {textbookExamples.map((example) => (
               <figure key={example.title}>
@@ -436,8 +445,8 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
           <p className="full-inline-reference">Full source: Munzner, T. (n.d.). <cite>Visualization analysis &amp; design: Interactive views (Chapters 11–12)</cite> [Lecture slides]. Department of Computer Science, University of British Columbia. Retrieved September 22, 2026, from <a href="https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf" target="_blank" rel="noreferrer">https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf</a></p>
         </section>
 
-        <section className="research-gallery" aria-labelledby="research-patterns-title">
-          <div className="tutorial-section-heading"><div><SlidersHorizontal aria-hidden="true" /><span>Research pattern gallery</span></div><h3 id="research-patterns-title">Separate what is applied from what is an extension.</h3><p>Use these systems as precedents for interaction quality. The labels below say whether the pattern is already present, a reference, or an explicit next step—so the atlas never overstates its functionality.</p></div>
+        <section id="research-examples" className="research-gallery" aria-labelledby="research-patterns-title">
+          <div className="tutorial-section-heading"><div><SlidersHorizontal aria-hidden="true" /><span>05 · Compare with research</span></div><h3 id="research-patterns-title">Separate what is applied from what is an extension.</h3><p>Use these systems as precedents for interaction quality. The labels below say whether the pattern is already present, a reference, or an explicit next step—so the atlas never overstates its functionality.</p></div>
           <div className="research-theatre">
             <nav aria-label="Choose a research interaction example">{researchExamples.map((example, index) => <button type="button" key={example.title} aria-pressed={activeResearch === index} onClick={() => { setActiveResearch(index); setReplay((value) => value + 1) }}><span>{String(index + 1).padStart(2, '0')}</span><strong>{example.title}</strong><small>{example.role}</small></button>)}</nav>
             <article key={researchExample.title}>
@@ -453,7 +462,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
         <ColorPaletteStudio />
 
-        <div className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p></div></div>
+        <div id="tutorial-takeaway" className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><span>08 · Explain and return</span><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p></div></div>
       </div>
       <a className="chapter-forward tutorial-forward" href="#evidence"><span>Now inspect the evidence</span> Use the vocabulary on the live atlas <ArrowRight aria-hidden="true" /></a>
     </section>

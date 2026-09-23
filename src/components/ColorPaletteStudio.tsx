@@ -176,9 +176,9 @@ export function ColorPaletteStudio() {
   const chartValues = [78, 44, 91, 61, 35, 70, 53, 83, 48]
 
   return (
-    <section className="color-palette-studio" aria-labelledby="color-studio-title">
+    <section id="color-studio" className="color-palette-studio" aria-labelledby="color-studio-title">
       <div className="tutorial-section-heading color-studio-heading">
-        <div><Palette aria-hidden="true" /><span>Embedded color Colab · live palette lab</span></div>
+        <div><Palette aria-hidden="true" /><span>07 · Test color and 3D</span></div>
         <h3 id="color-studio-title">Encode meaning before choosing a beautiful color.</h3>
         <p>This companion separates color representation—sRGB, CMYK/ICC, and CIELAB/OKLCH—from the three major data-encoding families: qualitative, sequential, and diverging. Change the controls, inspect accessibility, then open the same workflow as executable Python.</p>
       </div>

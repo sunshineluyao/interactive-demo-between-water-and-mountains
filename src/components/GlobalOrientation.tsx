@@ -196,28 +196,58 @@ function PlaceMarker({ position, color, selected, motionEnabled }: { position: T
 function SourceGlyph({ layer, motionEnabled }: { layer: SourceLayerId; motionEnabled: boolean }) {
   const group = useRef<THREE.Group>(null)
   const particles = useRef<THREE.Group>(null)
+  const flowParticles = useRef<THREE.Group>(null)
+  const rainDrops = useRef<THREE.Group>(null)
   const isMaterial = layer === 'material'
   const anchor = isMaterial ? mandaraPosition : kunshanPosition
   const orientation = useMemo(() => new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), anchor.clone().normalize()), [anchor])
   const count = layer === 'material' ? 14 : layer === 'climate' ? 12 : 3
   const color = isMaterial ? '#ff9a69' : layer === 'climate' ? '#89e8ff' : '#69d9df'
   useFrame((state) => {
-    if (!group.current || !motionEnabled) return
-    group.current.rotation.z = state.clock.getElapsedTime() * (layer === 'mapped' ? 0.18 : 0.34)
+    if (!group.current) return
+    const time = motionEnabled ? state.clock.getElapsedTime() : 0
+    group.current.rotation.z = time * (layer === 'mapped' ? 0.12 : 0.22)
     if (particles.current) {
       particles.current.children.forEach((child, index) => {
-        const phase = state.clock.getElapsedTime() * 1.4 + index * 0.48
+        const phase = time * 1.4 + index * 0.48
         const scale = 0.78 + (Math.sin(phase) + 1) * 0.24
         child.scale.setScalar(scale)
         child.position.z = 0.035 + Math.sin(phase * 0.72) * 0.045
+        if (isMaterial) {
+          const angle = (index / count) * Math.PI * 2 + time * 0.16
+          const radius = 0.37 + Math.sin(phase * 0.45) * 0.07
+          child.position.x = Math.cos(angle) * radius
+          child.position.y = Math.sin(angle) * radius
+          child.rotation.x = time * 0.35 + index * 0.24
+          child.rotation.y = time * 0.24 + index * 0.19
+        }
+      })
+    }
+    if (flowParticles.current) {
+      flowParticles.current.children.forEach((child, index) => {
+        const progress = motionEnabled ? (time * 0.16 + index / flowParticles.current!.children.length) % 1 : index / flowParticles.current!.children.length
+        const angle = progress * Math.PI * 2
+        const radius = 0.23 + index % 3 * 0.105
+        child.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.7, 0.055 + Math.sin(angle * 2) * 0.035)
+      })
+    }
+    if (rainDrops.current) {
+      rainDrops.current.children.forEach((child, index) => {
+        const drop = child as THREE.Mesh
+        const progress = motionEnabled ? (time * (0.32 + (index % 3) * 0.035) + index * 0.13) % 1 : (index + 1) / 10
+        drop.position.x = -0.3 + (index % 5) * 0.15
+        drop.position.y = 0.37 - progress * 0.78
+        drop.position.z = 0.07 + Math.sin(index * 1.7) * 0.035
+        ;(drop.material as THREE.MeshBasicMaterial).opacity = 0.25 + (1 - progress) * 0.65
       })
     }
   })
   return (
     <group ref={group} position={anchor} quaternion={orientation}>
-      {layer === 'mapped' ? Array.from({ length: count }, (_, index) => (
-        <mesh key={index} position={[0, 0, 0.015 + index * 0.01]}><torusGeometry args={[0.24 + index * 0.11, 0.012, 8, 48]} /><meshBasicMaterial color="#69d9df" transparent opacity={0.75 - index * 0.16} /></mesh>
-      )) : <group ref={particles}>{Array.from({ length: count }, (_, index) => {
+      {layer === 'mapped' ? <>
+        {Array.from({ length: count }, (_, index) => <mesh key={index} position={[0, 0, 0.015 + index * 0.01]}><torusGeometry args={[0.24 + index * 0.11, 0.012, 8, 48]} /><meshBasicMaterial color="#69d9df" transparent opacity={0.75 - index * 0.16} /></mesh>)}
+        <group ref={flowParticles}>{Array.from({ length: 9 }, (_, index) => <mesh key={`flow-${index}`}><sphereGeometry args={[index % 3 === 0 ? 0.032 : 0.022, 12, 12]} /><meshBasicMaterial color={index % 3 === 0 ? '#d5ffff' : '#69d9df'} transparent opacity={0.82} /></mesh>)}</group>
+      </> : <group ref={particles}>{Array.from({ length: count }, (_, index) => {
         const angle = (index / count) * Math.PI * 2
         const radius = isMaterial ? 0.42 : 0.36
         return <mesh key={index} position={[Math.cos(angle) * radius, Math.sin(angle) * radius, 0.04]} rotation={[0, 0, angle]}>
@@ -225,12 +255,8 @@ function SourceGlyph({ layer, motionEnabled }: { layer: SourceLayerId; motionEna
           <meshBasicMaterial color={color} transparent opacity={0.82} />
         </mesh>
       })}</group>}
-      {layer === 'climate' && Array.from({ length: 7 }, (_, index) => (
-        <mesh key={`rain-${index}`} position={[-0.27 + index * 0.09, 0.24 - (index % 2) * 0.08, 0.03]} rotation={[0, 0, -0.18]}>
-          <capsuleGeometry args={[0.009, 0.1, 4, 8]} /><meshBasicMaterial color="#bdf4ff" transparent opacity={0.55 + (index % 3) * 0.12} />
-        </mesh>
-      ))}
-      {layer === 'material' && <mesh position={[0, 0, -0.01]}><ringGeometry args={[0.18, 0.46, 14]} /><meshBasicMaterial color="#ff9a69" transparent opacity={0.12} side={THREE.DoubleSide} /></mesh>}
+      {layer === 'climate' && <><mesh position={[0, 0.25, 0.015]} scale={[1.35, .52, .32]}><sphereGeometry args={[0.21, 20, 20]} /><meshBasicMaterial color="#bdf4ff" transparent opacity={0.16} /></mesh><group ref={rainDrops}>{Array.from({ length: 10 }, (_, index) => <mesh key={`rain-${index}`} rotation={[0, 0, -0.14]}><capsuleGeometry args={[0.009, 0.09 + (index % 3) * 0.018, 4, 8]} /><meshBasicMaterial color="#bdf4ff" transparent opacity={0.72} /></mesh>)}</group></>}
+      {layer === 'material' && <><mesh position={[0, 0, -0.01]}><ringGeometry args={[0.18, 0.46, 14]} /><meshBasicMaterial color="#ff9a69" transparent opacity={0.12} side={THREE.DoubleSide} /></mesh><mesh position={[0, 0, 0.02]} rotation={[0.3, 0.1, 0]}><dodecahedronGeometry args={[0.12, 0]} /><meshStandardMaterial color="#ffb184" emissive="#9b3e28" emissiveIntensity={0.8} roughness={0.72} /></mesh></>}
     </group>
   )
 }

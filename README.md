@@ -10,7 +10,7 @@ Run `npm run preview:standalone`, then open `preview/Between_Water_and_Mountains
 
 1. **Orient the journey:** follow a five-step 3D tour, drag and zoom the globe, focus Kunshan or the Mandara region, and switch among mapped, climate and material-history source layers.
 2. **Choose a community question:** select Movement, Continuity or Missing voices before choosing a visualization control.
-3. **Learn the interactions:** follow a max-three-choice-per-layer design tree, study six patterns, explore enlarged research animations, and open two executable Google Colab studios for interaction design and accessible color palettes.
+3. **Learn the interactions:** follow the animated question → evidence → interaction → validation route, use a max-three-choice-per-layer design tree, study six patterns, explore enlarged research animations, and open two executable Google Colab studios for interaction design and accessible color palettes.
 4. **Meet the evidence:** inspect one real source record and mark it inspected yourself.
 5. **Follow the water:** select a channel, explore 300 months of NASA POWER precipitation, or play the timeline. The channel geometry stays fixed.
 6. **Read the mountain:** turn six explanatory pages, open a twelve-term glossary, inspect CP1–CP14 as model identifiers, explore the qualitative matrix, or load a tDAR spreadsheet locally.

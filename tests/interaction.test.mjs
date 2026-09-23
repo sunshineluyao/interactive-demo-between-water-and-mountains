@@ -101,6 +101,11 @@ test('the complete interface can switch among English, Chinese, and bilingual re
 test('tutorial names each interaction and exposes an accessible before-and-after slider', async () => {
   const tutorial = document.querySelector('#tutorial')
   assert.ok(tutorial)
+  assert.equal(tutorial.querySelectorAll('.lens-recommendation-footer>div strong').length, 2)
+  assert.ok(tutorial.querySelector('.lens-recommendation-title strong').textContent.trim().length > 0)
+  assert.equal(tutorial.querySelectorAll('.logic-stage-buttons button').length, 4)
+  await click(textButton('Interaction', tutorial.querySelector('.logic-stage-buttons')))
+  assert.match(tutorial.querySelector('.logic-reading h4').textContent, /Choose an action/)
   assert.equal(tutorial.querySelectorAll('.pattern-index button').length, 6)
   const slider = tutorial.querySelector('.before-after input[type="range"]')
   assert.ok(slider)

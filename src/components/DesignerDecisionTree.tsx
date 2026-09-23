@@ -80,8 +80,8 @@ export function DesignerDecisionTree() {
   }, [choices])
 
   return (
-    <section className="decision-tree" aria-labelledby="decision-tree-title">
-      <div className="tutorial-section-heading decision-tree-heading"><div><GitBranch aria-hidden="true" /><span>Designer decision tree</span></div><h3 id="decision-tree-title">Four decisions. No layer has more than three choices.</h3><p>Use the path to connect a learning question to an evidence type, reader task, and interaction. Every choice rewrites the recommendation and its next test.</p></div>
+    <section id="design-path" className="decision-tree" aria-labelledby="decision-tree-title">
+      <div className="tutorial-section-heading decision-tree-heading"><div><GitBranch aria-hidden="true" /><span>02 · Choose a design path</span></div><h3 id="decision-tree-title">Four decisions. No layer has more than three choices.</h3><p>Use the path to connect a learning question to an evidence type, reader task, and interaction. Every choice rewrites the recommendation and its next test.</p></div>
       <div className="decision-tree-layout">
         <div className="decision-layers">
           {layers.map((layer) => <fieldset key={layer.id}><legend><span>{layer.step}</span>{layer.prompt}</legend><div>

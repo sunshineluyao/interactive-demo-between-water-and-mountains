@@ -18,7 +18,7 @@ Expected results:
 - TypeScript and Vite build successfully.
 - The data validator reports 420 waterways, 300 precipitation months and a valid Colab companion.
 - The build validator finds the data snapshots and stays below the JavaScript budget.
-- Seventeen focused DOM and transformation tests pass. These do not verify CSS layout or WebGL rendering.
+- Eighteen focused DOM and transformation tests pass. These do not verify CSS layout or WebGL rendering.
 - The dependency audit reports zero vulnerabilities.
 
 ## 2. Create a Git repository
@@ -69,7 +69,7 @@ Use the preview URL before assigning a custom domain.
 - Kunshan and Mandara have bilingual labels, “where/why” introductions and separate evidence boundaries. The comparison arc is identified as a course question, not a historical route.
 - The *Analects* passage shows Chinese, pinyin, an English teaching translation and a direct source URL.
 - Community questions appear before the tutorial and the selected lens persists into the later comparison and exported claim.
-- The tutorial exposes a four-layer decision tree with at most three choices per layer, six named interaction patterns, a keyboard-operable before-and-after slider, five credited Munzner slide excerpts and a large six-example research theatre.
+- The tutorial exposes a four-stage animated logic route, a responsive community-lens card, a four-layer decision tree with at most three choices per layer, six named interaction patterns, a keyboard-operable before-and-after slider, five credited Munzner slide excerpts and a large six-example research theatre.
 - The embedded Colab preview changes across eight learning cells; the bundled nineteen-cell notebook downloads, and the external Colab link resolves after the release commit reaches GitHub.
 - **Pause motion** suppresses entrances and timeline playback. The rain timeline is opt-in; map geometry never changes with rain.
 - The **Explore** menu reaches all nine chapters plus the full reference library. Escape closes it and returns focus to its trigger.
