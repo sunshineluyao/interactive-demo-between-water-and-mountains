@@ -9,6 +9,7 @@ const required = [
   'dist/images/tutorial/munzner-taxonomy.jpg',
   'dist/images/tutorial/vega-brush-link.gif',
   'dist/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb',
+  'dist/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb',
 ]
 
 for (const path of required) {

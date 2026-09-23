@@ -141,6 +141,32 @@ test('the embedded Colab guide links to an executable, versioned notebook', asyn
   assert.equal(download.download, 'INFOSCI301_Interaction_Design_Companion.ipynb')
 })
 
+test('the color studio compares accessible palettes and links to its executable notebook', async () => {
+  const studio = document.querySelector('.color-palette-studio')
+  assert.ok(studio)
+  assert.equal(studio.querySelectorAll('.family-buttons button').length, 3)
+  assert.equal(studio.querySelectorAll('.palette-gallery-grid>a').length, 6)
+  assert.equal(studio.querySelectorAll('.palette-integrations article').length, 3)
+  assert.equal(studio.querySelectorAll('.standards-crosswalk tbody tr').length, 7)
+
+  const tokensBefore = [...studio.querySelectorAll('.palette-token-row code')].map((token) => token.textContent)
+  await click(textButton('Qualitative', studio))
+  await fill(studio.querySelector('input[aria-label^="Base hue"]'), '318')
+  const tokensAfter = [...studio.querySelectorAll('.palette-token-row code')].map((token) => token.textContent)
+  assert.notDeepEqual(tokensAfter, tokensBefore)
+
+  await fill(studio.querySelector('input[aria-label^="Compare before and after palettes"]'), '82')
+  assert.match(studio.querySelector('.comparison-designed').getAttribute('style'), /18%/)
+  await fill(studio.querySelector('select[aria-label^="Vision preview"]'), 'grayscale')
+  assert.match(studio.querySelector('.vision-badge').textContent, /Grayscale/)
+
+  const colab = [...studio.querySelectorAll('a')].find((link) => link.textContent.includes('Open color notebook'))
+  assert.match(colab.href, /colab\.research\.google\.com\/github\/sunshineluyao\/interactive-demo-between-water-and-mountains/)
+  const download = [...studio.querySelectorAll('a')].find((link) => link.textContent.includes('Download color'))
+  assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
+  assert.equal(download.download, 'INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
+})
+
 test('the website carries complete APA-style references and data credits', async () => {
   const references = document.querySelector('#references')
   assert.ok(references)
@@ -151,6 +177,8 @@ test('the website carries complete APA-style references and data credits', async
     'O’Brien, J. D., Lin, K., & MacEachern, S.',
     'OpenStreetMap contributors.',
     'National Aeronautics and Space Administration Langley Research Center',
+    'Harrower, M., & Brewer, C. A.',
+    'Gramazio, C. C., Laidlaw, D. H., & Schloss, K. B.',
   ]) assert.ok(references.textContent.includes(authorLine), `Visible reference includes: ${authorLine}`)
   assert.equal(references.querySelectorAll('a[href^="https://doi.org/"]').length >= 6, true)
 })

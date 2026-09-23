@@ -1,3 +1,11 @@
+# Release 4.2 · accessible color palette studio
+
+- Added a twenty-cell bilingual Google Colab notebook that distinguishes the three major color representations—sRGB, CMYK with ICC profiles, and CIELAB/OKLCH—from qualitative, sequential, and diverging data encodings.
+- Embedded a live color workbench with hue, chroma, lightness, class-count, color-vision, before/after, and 3D-lighting sliders so readers can compare designed palettes in context.
+- Added WCAG-aware contrast checks, redundant labels, approximate color-vision previews, seven global standards checkpoints, and clear limits on what simulation can establish.
+- Added a credited gallery spanning Nature Methods, ColorBrewer, IEEE VIS, and ACM CHI, plus Figma, Adobe, CSS token, and Three.js production guidance.
+- Extended the reference library, build pipeline, notebook validation, release checks, and interaction tests to cover both executable teaching companions.
+
 # Release 4.0 · full bilingual interface, guided 3D story and Colab studio
 
 ## Added

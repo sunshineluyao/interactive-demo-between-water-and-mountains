@@ -14,6 +14,7 @@ import {
 import { useEffect, useId, useState, type CSSProperties } from 'react'
 import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
 import { ColabCompanion } from './ColabCompanion'
+import { ColorPaletteStudio } from './ColorPaletteStudio'
 import { DesignerDecisionTree } from './DesignerDecisionTree'
 
 type PatternKind = 'select' | 'time' | 'navigate' | 'coordinate' | 'reduce' | 'author'
@@ -449,6 +450,8 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
         </section>
 
         <ColabCompanion />
+
+        <ColorPaletteStudio />
 
         <div className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p></div></div>
       </div>

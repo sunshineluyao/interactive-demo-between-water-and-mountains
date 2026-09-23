@@ -599,6 +599,99 @@ export const zhTranslations: Record<string, string> = {
   'Draft saved on this device. Copy or download when you are ready to share.': '草稿已保存在本设备；准备分享时可复制或下载。',
   'Client-side only. No upload endpoint exists.': '仅在客户端运行，不存在上传端点。',
 
+  // Accessible color palette studio
+  'Embedded color Colab · live palette lab': '嵌入式色彩 Colab · 实时调色板实验室',
+  'Encode meaning before choosing a beautiful color.': '先编码含义，再选择美观的颜色。',
+  'This companion separates color representation—sRGB, CMYK/ICC, and CIELAB/OKLCH—from the three major data-encoding families: qualitative, sequential, and diverging. Change the controls, inspect accessibility, then open the same workflow as executable Python.': '本学习伙伴把颜色表示——sRGB、CMYK/ICC 与 CIELAB/OKLCH——和三大数据编码类型区分开来：定类、顺序与发散。请调整控件、检查无障碍性，再用可执行 Python 打开同一工作流程。',
+  'Two complementary color triples': '两组互补的色彩三元组',
+  'Representation · how a color is specified': '表示 · 如何指定颜色',
+  'Screen interchange': '屏幕交换',
+  'Device-aware print': '设备感知印刷',
+  'Perceptual design': '感知均匀设计',
+  'Encoding · what a color means in data': '编码 · 颜色在数据中意味着什么',
+  'Qualitative': '定类',
+  'Sequential': '顺序',
+  'Diverging': '发散',
+  'Difference without order': '无顺序的差异',
+  'Low-to-high magnitude': '从低到高的量值',
+  'Distance from a midpoint': '距中点的偏离',
+  'Different hues for unordered categories': '用不同色相区分无序类别',
+  'Ordered lightness for low-to-high values': '用有序明度表示从低到高的数值',
+  'Two directions around a meaningful midpoint': '围绕有意义中点的两个方向',
+  'Standard view': '标准视图',
+  'Protanopia preview': '红色盲预览',
+  'Deuteranopia preview': '绿色盲预览',
+  'Grayscale preview': '灰度预览',
+  'Color palette controls': '调色板控件',
+  'Palette controls': '调色板控件',
+  'Encoding family': '编码类型',
+  'Base hue': '基础色相',
+  'Chroma': '彩度',
+  'Lightness span': '明度跨度',
+  'Number of colors': '颜色数量',
+  'Vision preview': '视觉预览',
+  'The preview is an approximation, not a clinical diagnosis. Shape and labels remain visible because color alone is not enough.': '此预览只是近似模拟，并非临床诊断。形状与标签始终可见，因为不能只依赖颜色传达信息。',
+  'Live comparison': '实时比较',
+  'Uncontrolled spectrum palette': '未加控制的光谱调色板',
+  'Before · equal hue steps, untested meaning': '之前 · 等距色相，含义未经检验',
+  'After · perceptual structure + redundant labels': '之后 · 感知结构 + 冗余标签',
+  'Compare before and after': '比较前后效果',
+  'Compare before and after palettes': '比较前后调色板',
+  'Generated palette values': '生成的调色板数值',
+  '3D lighting check': '三维光照检查',
+  'A palette is not a material.': '调色板并不等同于材质。',
+  'Palette applied to a stylized three-dimensional terrain under adjustable light': '在可调光照下把调色板应用于风格化三维地形',
+  'Scene light': '场景光照',
+  '3D scene light': '三维场景光照',
+  'Lighting, tone mapping, and material roughness can change apparent color. Three.js assets should declare color space; data meaning still needs a legend and non-color cues.': '光照、色调映射与材质粗糙度会改变表观颜色。Three.js 资源应声明色彩空间；数据含义仍需图例与非颜色线索。',
+  'Global standards crosswalk': '全球标准对照表',
+  'One palette, seven checkpoints.': '一个调色板，七项检查。',
+  'Standard': '标准',
+  'Role': '作用',
+  'Design check': '设计检查',
+  'sRGB interchange': 'sRGB 交换',
+  'Encode screen RGB; do not treat channel values as perceptual distances.': '编码屏幕 RGB；不要把通道数值当作感知距离。',
+  'Colorimetry + CIELAB': '色度学 + CIELAB',
+  'Measure color and compare approximately perceptual coordinates.': '测量颜色，并比较近似感知均匀的坐标。',
+  'ICC color profiles': 'ICC 色彩配置文件',
+  'Carry source and destination profiles across devices.': '跨设备保留源与目标配置文件。',
+  'Print process control': '印刷过程控制',
+  'Proof and validate press conditions rather than converting to CMYK blindly.': '根据印刷条件打样并验证，而不是盲目转换为 CMYK。',
+  'Use of color + contrast': '颜色使用 + 对比度',
+  'Use redundant cues; target 4.5:1 text and 3:1 large or non-text elements.': '使用冗余线索；正文以 4.5:1、大号文字或非文本元素以 3:1 为目标。',
+  'Software accessibility': '软件无障碍',
+  'Design color choices as part of an accessible software system.': '把颜色选择作为无障碍软件系统的一部分来设计。',
+  'Modern web color': '现代网页颜色',
+  'Use color() and OKLCH with a tested sRGB fallback.': '使用 color() 与 OKLCH，并提供经过测试的 sRGB 后备方案。',
+  'Credited design gallery': '已注明出处的设计图库',
+  'Six research patterns, reconstructed as swatches.': '六种研究模式，以色板重构。',
+  'These are compact teaching reconstructions—not reproduced figures. Follow each primary source for its complete method, evaluation, and context.': '这些是用于教学的精简重构，并非复制原图。请查阅每项一手资料以了解完整方法、评估与语境。',
+  'Color coding': '颜色编码',
+  'Color blindness': '色觉障碍',
+  'Use hue deliberately; keep the mapping legible and consistent.': '有意识地使用色相，并保持映射清晰一致。',
+  'Check distinguishability and never ask color to carry the message alone.': '检查可区分性，绝不让颜色独自承担信息传递。',
+  'Choose the palette family from the data relationship before styling it.': '先依据数据关系选择调色板类型，再进行样式设计。',
+  'Balance discriminability, aesthetic preference, and semantic constraints.': '平衡可区分性、审美偏好与语义约束。',
+  'Treat palette creation as a guided, inspectable design process.': '把调色板创建视为可引导、可检查的设计过程。',
+  'Test palettes with the reader’s display conditions and visual abilities in mind.': '结合读者的显示条件与视觉能力来测试调色板。',
+  'Open primary source': '打开一手资料',
+  'From notebook to production': '从笔记本到生产环境',
+  'Export tokens, preserve profiles, test the rendered result.': '导出令牌、保留配置文件，并测试渲染结果。',
+  'Figma variables': 'Figma 变量',
+  'Export semantic tokens, then map collections and modes to light, dark, print, or accessibility contexts.': '导出语义令牌，再把集合与模式映射到浅色、深色、印刷或无障碍语境。',
+  'Adobe workflow': 'Adobe 工作流程',
+  'Export ASE swatches from Colab, preserve profiles, and soft-proof against the intended output condition.': '从 Colab 导出 ASE 色板，保留配置文件，并针对预期输出条件进行软打样。',
+  '3D + Three.js': '三维 + Three.js',
+  'Convert color textures to linear working space, then evaluate the palette again under lights, materials, and tone mapping.': '把颜色纹理转换到线性工作空间，再在光照、材质与色调映射下重新评估调色板。',
+  'Read official guidance': '阅读官方指南',
+  '20 executable cells · bilingual explanations': '20 个可执行单元 · 双语讲解',
+  'Continue in the full Google Colab studio.': '在完整的 Google Colab 工作室中继续。',
+  'Rebuild the palette, calculate WCAG contrast and ΔE, preview color-vision conditions, compare research designs, export Figma-ready JSON and Adobe ASE, and render a 3D surface.': '重建调色板，计算 WCAG 对比度与 ΔE，预览不同色觉条件，比较研究设计，导出适用于 Figma 的 JSON 与 Adobe ASE，并渲染三维表面。',
+  'Open color notebook in Colab': '在 Colab 中打开色彩笔记本',
+  'Download color .ipynb': '下载色彩 .ipynb',
+  'Color research and global standards': '色彩研究与全球标准',
+  'Primary research and official standards behind the palette studio, accessibility checks, and production guidance.': '调色板工作室、无障碍检查与生产指南所依据的一手研究和官方标准。',
+
   // References and source notes
   'Credits · provenance · full APA style': '致谢 · 出处 · 完整 APA 格式',
   'Every claim should lead': '每一项主张都应',
@@ -657,6 +750,23 @@ const dynamicZh = (english: string): string | undefined => {
   if (match) return `${match[1]} · 推断模式标识符`
   match = english.match(/^Culture-period model pattern (CP\d+); identifier, not chronology$/)
   if (match) return `文化期模型模式 ${match[1]}；这是标识符，不是年代顺序`
+  match = english.match(/^(\d+)\/(\d+) swatches support an AA text label$/)
+  if (match) return `${match[1]}/${match[2]} 个色块支持 AA 级文字标签`
+  match = english.match(/^Uncontrolled spectrum → designed (qualitative|sequential|diverging) palette$/)
+  if (match) {
+    const family = match[1] === 'qualitative' ? '定类' : match[1] === 'sequential' ? '顺序' : '发散'
+    return `未加控制的光谱 → 设计后的${family}调色板`
+  }
+  match = english.match(/^(\d+)% after$/)
+  if (match) return `之后占 ${match[1]}%`
+  match = english.match(/^Designed (qualitative|sequential|diverging) palette in (normal|protanopia|deuteranopia|grayscale) preview$/)
+  if (match) {
+    const family = match[1] === 'qualitative' ? '定类' : match[1] === 'sequential' ? '顺序' : '发散'
+    const vision = match[2] === 'normal' ? '标准' : match[2] === 'protanopia' ? '红色盲' : match[2] === 'deuteranopia' ? '绿色盲' : '灰度'
+    return `${vision}预览中的${family}调色板`
+  }
+  match = english.match(/^(.+) teaching reconstruction$/)
+  if (match) return `${match[1]} 教学重构`
   return undefined
 }
 

@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookMarked, Database, Image as ImageIcon } from 'lucide-react'
+import { ArrowUpRight, BookMarked, Database, Image as ImageIcon, Palette } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 type Reference = {
@@ -39,6 +39,59 @@ const theoryReferences: Reference[] = [
     key: 'mandara-paper',
     citation: <>O’Brien, J. D., Lin, K., &amp; MacEachern, S. (2015). Mixture model of pottery distributions from Lake Chad Basin archaeological sites reveals ancient segregation patterns [Preprint]. <cite>arXiv</cite>. <a href="https://doi.org/10.48550/arXiv.1511.05185" target="_blank" rel="noreferrer">https://doi.org/10.48550/arXiv.1511.05185</a></>,
     note: 'The bundled Mandara teaching layer is a qualitative transcription of statements in this paper, not its model output.',
+  },
+]
+
+const colorReferences: Reference[] = [
+  {
+    key: 'wong-color-coding',
+    citation: <>Wong, B. (2010). Color coding. <cite>Nature Methods, 7</cite>, 573. <a href="https://doi.org/10.1038/nmeth0810-573" target="_blank" rel="noreferrer">https://doi.org/10.1038/nmeth0810-573</a></>,
+    note: 'A concise Nature Methods guide to using hue as a deliberate, consistent visual code.',
+  },
+  {
+    key: 'wong-color-blindness',
+    citation: <>Wong, B. (2011). Color blindness. <cite>Nature Methods, 8</cite>, 441. <a href="https://doi.org/10.1038/nmeth.1618" target="_blank" rel="noreferrer">https://doi.org/10.1038/nmeth.1618</a></>,
+    note: 'Motivates checking discriminability and adding cues that do not depend on hue alone.',
+  },
+  {
+    key: 'colorbrewer',
+    citation: <>Harrower, M., &amp; Brewer, C. A. (2003). ColorBrewer.org: An online tool for selecting colour schemes for maps. <cite>The Cartographic Journal, 40</cite>(1), 27–37. <a href="https://doi.org/10.1179/000870403235002042" target="_blank" rel="noreferrer">https://doi.org/10.1179/000870403235002042</a></>,
+  },
+  {
+    key: 'colorgorical',
+    citation: <>Gramazio, C. C., Laidlaw, D. H., &amp; Schloss, K. B. (2017). Colorgorical: Creating discriminable and preferable color palettes for information visualization. <cite>IEEE Transactions on Visualization and Computer Graphics, 23</cite>(1), 521–530. <a href="https://doi.org/10.1109/TVCG.2016.2598918" target="_blank" rel="noreferrer">https://doi.org/10.1109/TVCG.2016.2598918</a></>,
+  },
+  {
+    key: 'colormaker',
+    citation: <>Salvi, A., Setlur, V., Strobelt, H., &amp; Endert, A. (2024). ColorMaker: A mixed-initiative approach to creating accessible color palettes. In <cite>Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</cite> (pp. 1–17). Association for Computing Machinery. <a href="https://doi.org/10.1145/3613904.3642265" target="_blank" rel="noreferrer">https://doi.org/10.1145/3613904.3642265</a></>,
+  },
+  {
+    key: 'colorcheck',
+    citation: <>Reinecke, K., Flatla, D. R., &amp; Brooks, C. (2016). Enabling designers to foresee which colors users cannot see. In <cite>Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems</cite> (pp. 2693–2704). Association for Computing Machinery. <a href="https://doi.org/10.1145/2858036.2858077" target="_blank" rel="noreferrer">https://doi.org/10.1145/2858036.2858077</a></>,
+  },
+  {
+    key: 'cie-015',
+    citation: <>International Commission on Illumination. (2018). <cite>CIE 015:2018 Colorimetry</cite> (4th ed.). <a href="https://cie.co.at/publications/colorimetry-4th-edition" target="_blank" rel="noreferrer">Official standard record</a>.</>,
+  },
+  {
+    key: 'iec-srgb',
+    citation: <>International Electrotechnical Commission. (1999). <cite>IEC 61966-2-1: Multimedia systems and equipment—Colour measurement and management—Part 2-1: Default RGB colour space—sRGB</cite>. <a href="https://webstore.iec.ch/en/publication/6169" target="_blank" rel="noreferrer">Official standard record</a>.</>,
+  },
+  {
+    key: 'icc-profile',
+    citation: <>International Color Consortium. (2022). <cite>ICC.1:2022 Image technology colour management—Architecture, profile format, and data structure</cite>. <a href="https://www.color.org/specification/ICC.1-2022-05.pdf" target="_blank" rel="noreferrer">Specification</a>.</>,
+  },
+  {
+    key: 'wcag-22',
+    citation: <>World Wide Web Consortium. (2023). <cite>Web Content Accessibility Guidelines (WCAG) 2.2</cite>. <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noreferrer">https://www.w3.org/TR/WCAG22/</a></>,
+  },
+  {
+    key: 'iso-9241-171',
+    citation: <>International Organization for Standardization. (2025). <cite>ISO 9241-171:2025 Ergonomics of human-system interaction—Part 171: Software accessibility</cite>. <a href="https://www.iso.org/standard/86308.html" target="_blank" rel="noreferrer">Official standard record</a>.</>,
+  },
+  {
+    key: 'iso-12647-2',
+    citation: <>International Organization for Standardization. (2013). <cite>ISO 12647-2:2013 Graphic technology—Process control for the production of half-tone colour separations, proof and production prints—Part 2: Offset lithographic processes</cite>. <a href="https://www.iso.org/standard/57833.html" target="_blank" rel="noreferrer">Official standard record</a>.</>,
   },
 ]
 
@@ -102,7 +155,10 @@ export function ReferencesLibrary() {
         <div><p>The tutorial, research precedents, data, primary text, and media are credited here with every author listed in APA style. The application code’s MIT license does not replace any source’s own license or terms.</p><a href="#photo-credits">Continue to photography credits <ArrowUpRight aria-hidden="true" /></a></div>
       </div>
       <div className="reference-columns">
-        <ReferenceGroup icon={BookMarked} title="Books, papers, and interaction systems" intro="Theory, terminology, and research precedents used in the atlas and tutorial." references={theoryReferences} />
+        <div>
+          <ReferenceGroup icon={BookMarked} title="Books, papers, and interaction systems" intro="Theory, terminology, and research precedents used in the atlas and tutorial." references={theoryReferences} />
+          <ReferenceGroup icon={Palette} title="Color research and global standards" intro="Primary research and official standards behind the palette studio, accessibility checks, and production guidance." references={colorReferences} />
+        </div>
         <div>
           <ReferenceGroup icon={Database} title="Data and cultural sources" intro="Each data family keeps its own scale, transformation, rights, and evidence boundary." references={dataReferences} />
           <ReferenceGroup icon={ImageIcon} title="Photography and teaching excerpts" intro="Media establish context or teach an interaction pattern; they are not fieldwork evidence." references={mediaReferences} />
