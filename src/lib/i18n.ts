@@ -9,6 +9,18 @@ export type LanguageMode = 'en' | 'zh' | 'bilingual'
  * left in their original language.
  */
 export const zhTranslations: Record<string, string> = {
+  'Follow the learning pathway': '沿学习路径前进',
+  'Weeks 1–7 in one worked example': '以完整案例贯穿第 1–7 周',
+  'Connect skills and SDGs': '连接技能与可持续发展目标',
+  'Design, disciplines, and global leadership': '设计、跨学科与全球领导力',
+  'Advance the design': '推进设计',
+  'Week 6 · 3D, animation, Chapter 10 color': '第 6 周 · 三维、动画与第 10 章色彩',
+  'Create your own contribution': '创造你自己的贡献',
+  'A question, a design, and a test': '一个问题、一项设计与一次检验',
+  'Week 5 · interactive idioms and MVP': '第 5 周 · 交互习语与最小可行原型',
+  'Week 6: animation, 3D, and Chapter 10 color': '第 6 周：动画、三维与第 10 章色彩',
+  'Week 6 · Chapter 10 · color and accessibility': '第 6 周 · 第 10 章 · 色彩与无障碍',
+  '07 · Explain and return': '07 · 解释与返还',
   // Global navigation and journey
   'Skip to community questions': '跳至社区问题',
   'Between Water and Mountains home': '“水山之间”首页',

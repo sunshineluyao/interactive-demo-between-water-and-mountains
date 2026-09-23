@@ -1,4 +1,5 @@
 import { writeFileSync } from 'node:fs'
+import { synthesisOverview, synthesisExercises } from './synthesis-notebook.mjs'
 
 const lines = (value) => value.trim().split('\n').map((line, index, all) => line + (index === all.length - 1 ? '' : '\n'))
 const markdown = (source) => ({ cell_type: 'markdown', metadata: {}, source: lines(source) })
@@ -379,6 +380,9 @@ decision_button.on_click(build_decision); display(widgets.VBox([audience,relatio
 - Zhang, L. (2026). *Chapter 10: Visualizing quantities—Color scales* [Google Colab notebook]. https://colab.research.google.com/github/sunshineluyao/vis-basics/blob/main/chapter10/Chapter_10.ipynb
   `),
 ]
+
+cells.splice(1, 0, synthesisOverview(true))
+cells.splice(cells.length - 1, 0, ...synthesisExercises())
 
 const notebook = {
   cells,

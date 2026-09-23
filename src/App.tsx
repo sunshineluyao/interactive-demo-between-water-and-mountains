@@ -12,18 +12,26 @@ import { QuestionLensIntro } from './components/QuestionLensIntro'
 import { ReferencesLibrary } from './components/ReferencesLibrary'
 import { ValidationLab } from './components/ValidationLab'
 import { WaterAtlas } from './components/WaterAtlas'
+import { LearningPathway, LearningSynthesis } from './components/LearningSynthesis'
+import { AdvancedStudio } from './components/AdvancedStudio'
+import { InnovationBuilder } from './components/InnovationBuilder'
+import { goals, type GoalId } from './lib/synthesis'
 import { communityQuestionLenses, type QuestionLensId } from './lib/communityQuestions'
 import { usePageTranslation, type LanguageMode } from './lib/i18n'
 
 const chapters = [
   { id: 'orientation', label: 'Orient the journey', note: 'Locate both places and their sources' },
   { id: 'questions', label: 'Choose a question', note: 'Begin with community, not controls' },
+  { id: 'pathway', label: 'Follow the learning pathway', note: 'Weeks 1–7 in one worked example' },
   { id: 'tutorial', label: 'Learn the interactions', note: 'Name every action and response' },
   { id: 'evidence', label: 'Meet the evidence', note: 'Look closely at a source' },
   { id: 'water', label: 'Follow the water', note: 'Kunshan, in space and time' },
   { id: 'mountain', label: 'Read the mountain', note: 'Traces of material history' },
+  { id: 'synthesis', label: 'Connect skills and SDGs', note: 'Design, disciplines, and global leadership' },
+  { id: 'advanced', label: 'Advance the design', note: 'Week 6 · 3D, animation, Chapter 10 color' },
   { id: 'bridge', label: 'Build the bridge', note: 'Two places, an open question' },
   { id: 'validate', label: 'Validate the claim', note: 'Check it with someone else' },
+  { id: 'innovate', label: 'Create your own contribution', note: 'A question, a design, and a test' },
   { id: 'return', label: 'Return the question', note: 'Carry it into your project' },
 ]
 
@@ -31,6 +39,10 @@ export default function App() {
   const appRoot = useRef<HTMLDivElement>(null)
   const [activeChapter, setActiveChapter] = useState('orientation')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [selectedGoal, setSelectedGoal] = useState<GoalId>(() => {
+    try { const id = Number(localStorage.getItem('atlas-sdg-goal-v1')); return goals.some((goal) => goal.id === id) ? id as GoalId : 4 } catch { return 4 }
+  })
+  const [innovationPlan, setInnovationPlan] = useState('')
   const [language, setLanguage] = useState<LanguageMode>(() => {
     try {
       const stored = localStorage.getItem('atlas-language-v1') as LanguageMode | null
@@ -49,6 +61,7 @@ export default function App() {
   usePageTranslation(appRoot, language)
   useEffect(() => { document.documentElement.dataset.motion = motionEnabled ? 'on' : 'off' }, [motionEnabled])
   useEffect(() => { try { localStorage.setItem('atlas-language-v1', language) } catch { /* storage is optional */ } }, [language])
+  useEffect(() => { try { localStorage.setItem('atlas-sdg-goal-v1', String(selectedGoal)) } catch { /* storage is optional */ } }, [selectedGoal])
   useEffect(() => { try { localStorage.setItem('atlas-question-lens-v1', activeLens) } catch { /* storage is optional */ } }, [activeLens])
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -100,13 +113,17 @@ export default function App() {
         <main>
           <GlobalOrientation motionEnabled={motionEnabled} />
           <QuestionLensIntro activeLens={activeLens} onChange={setActiveLens} />
+          <LearningPathway language={language} />
           <InteractionTutorial motionEnabled={motionEnabled} activeLens={activeLens} />
           <EvidenceShelf />
           <WaterAtlas motionEnabled={motionEnabled} />
           <MountainAtlas />
+          <LearningSynthesis language={language} selectedGoal={selectedGoal} onGoalChange={setSelectedGoal} />
+          <AdvancedStudio language={language} motionEnabled={motionEnabled} />
           <BridgeLab activeLens={activeLens} onChangeLens={setActiveLens} />
           <ValidationLab />
-          <FieldReturn activeLens={activeLens} />
+          <InnovationBuilder language={language} selectedGoal={selectedGoal} onPlanChange={setInnovationPlan} />
+          <FieldReturn activeLens={activeLens} innovationPlan={innovationPlan} />
           <ReferencesLibrary />
         </main>
         <footer className="exhibition-footer" id="photo-credits">

@@ -10,6 +10,8 @@ const required = [
   'dist/images/tutorial/vega-brush-link.gif',
   'dist/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb',
   'dist/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb',
+  ...[4, 6, 11, 16, 17].map((id) => `dist/images/sdg/goal-${String(id).padStart(2, '0')}.jpg`),
+  'dist/images/sdg/credits.json',
 ]
 
 for (const path of required) {
@@ -22,7 +24,7 @@ for (const token of ['Between Water', 'favicon.svg', 'assets/']) {
 }
 
 const source = readFileSync(resolve('src/App.tsx'), 'utf8')
-for (const chapter of ['orientation', 'questions', 'tutorial', 'evidence', 'water', 'mountain', 'bridge', 'validate', 'return']) {
+for (const chapter of ['orientation', 'questions', 'pathway', 'tutorial', 'evidence', 'water', 'mountain', 'synthesis', 'advanced', 'bridge', 'validate', 'innovate', 'return']) {
   if (!source.includes(`id: '${chapter}'`)) throw new Error(`Missing sequential chapter: ${chapter}`)
 }
 

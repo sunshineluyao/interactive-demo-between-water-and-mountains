@@ -1,0 +1,38 @@
+{
+  "creator": "United Nations",
+  "use": "Informational educational use; official artwork unaltered; no UN endorsement",
+  "source": "https://sdgs.un.org/goals",
+  "guidelines": "https://www.un.org/sustainabledevelopment/news/communications-material/",
+  "assets": [
+    {
+      "goal": 4,
+      "path": "/images/sdg/goal-04.jpg",
+      "source": "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg",
+      "sha256": "2335d4324473ea67279e975cf7209a5913a834964019c94e1ce619df28bc16aa"
+    },
+    {
+      "goal": 6,
+      "path": "/images/sdg/goal-06.jpg",
+      "source": "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-06.jpg",
+      "sha256": "08fc791a959f56961cde3ef20b252ec9ffc694fe530a31404f48f01dde3a200d"
+    },
+    {
+      "goal": 11,
+      "path": "/images/sdg/goal-11.jpg",
+      "source": "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-11.jpg",
+      "sha256": "38ce5767c694ad136f6839a804f6411f50c26c9ee181dd5994278e2aa09f3df6"
+    },
+    {
+      "goal": 16,
+      "path": "/images/sdg/goal-16.jpg",
+      "source": "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg",
+      "sha256": "22ce40b9cc3aaf0a5d535b81023cea413b717eea95ddffd161e25a80ff13f5c5"
+    },
+    {
+      "goal": 17,
+      "path": "/images/sdg/goal-17.jpg",
+      "source": "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg",
+      "sha256": "579de0ca367ddd197ea5f44f8e82b38dd36ea0f59cc318dbebb38f568a4c5000"
+    }
+  ]
+}

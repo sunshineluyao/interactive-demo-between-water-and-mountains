@@ -1,3 +1,16 @@
+## Course synthesis · v4.4
+
+The Water & Mountains case now connects the complete INFOSCI 301 learning pathway to design capability, interdisciplinary contribution, and community-rooted global leadership.
+
+- **Weeks 1–7:** a page-turning skills guide links each week to an applied example or a clearly labeled extension. A group–CP bipartite network demonstrates fixed layout, linked selection, and edge filtering; mapped waterways are not yet a routable geographic graph.
+- **Week 5:** the existing interaction idiom studio, research examples, before/after comparisons, and executable interaction Colab.
+- **Worked cases and SDGs:** Kunshan and Mandara capability views, official UN icons for Goals 4, 6, 11, 16, and 17, target-specific educational connections, limits, and proposed tests.
+- **Week 6:** a separate advanced studio for animation, 3D evidence layers with a flat fallback, and Chapter 10 color design and accessibility.
+- **Transfer:** a saved innovation brief connects a new question, source permissions, disciplines, one task, one advanced choice, a selected SDG target, and evaluation. Its contents join the team-claim export.
+- **Both notebooks:** shared pathway and SDG source content plus an executable contribution-brief builder. Regenerate with `npm run notebook:build`.
+
+SDG mappings are educational interpretations. The demo does not measure official SDG indicators or claim conservation, ecosystem, institutional, or partnership outcomes. Official icons remain UN materials; see `public/images/sdg/credits.json` and `LICENSE`.
+
 # 水山之间 · Between Water & Mountains
 
 A bilingual, interactive evidence atlas for INFOSCI 301. Every learning interface can be read in English, Chinese, or a side-by-side bilingual mode. It orients Kunshan and the Mandara Mountains on a guided 3D globe, connects each place to its evidence, and asks students to carry a community question through source inspection, visualization design and validation.

@@ -25,7 +25,7 @@ const initialClaim: Claim = {
   permission: '', nextCheck: '',
 }
 
-export function FieldReturn({ activeLens }: { activeLens: QuestionLensId }) {
+export function FieldReturn({ activeLens, innovationPlan = '' }: { activeLens: QuestionLensId; innovationPlan?: string }) {
   const [claim, setClaim, saved] = useDraft('atlas-team-claim-v2', initialClaim)
   const [status, setStatus] = useState('')
   const lens = getQuestionLens(activeLens)
@@ -55,7 +55,9 @@ ${claim.idioms}
 
 ## Next validation
 ${claim.nextCheck || '[one test, one person or group, and what could change]'}
-`, [claim, lens])
+
+${innovationPlan}
+`, [claim, lens, innovationPlan])
 
   const update = (key: keyof Claim, value: string) => setClaim((current) => ({ ...current, [key]: value }))
   const copy = async () => {

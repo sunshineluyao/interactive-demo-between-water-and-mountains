@@ -178,7 +178,7 @@ export function ColorPaletteStudio() {
   return (
     <section id="color-studio" className="color-palette-studio" aria-labelledby="color-studio-title">
       <div className="tutorial-section-heading color-studio-heading">
-        <div><Palette aria-hidden="true" /><span>07 · Test color and 3D</span></div>
+        <div><Palette aria-hidden="true" /><span>Week 6 · Chapter 10 · color and accessibility</span></div>
         <h3 id="color-studio-title">Encode meaning before choosing a beautiful color.</h3>
         <p>This companion separates color representation—sRGB, CMYK/ICC, and CIELAB/OKLCH—from the three major data-encoding families: qualitative, sequential, and diverging. Change the controls, inspect accessibility, then open the same workflow as executable Python.</p>
       </div>

@@ -1,5 +1,6 @@
 import { ArrowUpRight, BookMarked, Database, Image as ImageIcon, Palette } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { goals } from '../lib/synthesis'
 
 type Reference = {
   key: string
@@ -63,7 +64,7 @@ const colorReferences: Reference[] = [
   },
   {
     key: 'colormaker',
-    citation: <>Salvi, A., Setlur, V., Strobelt, H., &amp; Endert, A. (2024). ColorMaker: A mixed-initiative approach to creating accessible color palettes. In <cite>Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</cite> (pp. 1–17). Association for Computing Machinery. <a href="https://doi.org/10.1145/3613904.3642265" target="_blank" rel="noreferrer">https://doi.org/10.1145/3613904.3642265</a></>,
+    citation: <>Salvi, A., Lu, K., Papka, M. E., Wang, Y., &amp; Reda, K. (2024). Color Maker: A mixed-initiative approach to creating accessible color maps. In <cite>Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems</cite> (pp. 1–17). Association for Computing Machinery. <a href="https://doi.org/10.1145/3613904.3642265" target="_blank" rel="noreferrer">https://doi.org/10.1145/3613904.3642265</a></>,
   },
   {
     key: 'colorcheck',
@@ -164,6 +165,14 @@ export function ReferencesLibrary() {
           <ReferenceGroup icon={ImageIcon} title="Photography and teaching excerpts" intro="Media establish context or teach an interaction pattern; they are not fieldwork evidence." references={mediaReferences} />
         </div>
       </div>
+      <section id="sdg-references" className="sdg-references" data-no-translate>
+        <h3>SDGs and course synthesis / SDG 与课程综合</h3>
+        <ol>
+          {goals.map((goal) => <li key={goal.id}>United Nations Department of Economic and Social Affairs. (n.d.). <cite>Goal {goal.id}: {goal.name[0]}</cite>. Retrieved September 23, 2026, from <a href={'https://sdgs.un.org/goals/goal' + goal.id} target="_blank" rel="noreferrer">{'https://sdgs.un.org/goals/goal' + goal.id}</a>. Target / 具体目标 {goal.target}.</li>)}
+          <li>United Nations. (n.d.). <cite>Communications materials</cite> [SDG icons and usage guidelines]. <a href="https://www.un.org/sustainabledevelopment/news/communications-material/" target="_blank" rel="noreferrer">https://www.un.org/sustainabledevelopment/news/communications-material/</a>. Official icon files / 官方图标：<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer">https://sdgs.un.org/goals</a>.</li>
+          <li>Zhang, L. (2026). <cite>INFOSCI 301: Learning and innovation pathway, Weeks 1–7 + final</cite> [Course learning briefing, pp. 1–4]. Duke Kunshan University. Instructor-provided course document / 教师提供的课程文件.</li>
+        </ol>
+      </section>
     </section>
   )
 }

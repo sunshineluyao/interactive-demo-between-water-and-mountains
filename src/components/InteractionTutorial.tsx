@@ -14,7 +14,6 @@ import {
 import { useEffect, useId, useState, type CSSProperties } from 'react'
 import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
 import { ColabCompanion } from './ColabCompanion'
-import { ColorPaletteStudio } from './ColorPaletteStudio'
 import { DesignerDecisionTree } from './DesignerDecisionTree'
 import { TutorialLogicScene } from './TutorialLogicScene'
 
@@ -378,7 +377,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
       <div className="tutorial-inner">
         <div className="tutorial-heading">
           <div>
-            <span className="tutorial-kicker">Interaction tutorial · learn it inside the project</span>
+            <span className="tutorial-kicker">Week 5 · interactive idioms and MVP</span>
             <h2 id="tutorial-title">Interaction is a way<br />of thinking with evidence.</h2>
           </div>
           <div>
@@ -460,9 +459,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
         <ColabCompanion />
 
-        <ColorPaletteStudio />
-
-        <div id="tutorial-takeaway" className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><span>08 · Explain and return</span><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p></div></div>
+        <div id="tutorial-takeaway" className="tutorial-takeaway" role="note"><Hand aria-hidden="true" /><div><span>07 · Explain and return</span><strong>Your five-line demo script</strong><p>“The user needs to ___. They ___ the control. The system responds by ___. This reveals ___. They can reset or recover by ___.”</p><a href="#advanced">Week 6: animation, 3D, and Chapter 10 color <ArrowRight aria-hidden="true" /></a></div></div>
       </div>
       <a className="chapter-forward tutorial-forward" href="#evidence"><span>Now inspect the evidence</span> Use the vocabulary on the live atlas <ArrowRight aria-hidden="true" /></a>
     </section>

@@ -85,3 +85,13 @@ The deployed application includes a dedicated reference library after the nine l
 - **Inputs:** the same versioned OpenStreetMap, NASA POWER and Mandara JSON/GeoJSON snapshots used by the app, loaded from this repository.
 - **Interactions:** globe orientation, selection/highlighting, parameter change, overview + detail, interval brushing, linked filtering, aggregation and a bounded designer decision helper.
 - **Boundary:** notebook globe arcs and teaching symbols are schematic. Every quantitative example displays its source, unit or denominator; no notebook cell recreates the paper's Bayesian posterior from the qualitative teaching layer.
+
+## SDG educational connections and artwork (v4.4)
+
+Official targets: United Nations Department of Economic and Social Affairs, Goals 4 (4.7), 6 (6.6), 11 (11.4), 16 (16.7), and 17 (17.16), accessed September 23, 2026. Primary URLs: https://sdgs.un.org/goals/goal4, https://sdgs.un.org/goals/goal6, https://sdgs.un.org/goals/goal11, https://sdgs.un.org/goals/goal16, https://sdgs.un.org/goals/goal17.
+
+The application supplies course interpretations and proposed evaluation tasks, not official indicator values. Goal 6 concerns a Kunshan environmental inquiry extension; the Mandara pottery data do not measure hydrology. Goal 17 does not imply an existing international partnership.
+
+Official unaltered icons were downloaded from https://sdgs.un.org/goals using its published image URLs. Their URLs and SHA-256 hashes are recorded in `public/images/sdg/credits.json`. Versioned base64 objects reproduce the original bytes. Informational educational use, no UN emblem or endorsement; see https://www.un.org/sustainabledevelopment/news/communications-material/. SDG icon colors remain identity colors and are not used as a numerical palette.
+
+Course alignment source: Zhang, L. (2026). *INFOSCI 301: Learning and innovation pathway, Weeks 1–7 + final* [Course briefing, pp. 1–4]. Duke Kunshan University. The supplied course PDF was consulted; its student photographs are not republished in the repository.

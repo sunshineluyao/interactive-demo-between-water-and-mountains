@@ -1,3 +1,9 @@
+## v4.4 · Course synthesis and SDG contributions
+
+Adds an inspectable group–CP bipartite network with linked selection and qualitative edge filtering, bilingual pathway, capability and SDG exploration, a Week 6 advanced studio, and an innovation-plan builder. Chapter 10 color is now part of the advanced studio. The selected target and student-authored plan persist and join the team export. Official SDG icons are stored with source URLs and SHA-256 hashes and retain UN terms. Both notebooks share the website's authored pathway/goal content. The standalone preview now embeds SDG icons and both notebook downloads.
+
+Primary checks: production build, data and build-integrity validation, interaction tests, Python syntax for both notebooks, and standalone packaging. Browser rendering must be checked separately through the public deployment because the cloud browser cannot open the workspace-local server.
+
 # Release 4.3 · coherent 3D tutorial route
 
 - Replaced the fragile three-column community-lens summary with a responsive bilingual card that keeps the selected question, purpose, recommended interactions, and change action readable at every supported width.

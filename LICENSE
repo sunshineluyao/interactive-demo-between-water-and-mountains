@@ -24,3 +24,7 @@ This license applies to application code only. Bundled and externally loaded
 data retain their source-specific terms as documented in DATA_SOURCES.md.
 Photographs retain the licenses in public/images/CREDITS.md; fonts retain
 the licenses in public/fonts. Neither is relicensed by this code license.
+
+Official SDG icons remain United Nations materials. They are used unaltered
+for educational information under the UN SDG branding guidance, not the MIT
+license. See public/images/sdg/credits.json. No UN endorsement is implied.

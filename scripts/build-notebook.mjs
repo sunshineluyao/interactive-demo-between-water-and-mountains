@@ -1,4 +1,5 @@
 import { writeFileSync } from 'node:fs'
+import { synthesisOverview, synthesisExercises } from './synthesis-notebook.mjs'
 
 const lines = (value) => value.trim().split('\n').map((line, index, all) => line + (index === all.length - 1 ? '' : '\n'))
 const markdown = (source) => ({ cell_type: 'markdown', metadata: {}, source: lines(source) })
@@ -503,6 +504,9 @@ Complete and test this script with someone from another discipline:
 The website’s reference library provides full media credits and evidence-boundary notes. / 网站参考文献库提供完整媒体致谢与证据边界说明。
   `),
 ]
+
+cells.splice(1, 0, synthesisOverview(false))
+cells.splice(cells.length - 1, 0, ...synthesisExercises())
 
 const notebook = {
   cells,
