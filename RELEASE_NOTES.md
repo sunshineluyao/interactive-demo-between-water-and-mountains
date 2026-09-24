@@ -1,3 +1,13 @@
+## v4.5 · Bilingual layout fixes and project before/after lessons
+
+- Replaced the fixed SVG label gutter in the Mandara matrix with wrapping, separate table headers; full group labels and site details remain visible in all three reading modes.
+- Replaced abstract Week 5 illustrations with six working project comparisons using bundled rainfall records and qualitative pottery assertions.
+- Paired every selectable textbook and research effect with its project application; range brushing, crossfiltering, panel sequencing, and design candidates explicitly distinguish a small teaching extension from a full research-system reproduction.
+- Added matched advanced comparisons for 3D layers, controlled monthly animation, and all three Chapter 10 palette families, preserving source records, scales, reference periods, labels, and motion controls.
+- Moved color comparison captions outside clipped graphics. Added responsive stacked comparisons and kept full 3D layer labels outside the shapes.
+
+Validation: TypeScript/production build, snapshot and build-integrity checks, and focused interaction tests. Visual acceptance is recorded separately against the deployed application.
+
 ## v4.4 · Course synthesis and SDG contributions
 
 Adds an inspectable group–CP bipartite network with linked selection and qualitative edge filtering, bilingual pathway, capability and SDG exploration, a Week 6 advanced studio, and an innovation-plan builder. Chapter 10 color is now part of the advanced studio. The selected target and student-authored plan persist and join the team export. Official SDG icons are stored with source URLs and SHA-256 hashes and retain UN terms. Both notebooks share the website's authored pathway/goal content. The standalone preview now embeds SDG icons and both notebook downloads.

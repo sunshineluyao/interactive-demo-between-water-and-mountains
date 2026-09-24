@@ -11,6 +11,8 @@ import {
   SlidersHorizontal,
 } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import type { LanguageMode } from '../lib/i18n'
+import { ProjectEffectExample } from './ProjectEffectExample'
 
 const colabUrl = 'https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/main/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
@@ -158,7 +160,7 @@ function PaletteStrip({ colors, label }: { colors: string[]; label: string }) {
   return <div className="palette-strip" role="img" aria-label={label}>{colors.map((color, index) => <i key={`${color}-${index}`} style={{ background: color }} />)}</div>
 }
 
-export function ColorPaletteStudio() {
+export function ColorPaletteStudio({ language = 'bilingual' }: { language?: LanguageMode }) {
   const [family, setFamily] = useState<PaletteFamily>('sequential')
   const [hue, setHue] = useState(205)
   const [chroma, setChroma] = useState(16)
@@ -206,15 +208,16 @@ export function ColorPaletteStudio() {
             <div className="comparison-palette-layer comparison-uncontrolled" aria-hidden="true">
               <PaletteStrip colors={uncontrolled} label="Uncontrolled spectrum palette" />
               <div className="palette-bars">{chartValues.slice(0, count).map((value, index) => <i key={index} style={{ height: `${value}%`, background: uncontrolled[index] }} />)}</div>
-              <span>Before · equal hue steps, untested meaning</span>
+
             </div>
             <div className="comparison-palette-layer comparison-designed" style={{ clipPath: `inset(0 ${100 - reveal}% 0 0)` }}>
               <PaletteStrip colors={previewPalette} label={`Designed ${family} palette in ${vision} preview`} />
               <div className="palette-bars">{chartValues.slice(0, count).map((value, index) => <i key={index} style={{ height: `${value}%`, background: previewPalette[index] }}><b>{String.fromCharCode(65 + index)}</b></i>)}</div>
-              <span>After · perceptual structure + redundant labels</span>
+
             </div>
             <i className="palette-divider" style={{ left: `${reveal}%` }} aria-hidden="true" />
           </div>
+          <div className="palette-comparison-captions"><p>Before · equal hue steps, untested meaning</p><p>After · perceptual structure + redundant labels</p></div>
           <label className="compare-control">Compare before and after <output>{reveal}% after</output><input aria-label="Compare before and after palettes" type="range" min="0" max="100" value={reveal} onChange={(event) => setReveal(Number(event.target.value))} /></label>
           <div className="palette-token-row" aria-label="Generated palette values">{palette.map((color, index) => {
             const rgb = hexToRgb(color)
@@ -224,6 +227,8 @@ export function ColorPaletteStudio() {
           })}</div>
         </div>
       </div>
+
+      <ProjectEffectExample kind="color" language={language} palette={previewPalette} paletteFamily={family} grayscale={vision === 'grayscale'} />
 
       <div className="color-context-grid">
         <article className="terrain-preview">

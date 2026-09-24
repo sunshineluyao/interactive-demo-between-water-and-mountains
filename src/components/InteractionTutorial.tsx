@@ -11,7 +11,11 @@ import {
   RotateCcw,
   SlidersHorizontal,
 } from 'lucide-react'
-import { useEffect, useId, useState, type CSSProperties } from 'react'
+import { useState } from 'react'
+import type { LanguageMode } from '../lib/i18n'
+import type { EffectKind } from '../lib/effectExamples'
+import { copy } from '../lib/synthesis'
+import { ProjectEffectExample } from './ProjectEffectExample'
 import { getQuestionLens, type QuestionLensId } from '../lib/communityQuestions'
 import { ColabCompanion } from './ColabCompanion'
 import { DesignerDecisionTree } from './DesignerDecisionTree'
@@ -223,149 +227,17 @@ const researchExamples = [
   },
 ]
 
-function Scene({ kind, after }: { kind: PatternKind; after: boolean }) {
-  const ink = '#20343b'
-  const muted = after ? '#78939c' : '#9cacb0'
-  const lake = after ? '#245c70' : '#82979e'
-  const coral = '#c66e42'
-  const paper = after ? '#f9fbf8' : '#eef2f0'
-
-  if (kind === 'select') {
-    return (
-      <svg viewBox="0 0 720 360" aria-hidden="true">
-        <rect width="720" height="360" rx="18" fill={paper} />
-        <text x="34" y="46" fill={ink} fontSize="18" fontWeight="600">Mapped channels</text>
-        {[0, 1, 2, 3, 4, 5].map((line) => <path key={line} d={`M38 ${95 + line * 34} C150 ${54 + line * 38}, 235 ${150 + line * 17}, 430 ${82 + line * 38}`} fill="none" stroke={after && line === 2 ? coral : muted} strokeWidth={after && line === 2 ? 10 : 4} strokeLinecap="round" />)}
-        <circle cx="152" cy="195" r={after ? 11 : 7} fill={after ? coral : muted} stroke={paper} strokeWidth="4" />
-        <rect x="474" y="74" width="212" height="218" rx="10" fill={after ? '#dce8eb' : '#e5e9e7'} stroke={after ? lake : muted} />
-        <text x="500" y="112" fill={lake} fontSize="14" fontWeight="600">{after ? 'SELECTED RECORD' : 'NO SELECTION'}</text>
-        <rect x="500" y="136" width={after ? 142 : 112} height="13" rx="6" fill={after ? ink : muted} />
-        <rect x="500" y="166" width="158" height="8" rx="4" fill={muted} />
-        <rect x="500" y="186" width="128" height="8" rx="4" fill={muted} />
-        <rect x="500" y="226" width={after ? 152 : 92} height="40" rx="4" fill={after ? lake : '#cbd4d4'} />
-      </svg>
-    )
-  }
-
-  if (kind === 'time') {
-    const path = 'M58 242 C110 198, 142 220, 190 153 S284 118, 326 181 S414 242, 466 141 S558 104, 652 178'
-    return (
-      <svg viewBox="0 0 720 360" aria-hidden="true">
-        <rect width="720" height="360" rx="18" fill={paper} />
-        <text x="38" y="48" fill={ink} fontSize="18" fontWeight="600">Monthly precipitation</text>
-        <text x="682" y="48" fill={lake} fontSize="15" textAnchor="end">{after ? 'Jul 2025 · 8.14 mm/day' : 'Choose a month'}</text>
-        {[110, 176, 242].map((y) => <line key={y} x1="58" x2="662" y1={y} y2={y} stroke="#c8d4d5" />)}
-        <path d={path} fill="none" stroke={lake} strokeWidth="5" strokeLinecap="round" />
-        {after ? <><circle cx="510" cy="125" r="11" fill={coral} stroke={paper} strokeWidth="4" /><line x1="510" x2="510" y1="125" y2="277" stroke={coral} strokeDasharray="6 5" /></> : null}
-        <line x1="58" x2="662" y1="303" y2="303" stroke={ink} strokeWidth="5" strokeLinecap="round" />
-        <circle cx={after ? 510 : 58} cy="303" r="13" fill={after ? coral : muted} />
-        <text x="58" y="336" fill={muted} fontSize="13">2001</text><text x="662" y="336" fill={muted} fontSize="13" textAnchor="end">2025</text>
-      </svg>
-    )
-  }
-
-  if (kind === 'navigate') {
-    return (
-      <svg viewBox="0 0 720 360" aria-hidden="true">
-        <rect width="720" height="360" rx="18" fill={paper} />
-        <rect x="40" y="28" width="640" height="50" rx="8" fill={after ? '#dce8eb' : '#dfe5e4'} />
-        <text x="66" y="60" fill={ink} fontSize="16" fontWeight="600">Between Water &amp; Mountains</text>
-        {[0, 1, 2].map((card) => <rect key={card} x="92" y={104 + card * 73} width="546" height="52" rx="8" fill={after && card === 1 ? '#ffffff' : '#e0e7e6'} stroke={after && card === 1 ? lake : 'none'} strokeWidth="3" />)}
-        {after ? <>
-          <line x1="58" x2="58" y1="116" y2="300" stroke={lake} strokeWidth="3" />
-          {[0, 1, 2].map((dot) => <circle key={dot} cx="58" cy={130 + dot * 73} r={dot === 1 ? 11 : 7} fill={dot === 1 ? coral : lake} />)}
-          <text x="116" y="136" fill={muted} fontSize="13">01 · EVIDENCE</text><text x="116" y="209" fill={lake} fontSize="13" fontWeight="600">02 · WATER · CURRENT</text><text x="116" y="282" fill={muted} fontSize="13">03 · MOUNTAIN</text>
-        </> : <text x="360" y="337" fill={muted} fontSize="14" textAnchor="middle">Where am I?</text>}
-      </svg>
-    )
-  }
-
-  if (kind === 'coordinate') {
-    return (
-      <svg viewBox="0 0 720 360" aria-hidden="true">
-        <rect width="720" height="360" rx="18" fill={paper} />
-        <text x="40" y="48" fill={ink} fontSize="18" fontWeight="600">One temporal selection</text>
-        <rect x="40" y="78" width="172" height="224" rx="10" fill="#e1e8e7" stroke={after ? lake : 'none'} />
-        <rect x="274" y="78" width="172" height="224" rx="10" fill="#e1e8e7" stroke={after ? lake : 'none'} />
-        <rect x="508" y="78" width="172" height="224" rx="10" fill="#e1e8e7" stroke={after ? lake : 'none'} />
-        <text x="126" y="112" fill={muted} fontSize="13" textAnchor="middle">CONTROL</text><text x="360" y="112" fill={muted} fontSize="13" textAnchor="middle">READING</text><text x="594" y="112" fill={muted} fontSize="13" textAnchor="middle">CHART</text>
-        <line x1="70" x2="182" y1="186" y2="186" stroke={ink} strokeWidth="5" strokeLinecap="round" /><circle cx={after ? 145 : 72} cy="186" r="11" fill={after ? coral : muted} />
-        <text x="360" y="191" fill={after ? coral : muted} fontSize="28" textAnchor="middle" fontWeight="600">{after ? '8.14' : '—'}</text>
-        <path d="M530 234 C550 191, 570 217, 589 167 S628 137, 656 194" fill="none" stroke={lake} strokeWidth="4" />
-        {after ? <circle cx="628" cy="145" r="9" fill={coral} stroke={paper} strokeWidth="3" /> : null}
-        {after ? <><path d="M218 190 H264" stroke={coral} strokeWidth="3" /><path d="M452 190 H498" stroke={coral} strokeWidth="3" /></> : null}
-      </svg>
-    )
-  }
-
-  if (kind === 'reduce') {
-    const cells = Array.from({ length: 48 }, (_, index) => ({ x: 44 + (index % 12) * 26, y: 82 + Math.floor(index / 12) * 38 }))
-    return (
-      <svg viewBox="0 0 720 360" aria-hidden="true">
-        <rect width="720" height="360" rx="18" fill={paper} />
-        <text x="40" y="48" fill={ink} fontSize="18" fontWeight="600">{after ? 'Site × decoration proportions' : 'Imported observation rows'}</text>
-        {!after ? cells.map((cell, index) => <circle key={index} cx={cell.x} cy={cell.y} r="8" fill={index % 5 === 0 ? lake : muted} opacity={0.8} />) : null}
-        {after ? Array.from({ length: 32 }, (_, index) => <rect key={index} x={44 + (index % 8) * 42} y={82 + Math.floor(index / 8) * 45} width="34" height="34" rx="3" fill={`rgba(36,92,112,${0.15 + ((index * 3) % 8) * 0.1})`} />) : null}
-        <rect x="418" y="74" width="262" height="220" rx="10" fill="#dce8eb" />
-        <text x="444" y="110" fill={lake} fontSize="13" fontWeight="600">{after ? 'TRANSFORMATION LEDGER' : 'RAW FIELDS'}</text>
-        {[0, 1, 2, 3].map((row) => <rect key={row} x="444" y={136 + row * 32} width={after ? 188 - row * 11 : 150 + row * 13} height="10" rx="5" fill={row === 0 && after ? coral : muted} />)}
-      </svg>
-    )
-  }
-
-  return (
-    <svg viewBox="0 0 720 360" aria-hidden="true">
-      <rect width="720" height="360" rx="18" fill={paper} />
-      <text x="40" y="48" fill={ink} fontSize="18" fontWeight="600">Field note → validation → team claim</text>
-      {[0, 1, 2].map((field) => <rect key={field} x="42" y={82 + field * 72} width="374" height="52" rx="7" fill="#ffffff" stroke={after ? lake : muted} />)}
-      {after ? <>
-        <rect x="60" y="101" width="288" height="9" rx="4" fill={ink} /><rect x="60" y="173" width="224" height="9" rx="4" fill={lake} /><rect x="60" y="245" width="310" height="9" rx="4" fill={coral} />
-      </> : <>
-        <text x="60" y="113" fill={muted} fontSize="13">Observed…</text><text x="60" y="185" fill={muted} fontSize="13">Interpreted…</text><text x="60" y="257" fill={muted} fontSize="13">Next check…</text>
-      </>}
-      <rect x="468" y="82" width="210" height="198" rx="10" fill={after ? '#dce8eb' : '#e2e8e7'} />
-      <text x="492" y="118" fill={lake} fontSize="13" fontWeight="600">{after ? 'EVIDENCE CARD' : 'NO SAVED TRACE'}</text>
-      {[0, 1, 2, 3].map((row) => <rect key={row} x="492" y={143 + row * 27} width={after ? 146 - row * 8 : 96} height="8" rx="4" fill={after && row === 3 ? coral : muted} />)}
-      <rect x="492" y="245" width="160" height="36" rx="4" fill={after ? lake : '#cbd4d4'} />
-    </svg>
-  )
-}
-
-function BeforeAfterComparison({ pattern }: { pattern: Pattern }) {
-  const [reveal, setReveal] = useState(56)
-  const labelId = useId()
-  useEffect(() => setReveal(56), [pattern.id])
-
-  return (
-    <div className="before-after-block">
-      <div className="before-after" style={{ '--reveal': `${reveal}%` } as CSSProperties}>
-        <div className="comparison-state comparison-before"><Scene kind={pattern.kind} after={false} /></div>
-        <div className="comparison-state comparison-after"><Scene kind={pattern.kind} after /></div>
-        <div className="comparison-divider" aria-hidden="true"><span><ChevronLeft /><ChevronRight /></span></div>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={reveal}
-          onChange={(event) => setReveal(Number(event.target.value))}
-          aria-labelledby={labelId}
-        />
-        <span className="comparison-label comparison-label-before">Before</span>
-        <span className="comparison-label comparison-label-after">After</span>
-      </div>
-      <p id={labelId} className="comparison-instruction">Drag the divider or use the arrow keys to reveal the interaction’s before and after states.</p>
-      <div className="comparison-captions"><p><strong>Before:</strong> {pattern.before}</p><p><strong>After:</strong> {pattern.after}</p></div>
-    </div>
-  )
-}
-
 function PatternMedia({ item, motionEnabled, replay }: { item: (typeof researchExamples)[number]; motionEnabled: boolean; replay: number }) {
   const src = !motionEnabled && item.still ? item.still : item.image
   return <img key={`${src}-${replay}`} src={src} alt={item.alt} width="1200" height="675" loading="lazy" />
 }
 
-export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabled: boolean; activeLens: QuestionLensId }) {
+export function InteractionTutorial({ motionEnabled, activeLens, language }: { motionEnabled: boolean; activeLens: QuestionLensId; language: LanguageMode }) {
   const [active, setActive] = useState(0)
+  const t = copy(language)
+  const [activeTextbook, setActiveTextbook] = useState(0)
+  const textbookKinds: EffectKind[] = ['select', 'time', 'select', 'brush', 'overview']
+  const researchKinds: EffectKind[] = ['brush', 'overview', 'crossfilter', 'storyboard', 'suggest', 'suggest']
   const [activeResearch, setActiveResearch] = useState(0)
   const [replay, setReplay] = useState(0)
   const pattern = patterns[active]
@@ -404,7 +276,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
         <DesignerDecisionTree />
 
-        <div className="tutorial-section-heading studio-heading"><div><MousePointer2 aria-hidden="true" /><span>03 · Practice the interaction</span></div><h3>Move one control, then explain what changed.</h3><p>Each studio step follows the same logic: intent → action → response → evidence → reset. The before/after slider makes the consequence visible before students try the live chapter.</p></div>
+        <div className="tutorial-section-heading studio-heading"><div><MousePointer2 aria-hidden="true" /><span>03 · Practice the interaction</span></div><h3>Move one control, then explain what changed.</h3><p>Each studio step follows the same logic: intent → action → response → evidence → reset. The project examples compare the same evidence before and after each effect, before students try the live chapter.</p></div>
         <div id="tutorial-studio" className="tutorial-studio">
           <nav className="pattern-index" aria-label="Interaction tutorial steps">
             <div><span>Studio route</span><strong>{String(active + 1).padStart(2, '0')} / {String(patterns.length).padStart(2, '0')}</strong></div>
@@ -417,7 +289,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
           <article className="pattern-stage" key={pattern.id}>
             <header><span>{pattern.family}</span><h3>{pattern.title}</h3><p>{pattern.summary}</p></header>
-            <BeforeAfterComparison pattern={pattern} />
+            <ProjectEffectExample key={pattern.kind} kind={pattern.kind} language={language} motionEnabled={motionEnabled} />
             <dl className="interaction-script">
               <div><dt><MousePointer2 aria-hidden="true" />Action</dt><dd>{pattern.action}</dd></div>
               <div><dt><Layers3 aria-hidden="true" />System response</dt><dd>{pattern.response}</dd></div>
@@ -433,14 +305,16 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
 
         <section id="textbook-examples" className="textbook-gallery" aria-labelledby="textbook-title">
           <div className="tutorial-section-heading"><div><BookOpen aria-hidden="true" /><span>04 · Compare with the textbook</span></div><h3 id="textbook-title">See the vocabulary in Munzner’s own examples.</h3><p>These small teaching excerpts come from the author’s publicly accessible interaction slides. Each is paired with the place where the same design question appears in this atlas.</p></div>
+          <nav className="textbook-example-tabs" aria-label={t(['Choose a textbook effect', '选择教材效果'])}>{textbookExamples.map((example, i) => <button type="button" key={example.title} aria-pressed={activeTextbook === i} onClick={() => setActiveTextbook(i)}>{example.title}</button>)}</nav>
           <div className="textbook-rail">
-            {textbookExamples.map((example) => (
-              <figure key={example.title}>
+            {textbookExamples.map((example, i) => (
+              <figure key={example.title} hidden={activeTextbook !== i}>
                 <a href="https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf" target="_blank" rel="noreferrer"><img src={example.image} alt={`${example.title}, ${example.slide}, from Tamara Munzner's Interactive Views lecture slides.`} width="960" height="540" loading="lazy" /></a>
                 <figcaption><span>{example.slide}</span><strong>{example.title}</strong><p>{example.description}</p></figcaption>
               </figure>
             ))}
           </div>
+          <ProjectEffectExample key={'textbook-' + activeTextbook} kind={textbookKinds[activeTextbook]} language={language} motionEnabled={motionEnabled} />
           <p className="full-inline-reference">Full source: Munzner, T. (n.d.). <cite>Visualization analysis &amp; design: Interactive views (Chapters 11–12)</cite> [Lecture slides]. Department of Computer Science, University of British Columbia. Retrieved September 22, 2026, from <a href="https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf" target="_blank" rel="noreferrer">https://www.cs.ubc.ca/~tmm/talks/vad/VAD-interact.pdf</a></p>
         </section>
 
@@ -451,6 +325,7 @@ export function InteractionTutorial({ motionEnabled, activeLens }: { motionEnabl
             <article key={researchExample.title}>
               <div className="research-media"><PatternMedia item={researchExample} motionEnabled={motionEnabled} replay={replay} /><div className="research-media-label"><span>{researchExample.role}</span>{researchExample.still && motionEnabled ? <button type="button" onClick={() => setReplay((value) => value + 1)}><RotateCcw aria-hidden="true" /> Replay animation</button> : null}</div></div>
               <div className="research-copy"><span>Interaction precedent {String(activeResearch + 1).padStart(2, '0')}</span><h4>{researchExample.title}</h4><p>{researchExample.application}</p><small>{researchExample.citation}</small></div>
+              <ProjectEffectExample key={'research-' + activeResearch} kind={researchKinds[activeResearch]} language={language} motionEnabled={motionEnabled} />
             </article>
           </div>
           {!motionEnabled ? <p className="motion-note"><PauseCircle aria-hidden="true" /> Motion is paused, so animated examples show a representative frame. Enable motion in the header to play them.</p> : null}

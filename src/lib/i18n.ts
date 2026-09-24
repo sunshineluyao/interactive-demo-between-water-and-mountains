@@ -200,7 +200,7 @@ export const zhTranslations: Record<string, string> = {
   '02 · Choose a design path': '02 · 选择设计路径',
   '03 · Practice the interaction': '03 · 练习交互',
   'Move one control, then explain what changed.': '移动一个控件，再解释发生了什么变化。',
-  'Each studio step follows the same logic: intent → action → response → evidence → reset. The before/after slider makes the consequence visible before students try the live chapter.': '工作室的每一步都遵循同一逻辑：意图 → 动作 → 回应 → 证据 → 重置。前后对比滑块先把结果呈现出来，再让学生进入实时章节练习。',
+  'Each studio step follows the same logic: intent → action → response → evidence → reset. The project examples compare the same evidence before and after each effect, before students try the live chapter.': '工作室的每一步都遵循同一逻辑：意图 → 动作 → 回应 → 证据 → 重置。项目前后示例先比较同一证据应用各项效果的结果，再让学生进入实时章节练习。',
   '04 · Compare with the textbook': '04 · 对照教材',
   '05 · Compare with research': '05 · 对照研究',
   '06 · Rebuild in Colab': '06 · 在 Colab 中重建',

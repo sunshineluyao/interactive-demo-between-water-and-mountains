@@ -106,10 +106,6 @@ export function MountainAtlas() {
     setUploadStatus('Restored the paper-derived teaching layer.')
   }
 
-  const maxLabels = matrix?.columns.length ?? 1
-  const cellWidth = Math.max(38, 660 / maxLabels)
-  const viewWidth = 178 + cellWidth * maxLabels
-  const viewHeight = 78 + (matrix?.rows.length ?? 1) * 54
   const metrics = useMemo(() => {
     if (!data) return []
     return [
@@ -152,44 +148,23 @@ export function MountainAtlas() {
 
           {matrix ? (
             <div className="matrix-scroll" tabIndex={0} aria-label="Scrollable culture signature matrix">
-              <svg className="culture-matrix" viewBox={`0 0 ${viewWidth} ${viewHeight}`} style={{ minWidth: `${viewWidth}px` }} role="group" aria-label={matrix.mode === 'uploaded' ? 'Site by exterior decoration, proportions of imported rows' : 'Qualitative culture-period signature matrix'}>
-                <defs>
-                  <linearGradient id="matrixLegend">
-                    {colors.map((color, index) => <stop key={color} offset={`${(index / (colors.length - 1)) * 100}%`} stopColor={color} />)}
-                  </linearGradient>
-                </defs>
-                {matrix.columns.map((column, index) => (
-                  <text key={column} x={178 + index * cellWidth + cellWidth / 2} y="42" textAnchor="middle" className="matrix-column"><title>{matrix.mode === 'uploaded' ? column : `Culture-period model pattern ${column}; identifier, not chronology`}</title>{matrix.mode === 'uploaded' ? `D${index + 1}` : column}</text>
-                ))}
-                {matrix.rows.map((row, rowIndex) => (
-                  <g key={row.label} transform={`translate(0, ${62 + rowIndex * 54})`}>
-                    <text x="0" y="15" className="matrix-row-label"><title>{row.label}</title>{row.label.length > 20 ? `${row.label.slice(0, 18)}…` : row.label}</text>
-                    <text x="0" y="35" className="matrix-row-detail">{row.detail}</text>
-                    {row.values.map((value, columnIndex) => {
-                      const colorIndex = Math.round(value * (colors.length - 1))
-                      const column = matrix.columns[columnIndex]
-                      return (
-                        <rect
-                          key={column}
-                          x={178 + columnIndex * cellWidth + 2}
-                          y="0"
-                          width={cellWidth - 4}
-                          height="42"
-                          rx="3"
-                          fill={value === 0 ? '#e0e8e9' : colors[colorIndex]}
-                          tabIndex={0}
-                          role="button"
-                          aria-label={`${row.label}, ${matrix.mode === 'uploaded' ? column : `culture-period model pattern ${column}`}: ${matrix.mode === 'uploaded' ? `${(value * 100).toFixed(1)} percent of imported site records` : value === 1 ? 'dominant reported' : value > 0 ? 'smaller reported' : 'not asserted in this summary'}`}
-                          onClick={() => setSelectedCell({ row: row.label, column, value })}
-                          onKeyDown={(event) => {
-                            if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setSelectedCell({ row: row.label, column, value }) }
-                          }}
-                        />
-                      )
-                    })}
-                  </g>
-                ))}
-              </svg>
+              <table className="culture-matrix" aria-label={matrix.mode === 'uploaded' ? 'Site by exterior decoration, proportions of imported rows' : 'Qualitative culture-period signature matrix'}>
+                <thead><tr><th scope="col"><span className="sr-only">Site group</span></th>{matrix.columns.map((column, index) => <th scope="col" key={column} title={matrix.mode === 'uploaded' ? column : `Culture-period model pattern ${column}; identifier, not chronology`}>{matrix.mode === 'uploaded' ? `D${index + 1}` : column}</th>)}</tr></thead>
+                <tbody>{matrix.rows.map((row) => <tr key={row.label}>
+                  <th scope="row"><span className="matrix-row-label">{row.label}</span><span className="matrix-row-detail">{row.detail}</span></th>
+                  {row.values.map((value, columnIndex) => {
+                    const column = matrix.columns[columnIndex]
+                    const selected = selectedCell?.row === row.label && selectedCell.column === column
+                    return <td key={column}><button
+                      type="button"
+                      style={{ background: colors[Math.round(value * (colors.length - 1))] }}
+                      aria-pressed={selected}
+                      aria-label={`${row.label}, ${matrix.mode === 'uploaded' ? column : `culture-period model pattern ${column}`}: ${matrix.mode === 'uploaded' ? `${(value * 100).toFixed(1)} percent of imported site records` : value === 1 ? 'dominant reported' : value > 0 ? 'smaller reported' : 'not asserted in this summary'}`}
+                      onClick={() => setSelectedCell({ row: row.label, column, value })}
+                    ><span className="sr-only">{matrix.mode === 'uploaded' ? `${(value * 100).toFixed(1)}%` : value === 1 ? 'Dominant reported' : value > 0 ? 'Smaller reported' : 'Not asserted'}</span></button></td>
+                  })}
+                </tr>)}</tbody>
+              </table>
             </div>
           ) : !loadError && <div className="matrix-loading" role="status">Preparing the culture painting…</div>}
           <div className="matrix-legend">{matrix?.mode === 'uploaded' ? <><span>0%</span><i className="proportion-scale" /><span>100% of a site’s imported records</span></> : <><span><i style={{ background: colors[9] }} />Dominant reported</span><span><i style={{ background: colors[3] }} />Smaller reported</span><span><i style={{ background: colors[0] }} />Not asserted</span></>}</div>

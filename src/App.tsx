@@ -114,7 +114,7 @@ export default function App() {
           <GlobalOrientation motionEnabled={motionEnabled} />
           <QuestionLensIntro activeLens={activeLens} onChange={setActiveLens} />
           <LearningPathway language={language} />
-          <InteractionTutorial motionEnabled={motionEnabled} activeLens={activeLens} />
+          <InteractionTutorial motionEnabled={motionEnabled} activeLens={activeLens} language={language} />
           <EvidenceShelf />
           <WaterAtlas motionEnabled={motionEnabled} />
           <MountainAtlas />

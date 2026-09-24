@@ -98,7 +98,7 @@ test('the complete interface can switch among English, Chinese, and bilingual re
   assert.equal(localStorage.getItem('atlas-language-v1'), 'bilingual')
 })
 
-test('tutorial names each interaction and exposes an accessible before-and-after slider', async () => {
+test('tutorial applies every idiom to a paired project example', async () => {
   const tutorial = document.querySelector('#tutorial')
   assert.ok(tutorial)
   assert.equal(tutorial.querySelectorAll('.lens-recommendation-footer>div strong').length, 2)
@@ -107,18 +107,59 @@ test('tutorial names each interaction and exposes an accessible before-and-after
   await click(textButton('Interaction', tutorial.querySelector('.logic-stage-buttons')))
   assert.match(tutorial.querySelector('.logic-reading h4').textContent, /Choose an action/)
   assert.equal(tutorial.querySelectorAll('.pattern-index button').length, 6)
-  const slider = tutorial.querySelector('.before-after input[type="range"]')
-  assert.ok(slider)
-  assert.equal(slider.getAttribute('min'), '0')
-  assert.equal(slider.getAttribute('max'), '100')
+  const project = tutorial.querySelector('.pattern-stage .project-effect')
+  assert.equal(project.dataset.effect, 'select')
+  assert.equal(project.querySelectorAll('.project-comparison-panel').length, 2)
+  await fill(project.querySelector('select'), '1')
+  assert.match(project.querySelector('.project-selection-reading').textContent, /CP2.*Western sites.*Smaller reported/s)
+  assert.equal(project.querySelectorAll('.project-before .is-selected').length, 0)
+  assert.equal(project.querySelectorAll('.project-after .is-selected').length, 3)
   assert.deepEqual([...tutorial.querySelectorAll('.interaction-script dt')].map((item) => item.textContent.split(' · ')[0]), ['Action', 'System response', 'Evidence', 'Reset + access'])
   await click(textButton('Change parameters', tutorial))
   assert.match(tutorial.querySelector('.pattern-stage h3').textContent, /Change parameters without losing context/)
-  assert.match(tutorial.querySelector('.comparison-captions').textContent, /A chosen month links the control, reading, and chart/)
+  assert.match(tutorial.querySelector('.pattern-stage .project-after').textContent, /2025-06.*11.24/s)
+  await fill(tutorial.querySelector('.pattern-stage .project-effect input'), '6')
+  assert.match(tutorial.querySelector('.pattern-stage .project-after').textContent, /2025-07.*11.64/s)
   assert.equal(document.querySelectorAll('.textbook-rail figure').length, 5)
   assert.equal(document.querySelectorAll('.research-theatre>nav button').length, 6)
   await click(textButton('Data Formulator', document.querySelector('.research-theatre>nav')))
   assert.match(document.querySelector('.research-theatre>article').textContent, /mixed-initiative precedent/i)
+})
+
+test('all six idioms and every research example include a bounded project comparison', async () => {
+  const tutorial = document.querySelector('#tutorial')
+  for (const [index, kind] of ['select', 'time', 'navigate', 'coordinate', 'reduce', 'author'].entries()) {
+    await click(tutorial.querySelectorAll('.pattern-index button')[index])
+    const project = tutorial.querySelector('.pattern-stage .project-effect')
+    assert.equal(project.dataset.effect, kind)
+    assert.equal(project.querySelectorAll('.project-comparison-panel').length, 2)
+    assert.match(project.textContent, /BEFORE.*AFTER.*Try → adapt → evaluate/s)
+    assert.ok(project.querySelector('.project-source a'))
+  }
+  await click(textButton('Download worked evidence card', tutorial))
+  assert.equal(downloadName, 'kunshan-worked-evidence-card.md')
+  for (const [index, kind] of ['brush', 'overview', 'crossfilter', 'storyboard', 'suggest', 'suggest'].entries()) {
+    await click(tutorial.querySelectorAll('.research-theatre>nav button')[index])
+    assert.equal(tutorial.querySelector('.research-theatre .project-effect').dataset.effect, kind)
+  }
+  for (const [index, kind] of ['select', 'time', 'select', 'brush', 'overview'].entries()) {
+    await click(tutorial.querySelectorAll('.textbook-example-tabs button')[index])
+    assert.equal(tutorial.querySelector('#textbook-examples .project-effect').dataset.effect, kind)
+    assert.equal(tutorial.querySelectorAll('.textbook-rail figure:not([hidden])').length, 1)
+  }
+})
+
+test('range and magnitude filters intersect on the same real monthly records', async () => {
+  const research = document.querySelector('.research-theatre')
+  await click(textButton('Crossfilter', research.querySelector('nav')))
+  const project = research.querySelector('.project-effect')
+  assert.match(project.querySelector('output').textContent, /4 \/ 12/)
+  await fill(project.querySelectorAll('input')[2], '16')
+  assert.match(project.querySelector('output').textContent, /0 \/ 12/)
+  assert.equal(project.querySelectorAll('.project-after tbody .is-selected').length, 0)
+  await click(textButton('Reset example', project))
+  assert.equal(project.querySelectorAll('.project-after tbody .is-selected').length, 4)
+  assert.equal(project.querySelectorAll('.project-before tbody tr').length, 12)
 })
 
 test('the designer tree limits each layer to three choices and changes its recommendation', async () => {
@@ -240,6 +281,45 @@ test('advanced layers preserve a readable flat fallback and switch evidence by p
   await click(textButton('双语', document.querySelector('.language-control')))
 })
 
+test('advanced examples change with the effect and preserve motion controls and color data', async () => {
+  const advanced = document.querySelector('#advanced')
+  await click(textButton('Animation + time', advanced.querySelector('.advanced-options')))
+  let project = advanced.querySelector('.advanced-intro>.project-effect')
+  assert.equal(project.dataset.effect, 'animation')
+  assert.equal(textButton('Play example', project).disabled, true)
+  await click(textButton('Next month', project))
+  assert.match(project.querySelector('output').textContent, /2025-07.*11.64/s)
+  await click(document.querySelector('.motion-control'))
+  await click(textButton('Play example', project))
+  assert.equal(textButton('Pause example', project).getAttribute('aria-pressed'), 'true')
+  await click(document.querySelector('.motion-control'))
+  assert.equal(textButton('Play example', project).disabled, true)
+  await click(textButton('Chapter 10', advanced.querySelector('.advanced-options')))
+  project = advanced.querySelector('.advanced-intro>.project-effect')
+  assert.equal(project.dataset.effect, 'color')
+  const before = [...project.querySelectorAll('.project-before svg rect')].map((r) => [r.getAttribute('y'), r.getAttribute('height')])
+  const after = [...project.querySelectorAll('.project-after svg rect')].map((r) => [r.getAttribute('y'), r.getAttribute('height')])
+  assert.deepEqual(before, after)
+  await fill(project.querySelector('select'), 'diverging')
+  assert.match(project.textContent, /2001–2025 mean.*−8 to \+8/s)
+  assert.match(project.querySelector('.project-after tbody').textContent, /2025-07.*5.83/s)
+  await fill(project.querySelector('select'), 'qualitative')
+  assert.equal(project.querySelectorAll('.project-after .project-pattern-row').length, 3)
+  await click(textButton('Grayscale check', project))
+  assert.equal(project.querySelectorAll('.is-grayscale').length, 2)
+  await click(textButton('中文', document.querySelector('.language-control')))
+  await click(document.querySelectorAll('#advanced .advanced-options button')[2])
+  project = document.querySelector('#advanced .advanced-intro>.project-effect')
+  assert.match(project.querySelector('h4').textContent, /项目真实数据/)
+  assert.doesNotMatch(project.querySelector('h4').textContent, /Chapter/)
+  const row = [...document.querySelectorAll('.culture-matrix tbody th')].find((th) => th.textContent.includes('新石器时代信号'))
+  assert.ok(row)
+  assert.equal(row.querySelectorAll('button').length, 0)
+  assert.equal(row.getAttribute('scope'), 'row')
+  await click(textButton('双语', document.querySelector('.language-control')))
+  await click(textButton('3D + layered evidence', document.querySelector('#advanced .advanced-options')))
+})
+
 test('the website carries complete APA-style references and data credits', async () => {
   const references = document.querySelector('#references')
   assert.ok(references)
@@ -271,7 +351,7 @@ test('water controls update real records while channel geometry remains unchange
 })
 
 test('qualitative matrix describes missing assertions without inventing zero counts', async () => {
-  const cell = document.querySelector('.culture-matrix rect[aria-label*="not asserted"]')
+  const cell = document.querySelector('.culture-matrix button[aria-label*="not asserted"]')
   assert.ok(cell)
   await click(cell)
   assert.match(document.querySelector('.matrix-reading').textContent, /does not establish absence/)

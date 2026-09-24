@@ -1,3 +1,11 @@
+## v4.5 · Readable bilingual labels and applied comparisons
+
+The Mandara matrix uses a semantic table with a separate, wrapping row-label column. Full English, Chinese, and bilingual labels never share coordinates with the colored cells; the matrix scrolls within its own container on small screens.
+
+Every Week 5 idiom, each selectable textbook/research example, and the Week 6 techniques now lead directly into a **Before / After** example from this project. The six core idioms use real 2025 Kunshan precipitation or the paper-derived Mandara assertions. Research extensions demonstrate linked month-range selection, intersecting filters, a three-panel story, and a predefined design candidate with explicit limits.
+
+The advanced selector changes the worked example: **3D** compares the same evidence layers with full text outside the planes; **animation** steps through fixed-scale monthly data with play/pause/reset and reduced-motion support; **Chapter 10 color** compares magnitude, categorical assertions, and deviations from the 2001–2025 same-month mean. The detailed palette controls recolor this same evidence. Each example keeps its source, boundary, reset, and student adaptation prompt visible.
+
 ## Course synthesis · v4.4
 
 The Water & Mountains case now connects the complete INFOSCI 301 learning pathway to design capability, interdisciplinary contribution, and community-rooted global leadership.
