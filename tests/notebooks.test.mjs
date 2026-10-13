@@ -43,3 +43,12 @@ test('render-only refuses missing execution without replacing good previews',()=
   assert.equal(fs.readFileSync(preview,'utf8'),'verified saved output');
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
+
+test('linked Altair results are isolated native views rather than object representations',()=>{
+ const doc=new JSDOM(fs.readFileSync('public/notebooks/INFOSCI301_Interaction_Design_Companion_Executed.html','utf8')).window.document;
+ for(const id of ['interaction-original-11','interaction-original-15']){
+  const section=doc.getElementById(id),frame=section.querySelector('iframe[srcdoc]');assert.ok(frame);
+  assert.ok(frame.getAttribute('srcdoc').includes('vegaEmbed'));
+  assert.ok(!section.textContent.includes('Consider using IPython.display.IFrame'));
+ }
+});

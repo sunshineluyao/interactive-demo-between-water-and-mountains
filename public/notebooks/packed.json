@@ -8,9 +8,9 @@
   },
   {
     "target": "public/notebooks/INFOSCI301_Interaction_Design_Companion_Executed.html",
-    "sha256": "bba25b40ba7664e275a79815892980f44c3baf93f1fb83b18b92452a2f78e7c6",
+    "sha256": "a38cd1f058129d57b63cb99f9b8319bafa4dc9a526aa0b428f68f01c11c73d3f",
     "parts": [
-      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-bba25b40ba76-00.txt"
+      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-a38cd1f05812-00.txt"
     ]
   },
   {
@@ -22,11 +22,11 @@
   },
   {
     "target": "public/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip",
-    "sha256": "93ce0938897ab3b5e78e2e3fae1b50f1d2e4265bd649b004fb062a3dd5a5bed5",
+    "sha256": "a1d2814f412da4f717eafac92233fbddcce007b3a9bc9f790b132a8556a55722",
     "parts": [
-      "public/notebooks/packed/saved_assets-93ce0938897a-00.txt",
-      "public/notebooks/packed/saved_assets-93ce0938897a-01.txt",
-      "public/notebooks/packed/saved_assets-93ce0938897a-02.txt"
+      "public/notebooks/packed/saved_assets-a1d2814f412d-00.txt",
+      "public/notebooks/packed/saved_assets-a1d2814f412d-01.txt",
+      "public/notebooks/packed/saved_assets-a1d2814f412d-02.txt"
     ]
   }
 ]
