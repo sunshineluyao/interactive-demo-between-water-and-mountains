@@ -48,10 +48,12 @@ The app embeds authentic cell outputs, removes the simulated miniature result, e
 
 ## Validation
 
-Twenty-five Python cells completed in fresh processes: 13 color, 12 interaction. Thirty-one automated tests include source/HTML hash and figure parity, downloads, actual cell anchors, 243 palette parameter combinations, and ten Colorspacious reference conversions. TypeScript, Vite, data and build-integrity checks pass. Optional browser libraries, Colab gestures, R, and actual student/community usability retain their documented limits. Inspect the source execution record before making a stronger claim.
+Twenty-five Python cells completed in fresh processes: 13 color, 12 interaction. Thirty-two automated tests include source/HTML hash and figure parity, downloads, actual cell anchors, 243 palette parameter combinations, and ten Colorspacious reference conversions. TypeScript, Vite, data and build-integrity checks pass. Optional browser libraries, Colab gestures, R, and actual student/community usability retain their documented limits. Inspect the source execution record before making a stronger claim.
 
 ## Publication format
 
 GitHub stores readable, editable notebook source. Saved cell outputs live in the verified HTML companion. The publisher executes the same source in a fresh process, then clears the runtime output payload in the download to keep editing lightweight. The HTML includes the exact source and receipt; the manifest binds the source checksum, output checksum and figure count. Compressed text parts in public/notebooks/packed are assembled by scripts/materialize-notebook-outputs.mjs during npm build/test/dev, with checksums checked before writing HTML and ZIP assets. Colab runs need no build step; the source already contains the lesson data.
 
 Automated review repairs: render-only refuses missing or changed execution sources; inner optional fallbacks retain an incomplete status; every generated PNG is included; Plotly exports have unique filenames; the standalone Water & Mountains file embeds both notebook outputs and their downloads. These paths have regression checks.
+
+Live verification repair: the publisher explicitly emits rich implicit results, renders Markdown MIME output, and isolates each native Altair view in its own iframe. The affected setup/dependent cells were re-executed with unchanged Python source; their refresh receipt accompanies the original full execution record. Regression checks cover the metric table, recipes/tool table and native selection/brush views.
