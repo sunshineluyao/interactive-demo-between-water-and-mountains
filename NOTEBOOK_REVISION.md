@@ -44,12 +44,14 @@ Interaction Design now bundles checksum-verified OSM geometry, NASA POWER months
 
 Color Palette Studio matches the app's OKLCH gamut reduction, rounding, and default. An exported app palette loads before figures and handoff files. CVD matrices run in linear sRGB and the notebook uses the corrected Colorspacious conversion direction. Sequential 2025 precipitation and zero-centered deviations from the 2001–2025 same-month mean explain palette choice on real project data.
 
-The app embeds authentic cell outputs, removes the simulated miniature result, exposes exact source and SVG/PDF/data downloads, and exports a palette-state JSON for upload to Colab. Source notebooks remain under notebooks/; the existing Vite plugin emits their downloads.
+The app embeds authentic cell outputs, removes the simulated miniature result, exposes exact source and SVG/PDF/PNG/data downloads, and exports a palette-state JSON for upload to Colab. Source notebooks remain under notebooks/; the existing Vite plugin emits their downloads.
 
 ## Validation
 
-Twenty-five Python cells completed in fresh processes: 13 color, 12 interaction. Twenty-nine automated tests include source/HTML hash and figure parity, downloads, actual cell anchors, 243 palette parameter combinations, and ten Colorspacious reference conversions. TypeScript, Vite, data and build-integrity checks pass. Optional browser libraries, Colab gestures, R, and actual student/community usability retain their documented limits. Inspect the source execution record before making a stronger claim.
+Twenty-five Python cells completed in fresh processes: 13 color, 12 interaction. Thirty-one automated tests include source/HTML hash and figure parity, downloads, actual cell anchors, 243 palette parameter combinations, and ten Colorspacious reference conversions. TypeScript, Vite, data and build-integrity checks pass. Optional browser libraries, Colab gestures, R, and actual student/community usability retain their documented limits. Inspect the source execution record before making a stronger claim.
 
 ## Publication format
 
 GitHub stores readable, editable notebook source. Saved cell outputs live in the verified HTML companion. The publisher executes the same source in a fresh process, then clears the runtime output payload in the download to keep editing lightweight. The HTML includes the exact source and receipt; the manifest binds the source checksum, output checksum and figure count. Compressed text parts in public/notebooks/packed are assembled by scripts/materialize-notebook-outputs.mjs during npm build/test/dev, with checksums checked before writing HTML and ZIP assets. Colab runs need no build step; the source already contains the lesson data.
+
+Automated review repairs: render-only refuses missing or changed execution sources; inner optional fallbacks retain an incomplete status; every generated PNG is included; Plotly exports have unique filenames; the standalone Water & Mountains file embeds both notebook outputs and their downloads. These paths have regression checks.

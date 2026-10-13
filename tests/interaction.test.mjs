@@ -189,6 +189,19 @@ test('the embedded Colab guide links to an executable, versioned notebook', asyn
   assert.equal(guide.querySelector('.mini-result'),null)
 })
 
+test('standalone notebook outputs and downloads use embedded data URLs',async()=>{
+ const guide=document.querySelector('.colab-companion');
+ const preview='data:text/html;base64,PHNlY3Rpb24+aW5saW5lIHNhdmVkIG91dHB1dDwvc2VjdGlvbj4=';
+ window.__ATLAS_NOTEBOOK_PREVIEWS__={'INFOSCI301_Interaction_Design_Companion_Executed.html':preview};
+ window.__ATLAS_NOTEBOOK_FILES__={'/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb':'data:application/x-ipynb+json;base64,e30=','/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip':'data:application/zip;base64,UEs='};
+ await click(textButton('Select',guide));
+ assert.equal(guide.querySelector('.saved-notebook-output iframe').getAttribute('src'),preview+'#interaction-original-11');
+ const downloads=[...guide.querySelectorAll('.saved-notebook-output a[download]')];
+ assert.ok(downloads.every(a=>a.getAttribute('href').startsWith('data:')));
+ delete window.__ATLAS_NOTEBOOK_PREVIEWS__;delete window.__ATLAS_NOTEBOOK_FILES__;
+ await click(textButton('Coordinate',guide));
+})
+
 test('the color studio compares accessible palettes and links to its executable notebook', async () => {
   const studio = document.querySelector('.color-palette-studio')
   assert.ok(studio)

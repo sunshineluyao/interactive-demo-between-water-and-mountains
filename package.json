@@ -15,7 +15,8 @@
     "test": "TSX_TSCONFIG_PATH=tsconfig.app.json node --import tsx --test tests/*.test.mjs",
     "preview:standalone": "node scripts/materialize-assets.mjs && node scripts/build-preview.mjs",
     "notebook:publish": "python3 scripts/publish_notebooks.py",
-    "pretest": "node scripts/materialize-notebook-outputs.mjs"
+    "pretest": "node scripts/materialize-notebook-outputs.mjs",
+    "prepreview:standalone": "node scripts/materialize-notebook-outputs.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.7.0",

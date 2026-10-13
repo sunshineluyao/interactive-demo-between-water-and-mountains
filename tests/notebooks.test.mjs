@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
+import {tmpdir} from 'node:os';
+import {execFileSync} from 'node:child_process';
 const manifest=JSON.parse(fs.readFileSync('public/notebooks/manifest.json','utf8'));
 const canonical=fs.existsSync('notebooks')?'notebooks':'public/notebooks';
 for(const lesson of manifest.lessons){
@@ -29,3 +31,15 @@ for(const lesson of manifest.lessons){
   assert.ok(fs.statSync(path.join('public/notebooks',lesson.bundle)).size>1000);
  });
 }
+
+test('render-only refuses missing execution without replacing good previews',()=>{
+ const root=fs.mkdtempSync(path.join(tmpdir(),'infosci-publisher-'));
+ try{
+  for(const dir of ['scripts','notebooks','public/notebooks'])fs.mkdirSync(path.join(root,dir),{recursive:true});
+  fs.copyFileSync('scripts/publish_notebooks.py',path.join(root,'scripts/publish_notebooks.py'));
+  fs.writeFileSync(path.join(root,'notebooks/Lesson.ipynb'),JSON.stringify({cells:[]}));
+  const preview=path.join(root,'public/notebooks/Lesson_Executed.html');fs.writeFileSync(preview,'verified saved output');
+  assert.throws(()=>execFileSync('python3',[path.join(root,'scripts/publish_notebooks.py'),'--render-only'],{cwd:root,encoding:'utf8',stdio:'pipe'}),error=>error.status!==0 && /Saved execution missing/.test(String(error.stderr)));
+  assert.equal(fs.readFileSync(preview,'utf8'),'verified saved output');
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});

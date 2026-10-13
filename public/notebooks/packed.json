@@ -1,36 +1,32 @@
 [
   {
     "target": "public/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio_Executed.html",
-    "sha256": "88f55305701daed4f46434dd7efb2b27c8d2205704b6fbc586d555f89ea6435c",
+    "sha256": "cbb6d36521c9e5ab38c501c7fec365da38db48db6688f57f9a4fdfd37b020660",
     "parts": [
-      "public/notebooks/packed/INFOSCI301_Color_Palette_Accessibility_Studio_Executed-88f55305701d-00.txt"
+      "public/notebooks/packed/INFOSCI301_Color_Palette_Accessibility_Studio_Executed-cbb6d36521c9-00.txt"
     ]
   },
   {
     "target": "public/notebooks/INFOSCI301_Interaction_Design_Companion_Executed.html",
-    "sha256": "aab9489524f012afc025724435cc0e41f86971f3bf24bcfccf0b81e4fd07ff11",
+    "sha256": "bba25b40ba7664e275a79815892980f44c3baf93f1fb83b18b92452a2f78e7c6",
     "parts": [
-      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-aab9489524f0-00.txt",
-      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-aab9489524f0-01.txt",
-      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-aab9489524f0-02.txt"
+      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-bba25b40ba76-00.txt"
     ]
   },
   {
     "target": "public/notebooks/assets/INFOSCI301_Color_Palette_Accessibility_Studio/saved_assets.zip",
-    "sha256": "25c61e11f85dc671971abc870a05c7655f5dea0fc29e670fa42d431b931e06d9",
+    "sha256": "463ffc80108c38c5ac1f530dcbac9bcfcf6404aa6a392996684384389afbbe77",
     "parts": [
-      "public/notebooks/packed/saved_assets-25c61e11f85d-00.txt",
-      "public/notebooks/packed/saved_assets-25c61e11f85d-01.txt"
+      "public/notebooks/packed/saved_assets-463ffc80108c-00.txt"
     ]
   },
   {
     "target": "public/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip",
-    "sha256": "4860eff186ee9aacd18fbdd262fcb5470772fda7e226c0202c75efca99486720",
+    "sha256": "93ce0938897ab3b5e78e2e3fae1b50f1d2e4265bd649b004fb062a3dd5a5bed5",
     "parts": [
-      "public/notebooks/packed/saved_assets-4860eff186ee-00.txt",
-      "public/notebooks/packed/saved_assets-4860eff186ee-01.txt",
-      "public/notebooks/packed/saved_assets-4860eff186ee-02.txt",
-      "public/notebooks/packed/saved_assets-4860eff186ee-03.txt"
+      "public/notebooks/packed/saved_assets-93ce0938897a-00.txt",
+      "public/notebooks/packed/saved_assets-93ce0938897a-01.txt",
+      "public/notebooks/packed/saved_assets-93ce0938897a-02.txt"
     ]
   }
 ]

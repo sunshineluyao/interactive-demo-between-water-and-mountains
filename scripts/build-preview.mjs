@@ -38,9 +38,28 @@ for (const notebookName of ['INFOSCI301_Interaction_Design_Companion.ipynb', 'IN
   const notebookData = `data:application/x-ipynb+json;charset=utf-8,${encodeURIComponent(readFileSync(resolve(root, 'notebooks', notebookName), 'utf8'))}`
   js = js.replaceAll(`/notebooks/${notebookName}`, notebookData)
 }
+const notebookManifest = JSON.parse(readFileSync(resolve(root,'public/notebooks/manifest.json'),'utf8'))
+const notebookFiles = {}
+const mimeFor = path => path.endsWith('.ipynb') ? 'application/x-ipynb+json' : path.endsWith('.zip') ? 'application/zip' : path.endsWith('.css') ? 'text/css' : path.endsWith('.json') ? 'application/json' : 'application/octet-stream'
+function notebookFile(url){
+ if(notebookFiles[url])return notebookFiles[url]
+ const file=url.endsWith('.ipynb') ? resolve(root,'notebooks',url.split('/').pop()) : resolve(root,'public'+url)
+ return notebookFiles[url]=`data:${mimeFor(url)};base64,${readFileSync(file).toString('base64')}`
+}
+const notebookPreviews={}
+for(const lesson of notebookManifest.lessons){
+ notebookFile(`/notebooks/${lesson.notebook}`);notebookFile(`/notebooks/${lesson.bundle}`)
+ let output=readFileSync(resolve(root,'public/notebooks',lesson.preview),'utf8')
+ output=output.replace(/href=(["'])([^"']+)\1/g,(match,quote,href)=>{
+  if(/^(https?:|mailto:|#|data:)/.test(href))return match
+  const url='/notebooks/'+href
+  return `href=${quote}${notebookFile(url)}${quote}`
+ })
+ notebookPreviews[lesson.preview]=`data:text/html;base64,${Buffer.from(output).toString('base64')}`
+}
 const snapshots = Object.fromEntries(['kunshan-waterways.geojson', 'kunshan-precipitation.json', 'mandara-teaching.json'].map((name) => [`/data/${name}`, JSON.parse(readFileSync(resolve(root, 'public/data', name), 'utf8'))]))
 const safe = (text) => text.replaceAll('</script', '<\\/script')
-const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Between Water & Mountains · Interactive preview</title><style>${css}</style></head><body><div id="root"></div><script>window.__ATLAS_SNAPSHOTS__=${safe(JSON.stringify(snapshots))};</script><script>${safe(js)}</script></body></html>`
+const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Between Water & Mountains · Interactive preview</title><style>${css}</style></head><body><div id="root"></div><script>window.__ATLAS_SNAPSHOTS__=${safe(JSON.stringify(snapshots))};window.__ATLAS_NOTEBOOK_FILES__=${safe(JSON.stringify(notebookFiles))};window.__ATLAS_NOTEBOOK_PREVIEWS__=${safe(JSON.stringify(notebookPreviews))};</script><script>${safe(js)}</script></body></html>`
 const destination = resolve(root, 'preview/Between_Water_and_Mountains_Interactive.html')
 mkdirSync(resolve(root, 'preview'), { recursive: true })
 writeFileSync(destination, html)
