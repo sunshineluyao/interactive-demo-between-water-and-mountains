@@ -4,16 +4,18 @@
   "version": "4.5.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/materialize-assets.mjs",
+    "predev": "node scripts/materialize-notebook-outputs.mjs && node scripts/materialize-assets.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/materialize-assets.mjs",
+    "prebuild": "node scripts/materialize-notebook-outputs.mjs && node scripts/materialize-assets.mjs",
     "build": "tsc -b && vite build",
-    "notebook:build": "node scripts/build-notebook.mjs && node scripts/build-color-notebook.mjs",
+    "notebook:build": "node scripts/build-notebook.mjs && node scripts/build-color-notebook.mjs && python3 scripts/revise_notebooks.py",
     "preview": "vite preview",
     "data:refresh": "python3 scripts/fetch_open_data.py",
     "check": "npm run build && node scripts/validate-data.mjs && node scripts/check-build.mjs && npm test",
     "test": "TSX_TSCONFIG_PATH=tsconfig.app.json node --import tsx --test tests/*.test.mjs",
-    "preview:standalone": "node scripts/materialize-assets.mjs && node scripts/build-preview.mjs"
+    "preview:standalone": "node scripts/materialize-assets.mjs && node scripts/build-preview.mjs",
+    "notebook:publish": "python3 scripts/publish_notebooks.py",
+    "pretest": "node scripts/materialize-notebook-outputs.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.7.0",

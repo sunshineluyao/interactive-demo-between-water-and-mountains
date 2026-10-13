@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "parameters": {
+    "family": "sequential",
+    "count": 7,
+    "hue": 205,
+    "chroma": 0.16,
+    "span": 48
+  },
+  "colors": [
+    "#BCF8FF",
+    "#92E0E9",
+    "#66C9D4",
+    "#2BB2BF",
+    "#2097A2",
+    "#177D87",
+    "#0B646C"
+  ]
+}

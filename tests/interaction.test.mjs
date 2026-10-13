@@ -185,6 +185,8 @@ test('the embedded Colab guide links to an executable, versioned notebook', asyn
   const download = [...guide.querySelectorAll('a')].find((link) => link.textContent.includes('Download .ipynb'))
   assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb')
   assert.equal(download.download, 'INFOSCI301_Interaction_Design_Companion.ipynb')
+  assert.match(guide.querySelector('.saved-notebook-output iframe').src,/Executed\.html#interaction-original-15$/)
+  assert.equal(guide.querySelector('.mini-result'),null)
 })
 
 test('the color studio compares accessible palettes and links to its executable notebook', async () => {
@@ -213,6 +215,9 @@ test('the color studio compares accessible palettes and links to its executable 
   const download = [...studio.querySelectorAll('a')].find((link) => link.textContent.includes('Download color'))
   assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
   assert.equal(download.download, 'INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
+  assert.match(studio.querySelector('.saved-notebook-output iframe').src,/Executed\.html#color-saved-output$/)
+  await click(textButton('Export active palette for the notebook',studio))
+  assert.equal(downloadName,'INFOSCI301_palette_state.json')
 })
 
 test('the pathway distinguishes applied skills from the network extension', async () => {
