@@ -12,3 +12,11 @@ public/images/tutorial/*.gif
 public/images/tutorial/*.jpg
 public/images/tutorial/*.png
 public/images/sdg/*.jpg
+
+.notebook-run/
+.venv/
+__pycache__/
+
+/public/notebooks/*Executed.html
+/public/notebooks/legacy-idiom-atlas.html
+/public/notebooks/assets/**/*.zip

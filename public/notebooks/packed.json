@@ -1,0 +1,32 @@
+[
+  {
+    "target": "public/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio_Executed.html",
+    "sha256": "cbb6d36521c9e5ab38c501c7fec365da38db48db6688f57f9a4fdfd37b020660",
+    "parts": [
+      "public/notebooks/packed/INFOSCI301_Color_Palette_Accessibility_Studio_Executed-cbb6d36521c9-00.txt"
+    ]
+  },
+  {
+    "target": "public/notebooks/INFOSCI301_Interaction_Design_Companion_Executed.html",
+    "sha256": "bba25b40ba7664e275a79815892980f44c3baf93f1fb83b18b92452a2f78e7c6",
+    "parts": [
+      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-bba25b40ba76-00.txt"
+    ]
+  },
+  {
+    "target": "public/notebooks/assets/INFOSCI301_Color_Palette_Accessibility_Studio/saved_assets.zip",
+    "sha256": "463ffc80108c38c5ac1f530dcbac9bcfcf6404aa6a392996684384389afbbe77",
+    "parts": [
+      "public/notebooks/packed/saved_assets-463ffc80108c-00.txt"
+    ]
+  },
+  {
+    "target": "public/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip",
+    "sha256": "93ce0938897ab3b5e78e2e3fae1b50f1d2e4265bd649b004fb062a3dd5a5bed5",
+    "parts": [
+      "public/notebooks/packed/saved_assets-93ce0938897a-00.txt",
+      "public/notebooks/packed/saved_assets-93ce0938897a-01.txt",
+      "public/notebooks/packed/saved_assets-93ce0938897a-02.txt"
+    ]
+  }
+]

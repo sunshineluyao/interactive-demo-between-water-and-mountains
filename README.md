@@ -1,3 +1,7 @@
+## Revised notebooks · 13 October 2026
+
+Vercel now embeds genuine saved notebook results, with checksums, Colab, exact source downloads and vector/data bundles. See [NOTEBOOK_REVISION.md](NOTEBOOK_REVISION.md) for content changes, design tools, rebuild commands, checks and limits.
+
 ## v4.5 · Readable bilingual labels and applied comparisons
 
 The Mandara matrix uses a semantic table with a separate, wrapping row-label column. Full English, Chinese, and bilingual labels never share coordinates with the colored cells; the matrix scrolls within its own container on small screens.
