@@ -2,24 +2,24 @@
   "release": "2026-10-14",
   "notebooks": [
     {
-      "executed_utc": "2026-10-13T16:38:12.758494+00:00",
+      "executed_utc": "2026-10-13T17:23:19.113942+00:00",
       "runner": "in-process Python: saved display outputs and initial widget callbacks; optional extensions explicitly disabled",
       "executed_cells": 13,
       "python": "3.12.14",
       "optional_extensions": false,
-      "notebook_sha256": "42305f1f45a827fd61bfd450539a0bdd79079b445765bdff4f347cdd69e74d03",
-      "html_sha256": "f575711bfa004b8565d427954a796b4201940c7c45d219627a18f0d10b29aa2a",
+      "notebook_sha256": "e0e90ecd924ebfff0b9deae09415fc1c8d23f1a1344d74ba92cc125e56deec9d",
+      "html_sha256": "b2cdb42cf87214a459764bb999513c98be1d18dab36f40ef0cf9be9ba3d638d9",
       "notebook": "notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb",
       "html": "INFOSCI301_Color_Palette_Accessibility_Studio.html"
     },
     {
-      "executed_utc": "2026-10-13T16:38:10.973565+00:00",
+      "executed_utc": "2026-10-13T17:23:20.931703+00:00",
       "runner": "in-process Python: saved display outputs and initial widget callbacks; optional extensions explicitly disabled",
       "executed_cells": 12,
       "python": "3.12.14",
       "optional_extensions": false,
-      "notebook_sha256": "ef34ed71378b859b75ad668ec74f0ef83cc4085df57e98d441c7ee4ccf231732",
-      "html_sha256": "2dea6e6e447548a6694dfcc58762f8488015709aaec30bec8718244e07570240",
+      "notebook_sha256": "f8611ba120d218320a1aacbf6604628042e397299d77de792c9fc5ab6ecbaf4f",
+      "html_sha256": "6613332332e554bf16bcfb7c2024d2d8171298a8f4ceaa50808fd6853893a0d2",
       "notebook": "notebooks/INFOSCI301_Interaction_Design_Companion.ipynb",
       "html": "INFOSCI301_Interaction_Design_Companion.html"
     }
