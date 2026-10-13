@@ -1,0 +1,107 @@
+{
+  "palette/qualitative/01": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0,
+        0.71373,
+        0.78039
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#00b6c7"
+    }
+  },
+  "palette/qualitative/02": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.37255,
+        0.63137,
+        0.95294
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#5fa1f3"
+    }
+  },
+  "palette/qualitative/03": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.70196,
+        0.52549,
+        0.89412
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#b386e4"
+    }
+  },
+  "palette/qualitative/04": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.88235,
+        0.46667,
+        0.63922
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#e177a3"
+    }
+  },
+  "palette/qualitative/05": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.89804,
+        0.49804,
+        0.3098
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#e57f4f"
+    }
+  },
+  "palette/qualitative/06": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.72941,
+        0.61176,
+        0.07451
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#ba9c13"
+    }
+  },
+  "palette/qualitative/07": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.38039,
+        0.7098,
+        0.39608
+      ],
+      "alpha": 1
+    },
+    "$extensions": {
+      "org.infoscience301.hex": "#61b565"
+    }
+  }
+}

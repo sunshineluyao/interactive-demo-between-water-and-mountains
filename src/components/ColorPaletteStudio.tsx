@@ -14,7 +14,7 @@ import { useMemo, useState } from 'react'
 import type { LanguageMode } from '../lib/i18n'
 import { ProjectEffectExample } from './ProjectEffectExample'
 
-const colabUrl = 'https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/main/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
+const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${import.meta.env?.VITE_NOTEBOOK_REF || 'codex/notebook-studio-20261014'}/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb`
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
 
 type PaletteFamily = 'qualitative' | 'sequential' | 'diverging'
@@ -261,8 +261,8 @@ export function ColorPaletteStudio({ language = 'bilingual' }: { language?: Lang
         <div>{integrations.map(({ icon: Icon, title, copy, href }) => <article key={title}><Icon aria-hidden="true" /><strong>{title}</strong><p>{copy}</p><a href={href} target="_blank" rel="noreferrer">Read official guidance <ArrowUpRight aria-hidden="true" /></a></article>)}</div>
       </section>
 
-      <div className="color-notebook-callout">
-        <div><span>20 executable cells · bilingual explanations</span><h4>Continue in the full Google Colab studio.</h4><p>Rebuild the palette, calculate WCAG contrast and ΔE, preview color-vision conditions, compare research designs, export Figma-ready JSON and Adobe ASE, and render a 3D surface.</p></div>
+      <section className="saved-color-results"><h4>Inspect the notebook’s executed palette and audit.</h4><p>These saved results use the notebook’s default inputs. Apply or import your own palette in Colab, then export its matching figure and audit.</p><iframe className="saved-notebook-frame" title="Executed color palette and luminance audit" src="/notebooks/color-current-palette.html" sandbox="allow-scripts allow-downloads" loading="lazy" /><a href="/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.html" target="_blank" rel="noreferrer">Read the full executed notebook</a> · <a href="/notebooks/color-evidence.zip" download>Download figures, audit, tokens and design record</a></section><div className="color-notebook-callout">
+        <div><span>Executed core outputs · bilingual explanations</span><h4>Continue in the full Google Colab studio.</h4><p>Rebuild the palette, calculate WCAG contrast and ΔE, preview color-vision conditions, compare research designs, export Figma-ready JSON and Adobe ASE, and render a 3D surface.</p></div>
         <div className="colab-actions"><a className="colab-primary" href={colabUrl} target="_blank" rel="noreferrer"><Play aria-hidden="true" /> Open color notebook in Colab <ArrowUpRight aria-hidden="true" /></a><a href={notebookDownloadUrl} download="INFOSCI301_Color_Palette_Accessibility_Studio.ipynb"><CloudDownload aria-hidden="true" /> Download color .ipynb</a></div>
       </div>
     </section>

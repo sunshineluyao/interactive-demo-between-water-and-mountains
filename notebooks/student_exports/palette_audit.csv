@@ -1,0 +1,8 @@
+token,hex,CIELAB_Lstar,relative_luminance,text_contrast_on_background,deltaE00_to_next,family,monotonic_luminance,use_color_alone
+color-1,#00b6c7,67.3,0.376,2.4,22.11,qualitative,False,NO / 否
+color-2,#5fa1f3,64.6,0.344,2.59,23.66,qualitative,False,NO / 否
+color-3,#b386e4,63.2,0.322,2.74,18.87,qualitative,False,NO / 否
+color-4,#e177a3,63.5,0.318,2.77,28.36,qualitative,False,NO / 否
+color-5,#e57f4f,64.3,0.324,2.73,27.46,qualitative,False,NO / 否
+color-6,#ba9c13,65.6,0.343,2.6,27.04,qualitative,False,NO / 否
+color-7,#61b565,67.0,0.365,2.46,,qualitative,False,NO / 否
