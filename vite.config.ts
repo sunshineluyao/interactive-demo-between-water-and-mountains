@@ -31,7 +31,7 @@ function notebookAsset(): Plugin {
 
 export default defineConfig({
   plugins: [react(), notebookAsset()],
-  define: { 'import.meta.env.VITE_NOTEBOOK_REF': JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA || 'codex/notebook-studio-20261014') },
+  define: { __NOTEBOOK_REF__: JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA || 'main') },
   build: {
     target: 'es2022',
     sourcemap: true,

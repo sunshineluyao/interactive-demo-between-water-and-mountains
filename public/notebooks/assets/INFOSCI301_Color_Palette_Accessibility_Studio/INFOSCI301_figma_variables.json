@@ -1,0 +1,57 @@
+{
+  "collection": "INFOSCI 301 Color Evidence",
+  "modes": [
+    "Default"
+  ],
+  "variables": [
+    {
+      "name": "palette/sequential/01",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#BCF8FF"
+      }
+    },
+    {
+      "name": "palette/sequential/02",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#92E0E9"
+      }
+    },
+    {
+      "name": "palette/sequential/03",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#66C9D4"
+      }
+    },
+    {
+      "name": "palette/sequential/04",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#2BB2BF"
+      }
+    },
+    {
+      "name": "palette/sequential/05",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#2097A2"
+      }
+    },
+    {
+      "name": "palette/sequential/06",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#177D87"
+      }
+    },
+    {
+      "name": "palette/sequential/07",
+      "type": "COLOR",
+      "valuesByMode": {
+        "Default": "#0B646C"
+      }
+    }
+  ]
+}

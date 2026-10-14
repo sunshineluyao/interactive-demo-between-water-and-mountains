@@ -185,6 +185,21 @@ test('the embedded Colab guide links to an executable, versioned notebook', asyn
   const download = [...guide.querySelectorAll('a')].find((link) => link.textContent.includes('Download .ipynb'))
   assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb')
   assert.equal(download.download, 'INFOSCI301_Interaction_Design_Companion.ipynb')
+  assert.match(guide.querySelector('.saved-notebook-output iframe').src,/Executed\.html#interaction-original-15$/)
+  assert.equal(guide.querySelector('.mini-result'),null)
+})
+
+test('standalone notebook outputs and downloads use embedded data URLs',async()=>{
+ const guide=document.querySelector('.colab-companion');
+ const preview='data:text/html;base64,PHNlY3Rpb24+aW5saW5lIHNhdmVkIG91dHB1dDwvc2VjdGlvbj4=';
+ window.__ATLAS_NOTEBOOK_PREVIEWS__={'INFOSCI301_Interaction_Design_Companion_Executed.html':preview};
+ window.__ATLAS_NOTEBOOK_FILES__={'/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb':'data:application/x-ipynb+json;base64,e30=','/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip':'data:application/zip;base64,UEs='};
+ await click(textButton('Select',guide));
+ assert.equal(guide.querySelector('.saved-notebook-output iframe').getAttribute('src'),preview+'#interaction-original-11');
+ const downloads=[...guide.querySelectorAll('.saved-notebook-output a[download]')];
+ assert.ok(downloads.every(a=>a.getAttribute('href').startsWith('data:')));
+ delete window.__ATLAS_NOTEBOOK_PREVIEWS__;delete window.__ATLAS_NOTEBOOK_FILES__;
+ await click(textButton('Coordinate',guide));
 })
 
 test('the color studio compares accessible palettes and links to its executable notebook', async () => {
@@ -213,6 +228,9 @@ test('the color studio compares accessible palettes and links to its executable 
   const download = [...studio.querySelectorAll('a')].find((link) => link.textContent.includes('Download color'))
   assert.equal(download.href, 'https://atlas.test/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
   assert.equal(download.download, 'INFOSCI301_Color_Palette_Accessibility_Studio.ipynb')
+  assert.match(studio.querySelector('.saved-notebook-output iframe').src,/Executed\.html#color-saved-output$/)
+  await click(textButton('Export active palette for the notebook',studio))
+  assert.equal(downloadName,'INFOSCI301_palette_state.json')
 })
 
 test('the pathway distinguishes applied skills from the network extension', async () => {

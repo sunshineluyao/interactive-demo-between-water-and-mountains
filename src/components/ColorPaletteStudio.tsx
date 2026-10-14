@@ -1,3 +1,5 @@
+import { NotebookOutput } from './NotebookOutput'
+import { notebookSourceRef } from '../notebookSource'
 import {
   Accessibility,
   ArrowUpRight,
@@ -14,7 +16,7 @@ import { useMemo, useState } from 'react'
 import type { LanguageMode } from '../lib/i18n'
 import { ProjectEffectExample } from './ProjectEffectExample'
 
-const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${import.meta.env?.VITE_NOTEBOOK_REF || 'codex/notebook-studio-20261014'}/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb`
+const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${encodeURIComponent(notebookSourceRef)}/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb`
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
 
 type PaletteFamily = 'qualitative' | 'sequential' | 'diverging'
@@ -76,7 +78,7 @@ function contrastRatio(first: Rgb, second: Rgb) {
   return (values[0] + 0.05) / (values[1] + 0.05)
 }
 
-function simulateVision(rgb: Rgb, mode: VisionMode): Rgb {
+export function simulateVision(rgb: Rgb, mode: VisionMode): Rgb {
   if (mode === 'normal') return rgb
   if (mode === 'grayscale') {
     const value = 255 * relativeLuminance(rgb) ** (1 / 2.2)
@@ -85,11 +87,12 @@ function simulateVision(rgb: Rgb, mode: VisionMode): Rgb {
   const matrix = mode === 'protanopia'
     ? [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]]
     : [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]]
-  return {
-    r: clamp(matrix[0][0] * rgb.r + matrix[0][1] * rgb.g + matrix[0][2] * rgb.b, 0, 255),
-    g: clamp(matrix[1][0] * rgb.r + matrix[1][1] * rgb.g + matrix[1][2] * rgb.b, 0, 255),
-    b: clamp(matrix[2][0] * rgb.r + matrix[2][1] * rgb.g + matrix[2][2] * rgb.b, 0, 255),
-  }
+  // CVD matrices act in linear sRGB, then restore the display transfer.
+  const linearize = (value: number) => value / 255 <= .04045 ? value / 255 / 12.92 : ((value / 255 + .055) / 1.055) ** 2.4
+  const linear = [rgb.r, rgb.g, rgb.b].map(linearize)
+  const encode = (value: number) => 255 * (value <= .0031308 ? 12.92 * value : 1.055 * Math.max(value, 0) ** (1 / 2.4) - .055)
+  const channels = matrix.map(row => clamp(encode(row.reduce((sum, coefficient, i) => sum + coefficient * linear[i], 0)), 0, 255))
+  return { r: channels[0], g: channels[1], b: channels[2] }
 }
 
 function hslToHex(hue: number, saturation = 0.78, lightness = 0.55) {
@@ -253,7 +256,13 @@ export function ColorPaletteStudio({ language = 'bilingual' }: { language?: Lang
 
       <section className="palette-gallery" aria-labelledby="palette-gallery-title">
         <div className="palette-subheading"><span>Credited design gallery</span><h4 id="palette-gallery-title">Six research patterns, reconstructed as swatches.</h4><p>These are compact teaching reconstructions—not reproduced figures. Follow each primary source for its complete method, evaluation, and context.</p></div>
-        <div className="palette-gallery-grid">{gallery.map((item) => <a key={item.title} href={item.href} target="_blank" rel="noreferrer"><span>{item.venue} · {item.year}</span><strong>{item.title}</strong><PaletteStrip colors={item.colors} label={`${item.title} teaching reconstruction`} /><p>{item.note}</p><small>Open primary source <ArrowUpRight aria-hidden="true" /></small></a>)}</div>
+        <div className="palette-state-handoff"><button type="button" onClick={() => {
+        const state = { schema_version: 1, parameters: { family, count, hue, chroma: chroma / 100, span }, colors: palette }
+        const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }))
+        const link = document.createElement('a'); link.href = url; link.download = 'INFOSCI301_palette_state.json'; link.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+      }}>Export active palette for the notebook</button><p>Upload INFOSCI301_palette_state.json in Colab to reproduce these exact colors. The saved output uses the default palette.</p></div>
+      <NotebookOutput kind="color" anchor="color-saved-output" />
+      <div className="palette-gallery-grid">{gallery.map((item) => <a key={item.title} href={item.href} target="_blank" rel="noreferrer"><span>{item.venue} · {item.year}</span><strong>{item.title}</strong><PaletteStrip colors={item.colors} label={`${item.title} teaching reconstruction`} /><p>{item.note}</p><small>Open primary source <ArrowUpRight aria-hidden="true" /></small></a>)}</div>
       </section>
 
       <section className="palette-integrations" aria-labelledby="palette-integrations-title">
@@ -261,8 +270,8 @@ export function ColorPaletteStudio({ language = 'bilingual' }: { language?: Lang
         <div>{integrations.map(({ icon: Icon, title, copy, href }) => <article key={title}><Icon aria-hidden="true" /><strong>{title}</strong><p>{copy}</p><a href={href} target="_blank" rel="noreferrer">Read official guidance <ArrowUpRight aria-hidden="true" /></a></article>)}</div>
       </section>
 
-      <section className="saved-color-results"><h4>Inspect the notebook’s executed palette and audit.</h4><p>These saved results use the notebook’s default inputs. Apply or import your own palette in Colab, then export its matching figure and audit.</p><iframe className="saved-notebook-frame" title="Executed color palette and luminance audit" src="/notebooks/color-current-palette.html" sandbox="allow-scripts allow-downloads" loading="lazy" /><a href="/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.html" target="_blank" rel="noreferrer">Read the full executed notebook</a> · <a href="/notebooks/color-evidence.zip" download>Download figures, audit, tokens and design record</a></section><div className="color-notebook-callout">
-        <div><span>Executed core outputs · bilingual explanations</span><h4>Continue in the full Google Colab studio.</h4><p>Rebuild the palette, calculate WCAG contrast and ΔE, preview color-vision conditions, compare research designs, export Figma-ready JSON and Adobe ASE, and render a 3D surface.</p></div>
+      <div className="color-notebook-callout">
+        <div><span>Saved execution and editable source · bilingual explanations</span><h4>Continue in the full Google Colab studio.</h4><p>Rebuild the palette, calculate WCAG contrast and ΔE, preview color-vision conditions, compare research designs, export Figma-ready JSON and Adobe ASE, and render a 3D surface.</p></div>
         <div className="colab-actions"><a className="colab-primary" href={colabUrl} target="_blank" rel="noreferrer"><Play aria-hidden="true" /> Open color notebook in Colab <ArrowUpRight aria-hidden="true" /></a><a href={notebookDownloadUrl} download="INFOSCI301_Color_Palette_Accessibility_Studio.ipynb"><CloudDownload aria-hidden="true" /> Download color .ipynb</a></div>
       </div>
     </section>

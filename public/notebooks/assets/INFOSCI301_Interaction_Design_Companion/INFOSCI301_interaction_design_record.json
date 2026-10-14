@@ -1,0 +1,20 @@
+{
+  "lesson": "interaction",
+  "student_design": {
+    "audience": "",
+    "question": "",
+    "human_decisions": [],
+    "supported_reading": "",
+    "limitation": "",
+    "actual_peer_feedback": "",
+    "next_test": ""
+  },
+  "snapshot_hashes": {
+    "kunshan-waterways.geojson": "c34656c7b2aa86be58101223f2436729270917ac3017361fbe08949c1f286c52",
+    "kunshan-precipitation.json": "7e4ee673e54792f37523c3f5c74123ccc1c5fdb4cc14554b1ef6584927636945",
+    "mandara-teaching.json": "db3957a9650dd8c50dcc10daab043d75250ff0447d4283b32c040159555dc9bf"
+  },
+  "parameters": {},
+  "extensions": {},
+  "python": "3.12.14"
+}

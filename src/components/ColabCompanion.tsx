@@ -1,7 +1,9 @@
-import { ArrowUpRight, BookOpenCheck, CloudDownload, Play, Sparkles } from 'lucide-react'
+import { NotebookOutput } from './NotebookOutput'
+import { notebookSourceRef } from '../notebookSource'
+import { ArrowUpRight, BookOpenCheck, CloudDownload, Play } from 'lucide-react'
 import { useState } from 'react'
 
-const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${import.meta.env?.VITE_NOTEBOOK_REF || 'codex/notebook-studio-20261014'}/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb`
+const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${encodeURIComponent(notebookSourceRef)}/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb`
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb'
 
 type VisualKind = 'globe' | 'map' | 'matrix' | 'timeline' | 'brush' | 'decision' | 'card' | 'validation'
@@ -119,21 +121,22 @@ record(next_test)`,
 export function ColabCompanion() {
   const [active, setActive] = useState(0)
   const step = notebookSteps[active]
+  const anchors = ['interaction-original-07','interaction-original-09','interaction-original-11','interaction-original-13','interaction-original-15','interaction-original-17','interaction-original-19','interaction-original-22']
   return (
     <section id="colab-companion" className="colab-companion" aria-labelledby="colab-title">
-      <div className="tutorial-section-heading"><div><BookOpenCheck aria-hidden="true" /><span>06 · Rebuild in Colab</span></div><h3 id="colab-title">Rebuild every pattern with the real teaching snapshots.</h3><p>The bilingual notebook includes recorded core outputs, matched comparisons, and editable Python controls. Its four complementary libraries make location, selection, change, coordination, authorship, and validation directly testable.</p></div>
+      <div className="tutorial-section-heading"><div><BookOpenCheck aria-hidden="true" /><span>06 · Rebuild in Colab</span></div><h3 id="colab-title">Rebuild every pattern with the real teaching snapshots.</h3><p>The redesigned notebook is a bilingual interactive studio—not a static code appendix. Its four complementary libraries make location, selection, change, coordination, authorship, and validation directly testable.</p></div>
       <div className="notebook-stack" aria-label="Interactive notebook package stack"><span><b>Plotly</b> animated globe + time</span><span><b>pydeck</b> GPU spatial layers</span><span><b>Altair</b> linked selections</span><span><b>ipywidgets</b> decisions + authoring</span></div>
       <div className="notebook-embed">
         <nav aria-label="Notebook tutorial steps">{notebookSteps.map((item, index) => <button key={item.number} type="button" aria-pressed={active === index} onClick={() => setActive(index)}><span>{item.number}</span><strong>{item.label}</strong></button>)}</nav>
         <article key={step.number}>
           <header><span>Learning cell {step.number}</span><h4>{step.title}</h4><strong lang="zh-CN">{step.titleZh}</strong><p>{step.objective}</p><div className="notebook-packages">{step.packages.map((item) => <i key={item}>{item}</i>)}</div></header>
-          <div className="notebook-result"><div><Sparkles aria-hidden="true" /><span>Saved notebook output · 已执行的笔记本结果</span></div><iframe key={step.number} className="saved-notebook-frame" title={`${step.title} — executed notebook output`} src={`/notebooks/interaction-step-${step.number}.html`} sandbox="allow-scripts allow-downloads" loading="lazy" /></div>
+          <NotebookOutput kind="interaction" anchor={anchors[active]} />
           <div className="notebook-code"><span><i /><i /><i /> Python</span><pre><code>{step.code}</code></pre></div>
           <div className="notebook-output"><Play aria-hidden="true" /><div><strong>What the output should teach</strong><p>{step.output}</p></div></div>
         </article>
       </div>
       <div className="colab-actions"><a className="colab-primary" href={colabUrl} target="_blank" rel="noreferrer"><Play aria-hidden="true" /> Open executable notebook in Colab <ArrowUpRight aria-hidden="true" /></a><a href={notebookDownloadUrl} download="INFOSCI301_Interaction_Design_Companion.ipynb"><CloudDownload aria-hidden="true" /> Download .ipynb</a></div>
-      <a href="/notebooks/INFOSCI301_Interaction_Design_Companion.html" target="_blank" rel="noreferrer">Read the full executed notebook</a> · <a href="/notebooks/interaction-evidence.zip" download>Download figures, source dictionaries and design record</a><p className="colab-boundary">Saved results come from the recorded Python run. Python widgets require Colab; supported JavaScript plots remain interactive in the saved view. The notebook loads the same versioned OpenStreetMap, NASA POWER, and Mandara teaching snapshots used here. It labels schematic, observed, derived, inferred, and interpretive content separately; no result is uploaded automatically.</p>
+      <p className="colab-boundary">The notebook uses the same checksum-verified bundled OpenStreetMap, NASA POWER, and Mandara teaching snapshots used here. It labels schematic, observed, derived, inferred, and interpretive content separately; no result is uploaded automatically.</p>
     </section>
   )
 }
