@@ -57,3 +57,9 @@ GitHub stores readable, editable notebook source. Saved cell outputs live in the
 Automated review repairs: render-only refuses missing or changed execution sources; inner optional fallbacks retain an incomplete status; every generated PNG is included; Plotly exports have unique filenames; the standalone Water & Mountains file embeds both notebook outputs and their downloads. These paths have regression checks.
 
 Live verification repair: the publisher explicitly emits rich implicit results, renders Markdown MIME output, and isolates each native Altair view in its own iframe. The affected setup/dependent cells were re-executed with unchanged Python source; their refresh receipt accompanies the original full execution record. Regression checks cover the metric table, recipes/tool table and native selection/brush views.
+
+## Review and conflict resolution · 14 October 2026
+
+The earlier notebook PR overlapped with the newer releases already on main. The merge preserves those lessons, native Altair views, link contrast, exports and canonical manifest pipeline, and replaces the superseded duplicate runner and stale parallel receipts. Every notebook now runs in its own process with an absolute source path. Setup checks installed package versions against explicit minimum constraints and upgrades outdated packages as well as missing ones. Vercel Colab links use the build commit instead of a moving main branch. Execution dates come from the actual UTC run.
+
+Both notebooks were fully rerun (25 Python cells). All 33 tests, TypeScript, Vite, data validation and build-integrity checks passed. Regression coverage includes outdated/missing/compatible package environments and publishing multiple notebooks from an unrelated directory. Source/HTML hashes and PNG/SVG/PDF/CSV bundles were verified. Copilot reported a review quota limit; the actionable automated findings were from Codex.

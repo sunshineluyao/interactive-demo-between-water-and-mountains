@@ -1,4 +1,5 @@
 import { NotebookOutput } from './NotebookOutput'
+import { notebookSourceRef } from '../notebookSource'
 import {
   Accessibility,
   ArrowUpRight,
@@ -15,7 +16,7 @@ import { useMemo, useState } from 'react'
 import type { LanguageMode } from '../lib/i18n'
 import { ProjectEffectExample } from './ProjectEffectExample'
 
-const colabUrl = 'https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/main/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
+const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${encodeURIComponent(notebookSourceRef)}/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb`
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio.ipynb'
 
 type PaletteFamily = 'qualitative' | 'sequential' | 'diverging'

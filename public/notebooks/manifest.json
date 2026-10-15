@@ -1,17 +1,18 @@
 {
-  "revision": "2026-10-13",
+  "revision": "2026-10-14",
   "lessons": [
     {
       "notebook": "INFOSCI301_Color_Palette_Accessibility_Studio.ipynb",
       "preview": "INFOSCI301_Color_Palette_Accessibility_Studio_Executed.html",
       "bundle": "assets/INFOSCI301_Color_Palette_Accessibility_Studio/saved_assets.zip",
-      "sha256": "34901046fd61a48630ac833e399ce812f000ed4567e2fd2791267193ee1f2233",
+      "sha256": "715dc16cfc046651949ac52e24a9d2e9be066ea79a4f866425fb089014b28ccb",
       "code_cells": 13,
       "figures": 6,
-      "preview_sha256": "cbb6d36521c9e5ab38c501c7fec365da38db48db6688f57f9a4fdfd37b020660",
+      "preview_sha256": "5e22e38c95171af188c0e0133a134600442066a26df0eccf708c1369ae5713dc",
       "execution": {
         "code_cells": 13,
-        "date": "2026-10-13",
+        "date": "2026-10-14",
+        "executed_utc": "2026-10-14T04:11:55.689959+00:00",
         "method": "fresh IPython process; Colab frontend not tested",
         "optional_extensions": {},
         "python": "3.12.14",
@@ -22,26 +23,17 @@
       "notebook": "INFOSCI301_Interaction_Design_Companion.ipynb",
       "preview": "INFOSCI301_Interaction_Design_Companion_Executed.html",
       "bundle": "assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip",
-      "sha256": "649b7d5a7548c1f5ee3ed3435b3078da069c9933795954ae3711da5fe00fc774",
+      "sha256": "692a6452b46abeaf26a51903a7b04080c39572da395edccaab78775d5c030411",
       "code_cells": 12,
       "figures": 5,
-      "preview_sha256": "a38cd1f058129d57b63cb99f9b8319bafa4dc9a526aa0b428f68f01c11c73d3f",
+      "preview_sha256": "ecbad72ffba036846576223985f1e55b59793359007fcdf858568c4d93c57ffc",
       "execution": {
         "code_cells": 12,
-        "date": "2026-10-13",
+        "date": "2026-10-14",
+        "executed_utc": "2026-10-14T04:11:58.547483+00:00",
         "method": "fresh IPython process; Colab frontend not tested",
         "optional_extensions": {},
         "python": "3.12.14",
-        "rich_output_refresh": {
-          "cells": [
-            3,
-            11,
-            13,
-            15
-          ],
-          "method": "selected setup and dependent cells re-executed in a fresh IPython process; other previously verified outputs retained",
-          "python_code": "unchanged"
-        },
         "status": "completed"
       }
     }

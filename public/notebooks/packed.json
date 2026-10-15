@@ -1,32 +1,32 @@
 [
   {
     "target": "public/notebooks/INFOSCI301_Color_Palette_Accessibility_Studio_Executed.html",
-    "sha256": "cbb6d36521c9e5ab38c501c7fec365da38db48db6688f57f9a4fdfd37b020660",
+    "sha256": "5e22e38c95171af188c0e0133a134600442066a26df0eccf708c1369ae5713dc",
     "parts": [
-      "public/notebooks/packed/INFOSCI301_Color_Palette_Accessibility_Studio_Executed-cbb6d36521c9-00.txt"
+      "public/notebooks/packed/INFOSCI301_Color_Palette_Accessibility_Studio_Executed-5e22e38c9517-00.txt"
     ]
   },
   {
     "target": "public/notebooks/INFOSCI301_Interaction_Design_Companion_Executed.html",
-    "sha256": "a38cd1f058129d57b63cb99f9b8319bafa4dc9a526aa0b428f68f01c11c73d3f",
+    "sha256": "ecbad72ffba036846576223985f1e55b59793359007fcdf858568c4d93c57ffc",
     "parts": [
-      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-a38cd1f05812-00.txt"
+      "public/notebooks/packed/INFOSCI301_Interaction_Design_Companion_Executed-ecbad72ffba0-00.txt"
     ]
   },
   {
     "target": "public/notebooks/assets/INFOSCI301_Color_Palette_Accessibility_Studio/saved_assets.zip",
-    "sha256": "463ffc80108c38c5ac1f530dcbac9bcfcf6404aa6a392996684384389afbbe77",
+    "sha256": "767b39325cdcf7a43b1212d2d37a11f5602e9e8cb8c02758b05af9dc45ee1220",
     "parts": [
-      "public/notebooks/packed/saved_assets-463ffc80108c-00.txt"
+      "public/notebooks/packed/saved_assets-767b39325cdc-00.txt"
     ]
   },
   {
     "target": "public/notebooks/assets/INFOSCI301_Interaction_Design_Companion/saved_assets.zip",
-    "sha256": "a1d2814f412da4f717eafac92233fbddcce007b3a9bc9f790b132a8556a55722",
+    "sha256": "76a9a164865b5c1337f78b5ab516e453cd9fe3625292917b404566f24ab8a91f",
     "parts": [
-      "public/notebooks/packed/saved_assets-a1d2814f412d-00.txt",
-      "public/notebooks/packed/saved_assets-a1d2814f412d-01.txt",
-      "public/notebooks/packed/saved_assets-a1d2814f412d-02.txt"
+      "public/notebooks/packed/saved_assets-76a9a164865b-00.txt",
+      "public/notebooks/packed/saved_assets-76a9a164865b-01.txt",
+      "public/notebooks/packed/saved_assets-76a9a164865b-02.txt"
     ]
   }
 ]

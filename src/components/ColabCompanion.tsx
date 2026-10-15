@@ -1,8 +1,9 @@
 import { NotebookOutput } from './NotebookOutput'
+import { notebookSourceRef } from '../notebookSource'
 import { ArrowUpRight, BookOpenCheck, CloudDownload, Play } from 'lucide-react'
 import { useState } from 'react'
 
-const colabUrl = 'https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/main/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb'
+const colabUrl = `https://colab.research.google.com/github/sunshineluyao/interactive-demo-between-water-and-mountains/blob/${encodeURIComponent(notebookSourceRef)}/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb`
 const notebookDownloadUrl = '/notebooks/INFOSCI301_Interaction_Design_Companion.ipynb'
 
 type VisualKind = 'globe' | 'map' | 'matrix' | 'timeline' | 'brush' | 'decision' | 'card' | 'validation'
